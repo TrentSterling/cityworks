@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cityworks | Three islands</title><link rel="icon" href="data:,"><link rel="stylesheet" href="src/style.css"></head>
+<body><main>
+<aside id="controls-panel" aria-label="City controls">
+  <header><h1>Cityworks <span class="version">0.3 dev</span></h1><button id="close-controls" class="mobile-only" aria-label="Close controls">Close</button></header>
+  <section><h2>Focus island</h2><div id="island-list" role="group" aria-label="Focus island"></div></section>
+  <section class="parameters"><h2>Land and streets</h2>
+    <label for="coastVariation">Coast variation <output id="coastVariation-out" for="coastVariation"></output></label><input id="coastVariation" type="range" min="0" max="1" step="0.05" value="0.5">
+    <label for="streetSpacing">Local street spacing <output id="streetSpacing-out" for="streetSpacing"></output></label><input id="streetSpacing" type="range" min="90" max="130" step="2" value="108">
+    <label for="bridgeWidth">Bridge carriageway <output id="bridgeWidth-out" for="bridgeWidth"></output></label><input id="bridgeWidth" type="range" min="18" max="28" step="1" value="22">
+  </section>
+  <form id="seed-form"><label for="seed">Seed</label><div class="seed-row"><input id="seed" value="CITYWORKS-03" maxlength="80" autocomplete="off" spellcheck="false"><button id="rebuild" type="submit">Rebuild</button></div></form>
+  <div class="actions"><button id="export" class="primary">Export JSON</button><button id="reset">Reset</button></div>
+  <div id="status" role="status" aria-live="polite" aria-atomic="true">Generating…</div>
+  <footer>Ground only · Units: metres · <a id="city-view" href="index.html">Open city</a></footer>
+</aside>
+<div id="panel-backdrop" hidden></div>
+<div id="viewport">
+  <div class="topbar">
+    <button id="open-controls" class="mobile-only" aria-controls="controls-panel" aria-expanded="false">Controls</button>
+    <div class="tabs camera-tabs" role="group" aria-label="Camera"><button data-view="aerial" class="active" aria-pressed="true">Islands</button><button data-view="overhead" aria-pressed="false">Plan</button><button data-view="bridge" aria-pressed="false">Bridge</button><button data-view="street" aria-pressed="false">Street</button></div>
+    <div class="tabs layer-tabs" role="group" aria-label="Layer"><button data-layer="ground" class="active" aria-pressed="true">Ground</button><button data-layer="network" aria-pressed="false">Hierarchy</button></div>
+  </div>
+  <div class="scene-title"><h2 id="view-title">Three islands</h2></div>
+  <div class="north" aria-label="North">N<span aria-hidden="true">↑</span></div>
+  <div id="selection" hidden><button id="close-selection" aria-label="Close road details">×</button><div id="selection-content"></div></div>
+  <div class="bottom">
+    <div class="legend" id="network-legend" hidden><span><i class="arterial"></i>Arterial</span><span><i class="collector"></i>Collector</span><span><i class="local"></i>Local</span></div>
+    <div class="metrics"><div><strong id="count-islands">3</strong><span>Islands</span></div><div><strong id="count-bridges">–</strong><span>Bridges</span></div><div><strong id="count-streets">–</strong><span>km streets</span></div><div><strong id="count-blocks">–</strong><span>Blocks</span></div><div><strong id="count-calls">–</strong><span>Draw calls</span></div></div>
+    <div class="controls"><span id="camera-hint">Drag to orbit · Scroll to zoom · Click a road</span><span id="validation">Checking connectivity…</span></div>
+  </div>
+</div></main>
+<script src="vendor/three.r140.min.js"></script><script src="vendor/clipper-6.4.2.js"></script><script src="src/geometry.js"></script><script src="src/city.js"></script><script src="src/archipelago.js"></script><script src="src/road-markings.js"></script><script src="src/road-material.js"></script><script src="src/ground-viewer.js"></script>
+<script>
+document.querySelector('#city-view').addEventListener('click',function(){
+  const input=window.Cityworks?.city?.input;if(!input)return;
+  const q=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth'])q.set(key,input[key]);
+  this.href='index.html?'+q;
+});
+</script>
+</body></html>

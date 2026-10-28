@@ -61,7 +61,7 @@ def controls(page, name, mobile):
     show_panel(page, mobile)
     if mobile:
         page.keyboard.press('Shift+Tab')
-        assert page.evaluate("document.activeElement.id==='reset'"), 'Focus must wrap inside controls'
+        assert page.evaluate("document.activeElement.id==='city-view'"), 'Focus must wrap inside controls'
         page.keyboard.press('Tab')
         assert page.evaluate("document.activeElement.id==='close-controls'")
         page.keyboard.press('Escape')

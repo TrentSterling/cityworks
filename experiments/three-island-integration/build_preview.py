@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 OUT=ROOT/'artifacts/three-island-integration';OUT.mkdir(parents=True,exist_ok=True)
 html=(HERE/'index.html').read_text(encoding='utf-8')
+html=html.replace("groundLink.href='../../ground-editor.html'", "groundLink.href='https://tront.xyz/cityworks/ground-editor.html'")
 mapping=json.loads(re.search(r'<script type="importmap">(.*?)</script>',html,re.S)[1])['imports']
 base=HERE.relative_to(ROOT).as_posix()
 absolute=lambda path,parent:posixpath.normpath(posixpath.join(posixpath.dirname(parent),path))

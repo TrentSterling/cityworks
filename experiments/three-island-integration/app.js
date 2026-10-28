@@ -26,6 +26,8 @@ function setView(name){view=name;
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $('buildings').onclick=e=>{cityBuildings.group.visible=!cityBuildings.group.visible;e.target.textContent=cityBuildings.group.visible?'Hide buildings':'Show buildings';};
 $('seed').value=city.input.seed;
+const groundQuery=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth'])groundQuery.set(key,city.input[key]);
+$('ground-editor').href+='?'+groundQuery;
 $('rebuild').onsubmit=e=>{e.preventDefault();const q=new URLSearchParams(location.search);q.set('seed',$('seed').value);q.delete('edits');location.search=q;};
 $('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(city,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='cityworks-three-island-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);};
 function select(id){selected=city.buildings.find(b=>b.id===id);$('selection').hidden=!selected;if(selected){$('selected-label').textContent=selected.id;$('height').value=selected.height;}}

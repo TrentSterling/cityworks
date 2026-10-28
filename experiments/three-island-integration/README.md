@@ -6,7 +6,7 @@ Run from the repository root:
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000/experiments/three-island-integration/` in a WebGPU-capable browser. Three.js is fetched from a commit-pinned CDN, so the preview requires network access. No account, API key or installation is required. `python experiments/three-island-integration/build_preview.py` also produces a single HTML file in `artifacts/three-island-integration`; it opens directly and bundles all local modules, retaining the same pinned external Three.js dependency. No changes are deployed to the public Cityworks app by this branch.
+Open `http://localhost:8000/` in a WebGPU-capable browser. The root release entry runs this integration; the experimental URL remains available for compatibility. Three.js is fetched from a commit-pinned CDN, so the preview requires network access. No account, API key or installation is required. `python experiments/three-island-integration/build_preview.py` also produces a single HTML file in `artifacts/three-island-integration`; it opens directly and bundles all local modules, retaining the same pinned external Three.js dependency.
 
 The live generator now executes this sequence:
 
