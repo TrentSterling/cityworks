@@ -1,6 +1,6 @@
 # Dependencies and provenance
 
-Cityworks uses synthetic geometry. The planning rules, street graph construction, frontage parcel allocation, identity rules and Three.js adapter in `src/` are original Cityworks code. No surveyed footprints, third-party image assets or proprietary city-generation implementation are included. This project is not represented as a certified clean-room implementation.
+Cityworks uses synthetic geometry. Its planning rules, street graph construction, frontage parcel allocation and identity rules are original Cityworks code. The renderer includes the MIT-licensed Slop New York adaptations identified below. No surveyed footprints, third-party image assets or proprietary city-generation implementation are included. This project is not represented as a certified clean-room implementation.
 
 ## Runtime dependencies
 
@@ -17,7 +17,15 @@ Full notices are in `THIRD_PARTY_NOTICES.txt`, `vendor/clipper-BOOST-LICENSE.txt
 
 ## Public behavioral references
 
-- [slop-newyork](https://github.com/mrdoob/slop-newyork): metric facade scale and shared opaque materials. No code or geodata copied.
+- [slop-newyork](https://github.com/mrdoob/slop-newyork): metric facade scale and shared opaque materials informed version 0.2 without code reuse. Version 0.3 adds the explicitly attributed road components below; no geodata is included.
 - [Epic City Sample PCG documentation](https://dev.epicgames.com/documentation/unreal-engine/city-sample-pcg-for-unreal-engine): boundary, artery, district, block, lot and park planning behavior. No Epic implementation or assets copied.
 
 Cityworks currently has no project-wide license for its original code. Third-party dependencies retain their own licenses.
+
+## Version 0.3 development
+
+`src/road-markings.js` adapts the metric strip primitive from `js/road-paint.js` in Slop New York commit `13dd142b480bcfa01a6b18e36127c87e41cb4d80`. Copyright (c) 2026 Mr.doob, MIT; full license is retained in `vendor/slop-newyork-MIT.txt`. Network placement, street hierarchy, terrain, island geometry and junction coverage are Cityworks code.
+
+`src/road-material.js` ports the same pinned source's `tsl-materials.js` hash/noise, utility-cut patches and two-scale aggregate shading from TSL to GLSL. This dry-road subset retains MIT attribution and omits wetness, reflections and potholes. `buildings.js` was inspected for footprint/detail separation; no building implementation or geographic data has been copied into this ground milestone.
+
+Planning references: [NACTO intersection principles](https://nacto.org/publication/urban-street-design-guide/intersections/intersection-design-principles/), [urban lane widths](https://nacto.org/publication/urban-street-design-guide/street-design-elements/lane-width/), and [NYC street geometry](https://www.nycstreetdesign.info/geometry). The prototype applies compact junctions, distinct travel/sidewalk widths and network continuity as design goals; it is not an engineering compliance tool.

@@ -1,15 +1,35 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cityworks | District 01</title><link rel="icon" href="data:,"><link rel="stylesheet" href="src/style.css"></head>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cityworks | Three islands</title><link rel="icon" href="data:,"><link rel="stylesheet" href="src/style.css"></head>
 <body><main>
-<aside><header><div class="wordmark"><span class="symbol">▦</span> CITYWORKS <span class="version">0.2</span></div><p>A city begins with a plan.</p></header>
-<div class="project"><span class="eyebrow">DISTRICT STUDY / 002</span><h1>Harbour &amp; Heights</h1><p>One island. A connected plan.<br>A skyline shaped by intent.</p></div>
-<section><div class="section-title"><span>01 / Island boundary</span><button id="reset-boundary" class="text-button">Reset</button></div><svg id="map" viewBox="0 0 300 176" aria-label="Drag island boundary vertices" role="img"></svg><p class="hint">Drag a vertex. Bays and notches stay intact.</p><div class="two"><label>Width <output id="width-out"></output><input id="width" type="range" min="600" max="1400" step="20" value="1000"></label><label>Depth <output id="depth-out"></output><input id="depth" type="range" min="500" max="1100" step="20" value="720"></label></div></section>
-<label class="lagoon"><input id="lagoon" type="checkbox" checked> Preserve inner lagoon</label><section><div class="section-title">02 / District &amp; skyline</div><label>Development intensity <output id="density-out"></output><input id="density" type="range" min="0.1" max="1" step="0.01" value="0.72"></label><label>Skyline target <output id="skylineHeight-out"></output><input id="skylineHeight" type="range" min="24" max="180" step="2" value="118"></label></section>
-<section><div class="section-title">03 / Arterial routes</div><div class="two"><label>North–south <output id="arterialX-out"></output><input id="arterialX" type="range" min="-30" max="30" value="12"></label><label>East–west <output id="arterialZ-out"></output><input id="arterialZ" type="range" min="-25" max="25" value="0"></label></div><div class="two"><label>Boulevard angle <output id="diagonalAngle-out"></output><input id="diagonalAngle" type="range" min="15" max="70" value="34"></label><label>Boulevard offset <output id="diagonalOffset-out"></output><input id="diagonalOffset" type="range" min="-160" max="160" value="25"></label></div></section>
-<div class="seed-row"><label for="seed">Seed</label><input id="seed" value="CITYWORKS-01" maxlength="80"><button id="rebuild" title="Rebuild same seed">↻</button></div><button id="export" class="primary">Export city data <span>↗</span></button><div id="status" role="status">Preparing district…</div><footer>ENGINE-NEUTRAL DATA · METRES · GENERATED IN YOUR BROWSER</footer>
+<aside id="controls-panel" aria-label="City controls">
+  <header><h1>Cityworks <span class="version">0.3 dev</span></h1><button id="close-controls" class="mobile-only" aria-label="Close controls">Close</button></header>
+  <section><h2>Focus island</h2><div id="island-list" role="group" aria-label="Focus island"></div></section>
+  <section class="parameters"><h2>Land and streets</h2>
+    <label for="coastVariation">Coast variation <output id="coastVariation-out" for="coastVariation"></output></label><input id="coastVariation" type="range" min="0" max="1" step="0.05" value="0.5">
+    <label for="streetSpacing">Local street spacing <output id="streetSpacing-out" for="streetSpacing"></output></label><input id="streetSpacing" type="range" min="90" max="130" step="2" value="108">
+    <label for="bridgeWidth">Bridge carriageway <output id="bridgeWidth-out" for="bridgeWidth"></output></label><input id="bridgeWidth" type="range" min="18" max="28" step="1" value="22">
+  </section>
+  <form id="seed-form"><label for="seed">Seed</label><div class="seed-row"><input id="seed" value="CITYWORKS-03" maxlength="80" autocomplete="off" spellcheck="false"><button id="rebuild" type="submit">Rebuild</button></div></form>
+  <div class="actions"><button id="export" class="primary">Export JSON</button><button id="reset">Reset</button></div>
+  <div id="status" role="status" aria-live="polite" aria-atomic="true">Generating…</div>
+  <footer>Ground only · Units: metres</footer>
 </aside>
-<div id="viewport"><div class="topbar"><div class="tabs" role="group" aria-label="Camera view"><button data-view="aerial" class="active">Perspective</button><button data-view="overhead">Overhead</button><button data-view="street">Street level</button><button data-view="boulevard">Boulevard</button></div><div class="tabs" role="group" aria-label="Display layer"><button data-layer="facades" class="active">Facades</button><button data-layer="massing">Massing</button><button data-layer="plan">Plan</button></div></div>
-<div class="scene-title"><span class="eyebrow">CITYWORKS / LIVE MODEL</span><h2 id="view-title">A connected district.</h2><span id="view-description">From the waterfront to the skyline.</span></div>
-<div class="north">N <span>↑</span></div><div id="selection" hidden></div>
-<div class="bottom"><div class="legend"><span><i class="harbour"></i>Harbour</span><span><i class="midtown"></i>Midtown</span><span><i class="garden"></i>Garden quarter</span></div><div class="metrics"><div><strong id="count-buildings">—</strong><span>BUILDINGS</span></div><div><strong id="count-blocks">—</strong><span>BLOCKS</span></div><div><strong id="count-height">—</strong><span>PEAK HEIGHT</span></div><div><strong id="count-calls">—</strong><span>DRAW CALLS</span></div></div><div class="controls"><span id="camera-hint">Drag to orbit · Scroll to zoom · Click a building</span><span id="validation">Checking model</span></div></div>
-</div></main><script src="vendor/three.r140.min.js"></script><script src="vendor/clipper-6.4.2.js"></script><script src="src/geometry.js"></script><script src="src/city.js"></script><script src="src/viewer.js"></script></body></html>
+<div id="panel-backdrop" hidden></div>
+<div id="viewport">
+  <div class="topbar">
+    <button id="open-controls" class="mobile-only" aria-controls="controls-panel" aria-expanded="false">Controls</button>
+    <div class="tabs camera-tabs" role="group" aria-label="Camera"><button data-view="aerial" class="active" aria-pressed="true">Islands</button><button data-view="overhead" aria-pressed="false">Plan</button><button data-view="bridge" aria-pressed="false">Bridge</button><button data-view="street" aria-pressed="false">Street</button></div>
+    <div class="tabs layer-tabs" role="group" aria-label="Layer"><button data-layer="ground" class="active" aria-pressed="true">Ground</button><button data-layer="network" aria-pressed="false">Hierarchy</button></div>
+  </div>
+  <div class="scene-title"><h2 id="view-title">Three islands</h2></div>
+  <div class="north" aria-label="North">N<span aria-hidden="true">↑</span></div>
+  <div id="selection" hidden><button id="close-selection" aria-label="Close road details">×</button><div id="selection-content"></div></div>
+  <div class="bottom">
+    <div class="legend" id="network-legend" hidden><span><i class="arterial"></i>Arterial</span><span><i class="collector"></i>Collector</span><span><i class="local"></i>Local</span></div>
+    <div class="metrics"><div><strong id="count-islands">3</strong><span>Islands</span></div><div><strong id="count-bridges">–</strong><span>Bridges</span></div><div><strong id="count-streets">–</strong><span>km streets</span></div><div><strong id="count-blocks">–</strong><span>Blocks</span></div><div><strong id="count-calls">–</strong><span>Draw calls</span></div></div>
+    <div class="controls"><span id="camera-hint">Drag to orbit · Scroll to zoom · Click a road</span><span id="validation">Checking connectivity…</span></div>
+  </div>
+</div></main>
+<script src="vendor/three.r140.min.js"></script><script src="vendor/clipper-6.4.2.js"></script><script src="src/geometry.js"></script><script src="src/city.js"></script><script src="src/archipelago.js"></script><script src="src/road-markings.js"></script><script src="src/road-material.js"></script><script src="src/ground-viewer.js"></script>
+</body></html>

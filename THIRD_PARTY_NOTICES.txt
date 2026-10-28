@@ -28,3 +28,13 @@ Boost Software License 1.0; complete terms: vendor/clipper-BOOST-LICENSE.txt.
 Includes JSBN portions by Tom Wu, copyright 2003-2005; complete notice:
 vendor/clipper-JSBN-LICENSE.txt. Original source headers are retained.
 No city-reference application implementation is copied from this dependency.
+
+Slop New York, metric road-strip primitive adapted in src/road-markings.js
+Source: https://github.com/mrdoob/slop-newyork/blob/13dd142b480bcfa01a6b18e36127c87e41cb4d80/js/road-paint.js
+Copyright (c) 2026 Mr.doob. MIT License.
+Complete terms: vendor/slop-newyork-MIT.txt.
+Cityworks supplies its own graph, junction placement and lane selection.
+src/road-material.js also ports the hash2D/noise2D, utility-cut patch and
+two-scale aggregate portions of js/tsl-materials.js at the same pinned commit
+from TSL to GLSL. The dry material omits the reference's wetness/reflection systems.
+No geographic data, audio or imagery is included.
