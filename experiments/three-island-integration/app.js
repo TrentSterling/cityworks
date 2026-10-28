@@ -26,7 +26,7 @@ function setView(name){view=name;
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $('buildings').onclick=e=>{cityBuildings.group.visible=!cityBuildings.group.visible;e.target.textContent=cityBuildings.group.visible?'Hide buildings':'Show buildings';};
 $('seed').value=city.input.seed;
-const groundQuery=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth'])groundQuery.set(key,city.input[key]);
+const groundQuery=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth','mapAreaKm2'])groundQuery.set(key,city.input[key]);
 $('ground-editor').href+='?'+groundQuery;
 $('rebuild').onsubmit=e=>{e.preventDefault();const q=new URLSearchParams(location.search);q.set('seed',$('seed').value);q.delete('edits');location.search=q;};
 $('export').onclick=()=>{const u=URL.createObjectURL(new Blob([JSON.stringify(city,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='cityworks-three-island-plan.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);};
@@ -54,4 +54,4 @@ window.Integration={ready:false,inspect,setView,setCamera,select,highlightSelect
  roofHits:(x,z)=>{scene.updateMatrixWorld(true);return new T.Raycaster(new T.Vector3(x,1000,z),new T.Vector3(0,-1,0)).intersectObject(cityBuildings.group,true).map(h=>({y:h.point.y,name:h.object.name}));}};
 setView(new URLSearchParams(location.search).get('view')||'aerial');await renderer.compileAsync(scene,camera);
 renderer.setAnimationLoop(()=>{const now=performance.now();samples.push(now-last);last=now;if(samples.length>180)samples.shift();lighting.update(camera.position);cityBuildings.update(camera.position.x,camera.position.z);renderer.render(scene,camera);});
-window.Integration.ready=true;$('status').textContent=`${city.islands.length} islands · ${city.bridges.length} bridges · ${city.parcels.length} parcels · ${city.buildings.length} buildings · metres`;
+window.Integration.ready=true;$('status').textContent=`${city.islands.length} islands · ${city.bridges.length} bridges · ${city.buildings.length} buildings · ${city.layout.envelopeKm2.toFixed(2)} km² map · metres`;

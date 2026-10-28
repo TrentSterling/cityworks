@@ -1,8 +1,9 @@
 """Exercise real scoped editor UI in isolated muted headless Chrome."""
 from pathlib import Path
-import functools,http.server,json,threading,time
+import argparse,functools,http.server,json,threading,time
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parent.parent
+parser=argparse.ArgumentParser();parser.add_argument('--url');args=parser.parse_args()
 OUT=ROOT/'artifacts/scoped-editor';OUT.mkdir(parents=True,exist_ok=True)
 class Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
@@ -15,7 +16,7 @@ with sync_playwright() as p:
         page=browser.new_page(viewport={'width':1600,'height':1100},accept_downloads=True)
         page.on('pageerror',lambda e:report['errors'].append(str(e)))
         page.on('console',lambda m:report['errors'].append(m.text) if m.type=='error' else None)
-        page.goto(f'http://127.0.0.1:{server.server_port}/experiments/scoped-editor/')
+        page.goto(args.url or f'http://127.0.0.1:{server.server_port}/experiments/scoped-editor/')
         def ready():
             page.wait_for_function('window.MassingEditor && !MassingEditor.busy && MassingEditor.api()?.ready',timeout=100000)
             assert not page.locator('#status').get_attribute('class')=='error',page.locator('#status').inner_text()

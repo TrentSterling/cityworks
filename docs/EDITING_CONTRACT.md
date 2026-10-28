@@ -1,6 +1,6 @@
 # Editing contract, project version 1
 
-The authoritative document is `cityworks.project`, version 1. It contains generator input, per-building massing revisions, manual height overrides and locks. Render meshes, selection, camera and undo history are not authoritative map data. The original generator revision remains `0.4.1-planned-fabric`; project version 1 adds explicitly scoped authoring state around it.
+The authoritative document is `cityworks.project`, version 1. It contains generator input, per-building massing revisions, manual height overrides and locks. Render meshes, selection, camera and undo history are not authoritative map data. The current generator revision is `0.5.1-usable-fabric`; project version 1 retains explicitly scoped authoring state around it. Older generator revisions require explicit migration; their autosave storage remains separate.
 
 ## Implemented vertical slice
 

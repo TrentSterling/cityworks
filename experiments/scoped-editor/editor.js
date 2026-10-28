@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   const P=CityProject,$=id=>document.getElementById(id),frame=$('preview');
-  const savedKey='cityworks:scoped-project:1',previewKey='cityworks:editor-preview:'+crypto.randomUUID();
+  const savedKey='cityworks:scoped-project:1:'+P.VERSION,previewKey='cityworks:editor-preview:'+crypto.randomUUID();
   let session=new P.Session(),blockId,buildingId,busy=false,previewNumber=0,startupError='';
   try{const saved=localStorage.getItem(savedKey);if(saved)session=new P.Session(JSON.parse(saved));}catch(e){startupError='Saved project could not be loaded: '+e.message;}
   function api(){return frame.contentWindow?.Integration;}

@@ -2,7 +2,7 @@
 (function(root){
   'use strict';
   const C=typeof module!=='undefined'?require('./building-plan.js'):root.CityFabric;
-  const VERSION='0.4.1-planned-fabric',clone=x=>JSON.parse(JSON.stringify(x));
+  const VERSION='0.5.1-usable-fabric',clone=x=>JSON.parse(JSON.stringify(x));
   const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x).forEach(freeze);Object.freeze(x);}return x;};
   const axes={units:'metres',x:'east',y:'up',z:'south',polygonCoordinates:['x','z']};
   const candidates=new WeakSet();
@@ -16,7 +16,7 @@
     if(source.schema!=='cityworks.project'||source.version!==1)throw Error('Unsupported project schema/version');
     if(source.generatorVersion!==VERSION)throw Error('Project needs an explicit generator migration');
     if(!source.coordinates||Object.keys(axes).some(k=>JSON.stringify(source.coordinates[k])!==JSON.stringify(axes[k])))throw Error('Unsupported coordinate convention');
-    const allowed=['seed','coastVariation','streetSpacing','bridgeWidth','density','skylineHeight'];
+    const allowed=['seed','coastVariation','streetSpacing','bridgeWidth','density','skylineHeight','mapAreaKm2'];
     object(source.input,'input');for(const [key,value] of Object.entries(source.input)){if(!allowed.includes(key))throw Error('Unsupported input '+key);if(key==='seed'?typeof value!=='string':!Number.isFinite(value))throw Error('Invalid input '+key);}
     const p={schema:'cityworks.project',version:1,generatorVersion:VERSION,coordinates:clone(axes),input:clone(source.input),massingRevisions:{},heightOverrides:{},locks:{}};
     for(const key of ['massingRevisions','heightOverrides','locks']){

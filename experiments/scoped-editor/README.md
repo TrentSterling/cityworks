@@ -1,6 +1,6 @@
 # Scoped massing editor
 
-This development editor adds authoritative saved edits around the existing three-island generator and New York building preview. It is a bounded editing slice, not a replacement for the released city or a complete city-building game.
+This editor adds authoritative saved edits around the three-island generator and New York building preview. It is available through the preview's Massing editor link. It is a bounded editing slice, not a complete city-building game.
 
 From the repository root, run `python -m http.server 8000` and open `http://localhost:8000/experiments/scoped-editor/` in WebGPU-capable Chrome. The pinned Three.js CDN requires network access. Serve the files on one origin; opening this page directly from disk is not supported.
 
@@ -14,6 +14,8 @@ From the repository root, run `python -m http.server 8000` and open `http://loca
 ![After reroll, six unlocked buildings changed](evidence/after.png)
 
 ## Verification
+
+The retained before/after evidence below records the original editor checkpoint. Version 0.5.1 reruns the same interaction suite against the 2 km² usable-fabric plan; see [release evidence](../three-island-integration/evidence/usable-fabric/) for the current reports. Its generator revision has changed, so older saved projects require an explicit migration instead of silently remapping their locks.
 
 `npm test` includes nine editor transaction groups covering locked/manual values, scope, exact undo/redo, saved reconstruction, invalid and stale transactions, all-locked no-ops, independent edit order and scene export. It also runs the existing city, archipelago, road and building-plan regressions.
 

@@ -2,6 +2,7 @@
 import * as THREE from 'three/webgpu';
 import { WALL_KINDS } from './tsl-materials.js';
 import { polygonContains } from '../../slop-data-adapter/upstream/nyc/building-collision.js';
+import {facadeLayout} from '../facade-layout.js';
 
 function partyWallHeight(record, a, b, neighbours) {
   const dx = b.x - a.x, dz = b.y - a.y, length = Math.hypot(dx, dz);
@@ -28,7 +29,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
     if (!(record.height > 0)) return;
     const key = Math.floor(record.cx / 1000) + ',' + Math.floor(record.cz / 1000);
     let cell = cells.get(key);
-    if (!cell) cells.set(key, (cell = { positions: [], normals: [], indices: [], boxes: [], walls: [] }));
+    if (!cell) cells.set(key, (cell = { positions: [], normals: [], indices: [], boxes: [], walls: [], fits: [], bricks: [], panels: [] }));
     const height = record.height, base = record.baseY, top = height + base;
     const seed = Math.floor(record.seed ?? index * 29) % 1000 + 0.1 + 0.8 * (record.tone ?? 0.5);
     const neighbours = getNeighbours && height <= 60 ? getNeighbours(record) : [];
@@ -43,6 +44,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
       });
       if (rings[0].length < 3) continue;
       rings.forEach((ring, i) => {
+        let perimeter=0;
         for (let j = 0; j < ring.length; j++) {
           const a = ring[j], b = ring[(j + 1) % ring.length];
           const dx = b.x - a.x, dz = b.y - a.y, width = Math.hypot(dx, dz);
@@ -51,7 +53,9 @@ function createBuildingFootprints(material, records, getNeighbours) {
           const adjacentHeight = !i && neighbours.length ? partyWallHeight(record, a, b, neighbours) : 0;
           const f = record.frontage, fx=f[1].x-f[0].x, fz=f[1].z-f[0].z, fl=Math.hypot(fx,fz);
           const front = record.streetLevel && Math.abs(dx*fx+dz*fz)/(width*fl)>.999 && Math.abs(fx*((a.y+b.y)/2-f[0].z)-fz*((a.x+b.x)/2-f[0].x))/fl < record.frontSetback+.1;
-          const kind = i ? WALL_KINDS.rear : adjacentHeight ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
+          const fit=facadeLayout(width,height,record.facadeIndex??0);
+          const kind = !fit.windowEligible ? WALL_KINDS.lotLine : i ? WALL_KINDS.rear : adjacentHeight ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
+          cell.panels.push({volumeId:record.id,ring:i,edge:j,kind,...fit});
           const exposedHeight = adjacentHeight ? Math.max(0, top - adjacentHeight) : height;
           // Match the positive-world-axis tangent used by the shared interior-map view ray.
           const reverse = (Math.abs(dz) >= Math.abs(dx) ? dz : dx) < 0;
@@ -61,8 +65,11 @@ function createBuildingFootprints(material, records, getNeighbours) {
             // Footprint walls use the box's unused depth for the exposed height above adjoining roofs.
             cell.boxes.push(width, height, exposedHeight, seed);
             cell.walls.push(reverse ? 1 - k % 2 : k % 2, k < 2 ? height : 0, kind);
+            cell.fits.push(fit.pier,fit.bays,fit.bayWidth,fit.storeys);
+            cell.bricks.push(perimeter+(k%2)*width);
           }
           cell.indices.push(offset, offset + 1, offset + 2, offset + 2, offset + 1, offset + 3);
+          perimeter+=width;
         }
       });
       const triangles = THREE.ShapeUtils.triangulateShape(rings[0], rings.slice(1));
@@ -72,6 +79,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
         cell.normals.push(0, 1, 0);
         cell.boxes.push(1, height, height, seed);
         cell.walls.push(0, 0, WALL_KINDS.shop);
+        cell.fits.push(0,0,1,0);cell.bricks.push(0);
       }
       for (const [a, b, c] of triangles) cell.indices.push(offset + a, offset + c, offset + b);
     }
@@ -87,6 +95,8 @@ function createBuildingFootprints(material, records, getNeighbours) {
     geometry.setAttribute('normal', new THREE.Float32BufferAttribute(cell.normals, 3));
     geometry.setAttribute('box', new THREE.Float32BufferAttribute(cell.boxes, 4));
     geometry.setAttribute('facadeWall', new THREE.Float32BufferAttribute(cell.walls, 3));
+    geometry.setAttribute('facadeFit', new THREE.Float32BufferAttribute(cell.fits, 4));
+    geometry.setAttribute('facadeBrick', new THREE.Float32BufferAttribute(cell.bricks, 1));
     geometry.setIndex(cell.indices);
     geometry.computeBoundingSphere();
     const mesh = new THREE.Mesh(geometry, material);
@@ -94,6 +104,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
     mesh.castShadow = mesh.receiveShadow = true;
     // Most cells are too small for scene-culling.js to pick them as big casters on its own: opt in to its stand-ins.
     mesh.userData.shadowStandIn = true;
+    mesh.userData.facadePanels=cell.panels;
     if (first) mesh.userData.sharesPipelineWith = first;
     else first = mesh;
     group.add(mesh);

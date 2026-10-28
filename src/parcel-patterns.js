@@ -7,19 +7,19 @@
     const c=A.center(block.polygon);
     if(block.islandId==='island:harbour')return {district:'working-harbour',widths:[42,62,36,48],cornerWidth:56,depths:[34,40,30],floors:[2,3,2],court:'service-yard'};
     if(block.islandId==='island:headland')return {district:'garden-neighbourhood',widths:[24,32,24,38],cornerWidth:34,depths:[20,24,18],floors:[3,4,3],court:'shared-garden'};
-    if(c[1]<-300)return {district:'north-quarter',widths:[10,10,15,12,18],cornerWidth:23,depths:[22,26,20],floors:[4,4,5,3,5],court:'shared-garden'};
+    if(c[1]<-300)return {district:'north-quarter',widths:[16,16,20,18,24],cornerWidth:28,depths:[22,26,20],floors:[4,4,5,3,5],court:'shared-garden'};
     if(c[1]>200)return {district:'south-gateway',widths:[18,26,14,22],cornerWidth:30,depths:[25,30,22],floors:[5,7,5,6],court:'shared-garden'};
     if(c[1]>-100)return {district:'central-exchange',widths:[22,14,30,18],cornerWidth:36,depths:[28,34,24],floors:[7,5,8,6],court:'pocket-square'};
-    return {district:'civic-midrise',widths:[13,18,13,24],cornerWidth:28,depths:[24,29,21],floors:[5,6,4,7],court:'shared-garden'};
+    return {district:'civic-midrise',widths:[18,22,18,28],cornerWidth:30,depths:[24,29,21],floors:[5,6,4,7],court:'shared-garden'};
   }
   function subdivisions(span,plan,phase,arterial){
     const pattern=arterial&&plan.district==='central-exchange'?[30,20,38,24]:plan.widths;
     if(span<plan.cornerWidth*2+12)return[{from:0,to:span,corner:span>plan.cornerWidth,index:0}];
     const corner=Math.min(plan.cornerWidth,span*.23),middle=span-2*corner,widths=[];
     let sum=0,index=phase;
-    while(sum+pattern[index%pattern.length]<middle-8){const w=pattern[index++%pattern.length];widths.push(w);sum+=w;}
+    while(sum+pattern[index%pattern.length]<middle-16){const w=pattern[index++%pattern.length];widths.push(w);sum+=w;}
     if(!widths.length)widths.push(middle);
-    else if(middle-sum>=8)widths.push(middle-sum);
+    else if(middle-sum>=16)widths.push(middle-sum);
     else widths[widths.length-1]+=middle-sum;
     const values=[corner,...widths,corner];let station=0;
     return values.map((w,i)=>{const from=station;station+=w;return {from,to:station,corner:i===0||i===values.length-1,index:i};});
@@ -47,11 +47,12 @@
     const greens=plan.court==='service-yard'?[]:A.boolean(A.offset(polygons,-1.8),A.offset(paths,1.1),'difference').filter(p=>A.totalArea([p])>35);
     return {id:block.id+':interior',blockId:block.id,program:plan.court,polygons,paths,greens,accesses:[access],elevation:8.16};
   }
-  function skylineSites(parcels){
-    const hubs=[{id:'exchange',center:[-80,-40],radius:200,count:3,separation:105,ratio:1},{id:'harbour-gateway',center:[-250,190],radius:140,count:2,separation:85,ratio:.68}];
+  function skylineSites(parcels,scale=1){
+    const hubs=[{id:'exchange',island:'island:civic',center:[-80,-40],radius:200,count:3,separation:105,ratio:1},{id:'harbour-gateway',island:'island:civic',center:[-250,190],radius:140,count:2,separation:85,ratio:.68},{id:'industrial-loft',island:'island:harbour',center:[-780,190],radius:450,count:1,separation:100,ratio:.66},{id:'garden-landmark',island:'island:headland',center:[560,30],radius:450,count:1,separation:120,ratio:.58}];
     const selected=new Map(),centers=[];
     for(const hub of hubs){
-      const candidates=parcels.filter(p=>p.islandId==='island:civic'&&!p.courtyard&&p.corner&&p.streetClass!=='local'&&A.totalArea([A.shape(p.polygon,p.holes)])>550).map(p=>({p,c:A.center(p.polygon)})).filter(x=>length(x.c,hub.center)<hub.radius).sort((a,b)=>length(a.c,hub.center)-length(b.c,hub.center)||a.p.id.localeCompare(b.p.id));
+      const center=hub.center.map(v=>v*scale);
+      const candidates=parcels.filter(p=>p.islandId===hub.island&&!p.courtyard&&p.corner&&p.streetClass!=='local'&&A.totalArea([A.shape(p.polygon,p.holes)])>550).map(p=>({p,c:A.center(p.polygon)})).filter(x=>length(x.c,center)<hub.radius*scale).sort((a,b)=>length(a.c,center)-length(b.c,center)||a.p.id.localeCompare(b.p.id));
       let count=0;
       for(const {p,c} of candidates){if(selected.has(p.id)||centers.some(other=>length(other,c)<hub.separation))continue;selected.set(p.id,{hub:hub.id,rank:count,ratio:hub.ratio*(1-count*.13)});centers.push(c);if(++count===hub.count)break;}
     }return selected;
