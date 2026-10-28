@@ -37,4 +37,18 @@ Cityworks supplies its own graph, junction placement and lane selection.
 src/road-material.js also ports the hash2D/noise2D, utility-cut patch and
 two-scale aggregate portions of js/tsl-materials.js at the same pinned commit
 from TSL to GLSL. The dry material omits the reference's wetness/reflection systems.
-No geographic data, audio or imagery is included.
+The production ground app includes no geographic data, audio or imagery.
+
+Isolated Slop data adapter experiment:
+experiments/slop-data-adapter/upstream/nyc contains unchanged MIT building,
+facade, detail and lighting modules from Slop New York commit
+13dd142b480bcfa01a6b18e36127c87e41cb4d80. The singapore directory contains
+the supplied-building decoder and materials from zz85/slop-singapore commit
+69c6329da3cab9c1b1f6a81ceeb1f3dfeb3db13c. Both retain the full upstream
+MIT LICENSE, copyright (c) 2026 Mr.doob. Per-file hashes are in manifest.json.
+The experiment loads MIT Three.js at b3396270682287470d161658ac01084d25e8dba6
+from the same pinned dependency URLs as upstream.
+Optional comparison data and derived comparison screenshots credit NYC Open
+Data (building footprints/heights, street geography) and OpenStreetMap
+contributors (ODbL where applicable). Downloaded NYC geometry is ignored by
+Git and omitted from the public source bundle. See the experiment README.

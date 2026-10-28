@@ -1,0 +1,649 @@
+{
+  "generated-nyc": {
+    "status": "passed",
+    "views": {
+      "aerial": {
+        "buildings": 181,
+        "buildMs": 54,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 76,
+        "materials": 50,
+        "geometryBytes": 341510,
+        "activeTriangles": 6859,
+        "memory": {
+          "attributes": 209,
+          "attributesSize": 1565080,
+          "geometries": 78,
+          "indexAttributes": 76,
+          "indexAttributesSize": 18450,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 136,
+          "uniformBuffersSize": 68048,
+          "total": 180802919
+        },
+        "details": {
+          "cornices": 404,
+          "waterTowers": 19,
+          "hvacUnits": 61,
+          "fireEscapes": 60,
+          "awnings": 95,
+          "scaffoldSheds": 5
+        },
+        "submittedDrawCalls": 116,
+        "submittedTriangles": 15109,
+        "camera": [
+          379.99999999999994,
+          380,
+          469.99999999999994
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "overhead": {
+        "buildings": 181,
+        "buildMs": 54,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 76,
+        "materials": 50,
+        "geometryBytes": 341510,
+        "activeTriangles": 29027,
+        "memory": {
+          "attributes": 209,
+          "attributesSize": 1565080,
+          "geometries": 78,
+          "indexAttributes": 76,
+          "indexAttributesSize": 18450,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 136,
+          "uniformBuffersSize": 68048,
+          "total": 180802919
+        },
+        "details": {
+          "cornices": 404,
+          "waterTowers": 19,
+          "hvacUnits": 61,
+          "fireEscapes": 60,
+          "awnings": 95,
+          "scaffoldSheds": 5
+        },
+        "submittedDrawCalls": 119,
+        "submittedTriangles": 80053,
+        "camera": [
+          0,
+          850,
+          0.009999995279438283
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "street": {
+        "buildings": 181,
+        "buildMs": 54,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 76,
+        "materials": 50,
+        "geometryBytes": 341510,
+        "activeTriangles": 29027,
+        "memory": {
+          "attributes": 209,
+          "attributesSize": 1565080,
+          "geometries": 78,
+          "indexAttributes": 76,
+          "indexAttributesSize": 18450,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 136,
+          "uniformBuffersSize": 68048,
+          "total": 180802919
+        },
+        "details": {
+          "cornices": 404,
+          "waterTowers": 19,
+          "hvacUnits": 61,
+          "fireEscapes": 60,
+          "awnings": 95,
+          "scaffoldSheds": 5
+        },
+        "submittedDrawCalls": 118,
+        "submittedTriangles": 81369,
+        "camera": [
+          12,
+          2.0000000000000195,
+          155
+        ],
+        "target": [
+          12,
+          11.000000000000002,
+          -80
+        ]
+      },
+      "courtyard": {
+        "buildings": 181,
+        "buildMs": 54,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 76,
+        "materials": 50,
+        "geometryBytes": 341510,
+        "activeTriangles": 29027,
+        "memory": {
+          "attributes": 209,
+          "attributesSize": 1565080,
+          "geometries": 78,
+          "indexAttributes": 76,
+          "indexAttributesSize": 18450,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 136,
+          "uniformBuffersSize": 68048,
+          "total": 180802919
+        },
+        "details": {
+          "cornices": 404,
+          "waterTowers": 19,
+          "hvacUnits": 61,
+          "fireEscapes": 60,
+          "awnings": 95,
+          "scaffoldSheds": 5
+        },
+        "submittedDrawCalls": 80,
+        "submittedTriangles": 80101,
+        "camera": [
+          -54.15749999999999,
+          68.8,
+          -110.30600000000001
+        ],
+        "target": [
+          -91.1575,
+          12.000000000000002,
+          -155.306
+        ]
+      }
+    },
+    "roofVoidProbes": {
+      "courtyard": [],
+      "concave": []
+    },
+    "missingVsEmptyBuildings": null,
+    "pageErrors": []
+  },
+  "generated-sg": {
+    "status": "passed",
+    "views": {
+      "aerial": {
+        "buildings": 181,
+        "buildMs": 12.600000143051147,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 63,
+        "materials": 42,
+        "geometryBytes": 147404,
+        "activeTriangles": 3294,
+        "memory": {
+          "attributes": 156,
+          "attributesSize": 184308,
+          "geometries": 65,
+          "indexAttributes": 62,
+          "indexAttributesSize": 4404,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 29,
+          "programsSize": 437510,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 8,
+          "texturesSize": 176571504,
+          "uniformBuffers": 98,
+          "uniformBuffersSize": 27392,
+          "total": 177225118
+        },
+        "details": {
+          "cornices": 0,
+          "waterTowers": 0,
+          "hvacUnits": 0,
+          "fireEscapes": 0,
+          "awnings": 0,
+          "scaffoldSheds": 0
+        },
+        "submittedDrawCalls": 74,
+        "submittedTriangles": 5155,
+        "camera": [
+          379.99999999999994,
+          380,
+          469.99999999999994
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "overhead": {
+        "buildings": 181,
+        "buildMs": 12.600000143051147,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 63,
+        "materials": 42,
+        "geometryBytes": 147404,
+        "activeTriangles": 3294,
+        "memory": {
+          "attributes": 156,
+          "attributesSize": 184308,
+          "geometries": 65,
+          "indexAttributes": 62,
+          "indexAttributesSize": 4404,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 29,
+          "programsSize": 437510,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 8,
+          "texturesSize": 176571504,
+          "uniformBuffers": 98,
+          "uniformBuffersSize": 27392,
+          "total": 177225118
+        },
+        "details": {
+          "cornices": 0,
+          "waterTowers": 0,
+          "hvacUnits": 0,
+          "fireEscapes": 0,
+          "awnings": 0,
+          "scaffoldSheds": 0
+        },
+        "submittedDrawCalls": 74,
+        "submittedTriangles": 5155,
+        "camera": [
+          0,
+          850,
+          0.009999995279438283
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "street": {
+        "buildings": 181,
+        "buildMs": 12.600000143051147,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 63,
+        "materials": 42,
+        "geometryBytes": 147404,
+        "activeTriangles": 3294,
+        "memory": {
+          "attributes": 156,
+          "attributesSize": 184308,
+          "geometries": 65,
+          "indexAttributes": 62,
+          "indexAttributesSize": 4404,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 29,
+          "programsSize": 437510,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 8,
+          "texturesSize": 176571504,
+          "uniformBuffers": 98,
+          "uniformBuffersSize": 27392,
+          "total": 177225118
+        },
+        "details": {
+          "cornices": 0,
+          "waterTowers": 0,
+          "hvacUnits": 0,
+          "fireEscapes": 0,
+          "awnings": 0,
+          "scaffoldSheds": 0
+        },
+        "submittedDrawCalls": 73,
+        "submittedTriangles": 6973,
+        "camera": [
+          12,
+          2.0000000000000195,
+          155
+        ],
+        "target": [
+          12,
+          11.000000000000002,
+          -80
+        ]
+      },
+      "courtyard": {
+        "buildings": 181,
+        "buildMs": 12.600000143051147,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 63,
+        "materials": 42,
+        "geometryBytes": 147404,
+        "activeTriangles": 3294,
+        "memory": {
+          "attributes": 156,
+          "attributesSize": 184308,
+          "geometries": 65,
+          "indexAttributes": 62,
+          "indexAttributesSize": 4404,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 29,
+          "programsSize": 437510,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 8,
+          "texturesSize": 176571504,
+          "uniformBuffers": 98,
+          "uniformBuffersSize": 27392,
+          "total": 177225118
+        },
+        "details": {
+          "cornices": 0,
+          "waterTowers": 0,
+          "hvacUnits": 0,
+          "fireEscapes": 0,
+          "awnings": 0,
+          "scaffoldSheds": 0
+        },
+        "submittedDrawCalls": 43,
+        "submittedTriangles": 6750,
+        "camera": [
+          -54.15749999999999,
+          68.8,
+          -110.30600000000001
+        ],
+        "target": [
+          -91.1575,
+          12.000000000000002,
+          -155.306
+        ]
+      }
+    },
+    "roofVoidProbes": {
+      "courtyard": [],
+      "concave": []
+    },
+    "missingVsEmptyBuildings": {
+      "nullReturnsNull": true,
+      "emptyReturnsObject": true,
+      "emptyColliders": 0,
+      "emptyFootprints": 0
+    },
+    "pageErrors": []
+  },
+  "nyc-nyc": {
+    "status": "passed",
+    "views": {
+      "aerial": {
+        "buildings": 342,
+        "buildMs": 56.90000009536743,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 61,
+        "materials": 48,
+        "geometryBytes": 665550,
+        "activeTriangles": 44891,
+        "memory": {
+          "attributes": 183,
+          "attributesSize": 1872160,
+          "geometries": 63,
+          "indexAttributes": 61,
+          "indexAttributesSize": 37890,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 123,
+          "uniformBuffersSize": 64912,
+          "total": 181126303
+        },
+        "details": {
+          "cornices": 1092,
+          "waterTowers": 70,
+          "hvacUnits": 114,
+          "fireEscapes": 464,
+          "awnings": 125,
+          "scaffoldSheds": 6
+        },
+        "submittedDrawCalls": 106,
+        "submittedTriangles": 126495,
+        "camera": [
+          379.99999999999994,
+          380,
+          469.99999999999994
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "overhead": {
+        "buildings": 342,
+        "buildMs": 56.90000009536743,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 61,
+        "materials": 48,
+        "geometryBytes": 665550,
+        "activeTriangles": 142321,
+        "memory": {
+          "attributes": 183,
+          "attributesSize": 1872160,
+          "geometries": 63,
+          "indexAttributes": 61,
+          "indexAttributesSize": 37890,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 123,
+          "uniformBuffersSize": 64912,
+          "total": 181126303
+        },
+        "details": {
+          "cornices": 1092,
+          "waterTowers": 70,
+          "hvacUnits": 114,
+          "fireEscapes": 464,
+          "awnings": 125,
+          "scaffoldSheds": 6
+        },
+        "submittedDrawCalls": 106,
+        "submittedTriangles": 416865,
+        "camera": [
+          0,
+          850,
+          0.009999995279438283
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "street": {
+        "buildings": 342,
+        "buildMs": 56.90000009536743,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 61,
+        "materials": 48,
+        "geometryBytes": 665550,
+        "activeTriangles": 142321,
+        "memory": {
+          "attributes": 183,
+          "attributesSize": 1872160,
+          "geometries": 63,
+          "indexAttributes": 61,
+          "indexAttributesSize": 37890,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 123,
+          "uniformBuffersSize": 64912,
+          "total": 181126303
+        },
+        "details": {
+          "cornices": 1092,
+          "waterTowers": 70,
+          "hvacUnits": 114,
+          "fireEscapes": 464,
+          "awnings": 125,
+          "scaffoldSheds": 6
+        },
+        "submittedDrawCalls": 109,
+        "submittedTriangles": 421601,
+        "camera": [
+          12,
+          2.0000000000000195,
+          155
+        ],
+        "target": [
+          12,
+          11.000000000000002,
+          -80
+        ]
+      },
+      "courtyard": {
+        "buildings": 342,
+        "buildMs": 56.90000009536743,
+        "nonfinite": 0,
+        "badNormals": 0,
+        "geometries": 61,
+        "materials": 48,
+        "geometryBytes": 665550,
+        "activeTriangles": 142321,
+        "memory": {
+          "attributes": 183,
+          "attributesSize": 1872160,
+          "geometries": 63,
+          "indexAttributes": 61,
+          "indexAttributesSize": 37890,
+          "indirectStorageAttributes": 0,
+          "indirectStorageAttributesSize": 0,
+          "programs": 47,
+          "programsSize": 1269447,
+          "readbackBuffers": 0,
+          "readbackBuffersSize": 0,
+          "renderTargets": 4,
+          "storageAttributes": 0,
+          "storageAttributesSize": 0,
+          "textures": 13,
+          "texturesSize": 177881894,
+          "uniformBuffers": 123,
+          "uniformBuffersSize": 64912,
+          "total": 181126303
+        },
+        "details": {
+          "cornices": 1092,
+          "waterTowers": 70,
+          "hvacUnits": 114,
+          "fireEscapes": 464,
+          "awnings": 125,
+          "scaffoldSheds": 6
+        },
+        "submittedDrawCalls": 88,
+        "submittedTriangles": 419952,
+        "camera": [
+          -42.199999999999996,
+          87,
+          -90.25
+        ],
+        "target": [
+          -79.19999999999999,
+          12,
+          -135.25
+        ]
+      }
+    },
+    "roofVoidProbes": null,
+    "missingVsEmptyBuildings": null,
+    "pageErrors": []
+  }
+}

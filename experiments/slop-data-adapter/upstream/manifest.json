@@ -1,0 +1,82 @@
+[
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/buildings.js",
+    "local": "upstream/nyc/buildings.js",
+    "sha256": "a39bee52fa7320c17e3142c9dddae003428655b91de83b7ebf4d37d9a6a5049a",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/building-footprints.js",
+    "local": "upstream/nyc/building-footprints.js",
+    "sha256": "1356f55415f6195e1b725c576fccc659df21983f2fa806f9bb88d58092270253",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/building-collision.js",
+    "local": "upstream/nyc/building-collision.js",
+    "sha256": "cecf9a3a675e741716e1c50ec69062a71190c61b4fc89bab542900e869639201",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/building-details.js",
+    "local": "upstream/nyc/building-details.js",
+    "sha256": "263df4d2f348813f15d234a726a2f446d19c0e86f885d3f4f35109c7bc07f557",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/fire-escapes.js",
+    "local": "upstream/nyc/fire-escapes.js",
+    "sha256": "965e161c47a5598b107e643f8b61bddc391dba04d41bf3029280069d53158db9",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/tsl-materials.js",
+    "local": "upstream/nyc/tsl-materials.js",
+    "sha256": "4fced4ecd9b3addf2b7827140ec8cbfb0ea7719eb537366c6fd806711afba5a1",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/lighting.js",
+    "local": "upstream/nyc/lighting.js",
+    "sha256": "eb9bd5c75a9ec61cb1c435ff717211dda6a316eabb34f2eb9b3f24733f6f8f0a",
+    "modified": false
+  },
+  {
+    "source": "nyc",
+    "commit": "13dd142b480bcfa01a6b18e36127c87e41cb4d80",
+    "path": "js/post-processing.js",
+    "local": "upstream/nyc/post-processing.js",
+    "sha256": "ec3c54db502991e8c3bcf47a774d261a3f3ed95deca59edc1d202f22397f06fb",
+    "modified": false
+  },
+  {
+    "source": "singapore",
+    "commit": "69c6329da3cab9c1b1f6a81ceeb1f3dfeb3db13c",
+    "path": "js/open-city-buildings.js",
+    "local": "upstream/singapore/open-city-buildings.js",
+    "sha256": "d0988a563bbdcdc56d7e0a2e814a239a7af50409e72c3017d922c25d3f3fccb4",
+    "modified": false
+  },
+  {
+    "source": "singapore",
+    "commit": "69c6329da3cab9c1b1f6a81ceeb1f3dfeb3db13c",
+    "path": "js/tsl-materials.js",
+    "local": "upstream/singapore/tsl-materials.js",
+    "sha256": "d7fe3e3172b8d1622db0db02cc1fe6afe17181e5ac7a7e08151b0770bfc6798a",
+    "modified": false
+  }
+]
