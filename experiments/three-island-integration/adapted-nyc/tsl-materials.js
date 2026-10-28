@@ -466,7 +466,7 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   if (boxLocal) {
     const top = vCoord.add(fromTop);
     const floorBase = floor(gridV).mul(floorHeight);
-    const whole = step(top.sub(wallH).sub(0.001), floorBase).mul(step(floorBase.add(floorHeight), top.sub(0.32).add(0.001)));
+    const whole = step(top.sub(wallH).sub(0.001), floorBase).mul(step(floorBase.add(float(floorHeight).mul(.90)), top.sub(0.32).add(0.001)));
     partial = float(1.0).sub(whole).mul(wall);
     coping = float(1.0).sub(step(0.32, fromTop)).mul(wall);
   }
@@ -533,7 +533,7 @@ function createCurtainWallMaterial(opts = {}) {
   const winUV = clamp(
     vec2(
       cellUV.x.sub(mullionThickness).div(max(0.01, 1.0 - 2.0 * mullionThickness)),
-      cellUV.y.sub(spandrelRatio).div(max(0.01, 1.0 - spandrelRatio - mullionThickness))
+      cellUV.y.sub(spandrelRatio).div(max(0.01, 0.90 - spandrelRatio - mullionThickness))
     ),
     vec2(0.0),
     vec2(1.0)
@@ -546,7 +546,7 @@ function createCurtainWallMaterial(opts = {}) {
   mat.colorNode = Fn(() => {
     // No glass in a storey the box cuts short (solid spandrel instead) nor behind the coping
     const isGlassPane = filteredPulse(cellUV.x, mullionThickness * 0.5, 1.0 - mullionThickness * 0.5, fw.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.015, 1.0 - mullionThickness * 0.5, fw.y))
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.015, 0.90, fw.y))
       .mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
     const louverStripes = sin(vCoord.mul(22.0)).mul(0.5).add(0.5);
@@ -620,7 +620,7 @@ function createCurtainWallMaterial(opts = {}) {
 
   mat.roughnessNode = Fn(() => {
     const isFrame = float(1.0).sub(
-      filteredPulse(cellUV.x, mullionThickness, 1.0 - mullionThickness, fw.x).mul(filteredPulse(cellUV.y, spandrelRatio, 1.0, fw.y))
+      filteredPulse(cellUV.x, mullionThickness, 1.0 - mullionThickness, fw.x).mul(filteredPulse(cellUV.y, spandrelRatio, 0.90, fw.y))
     );
     const sillDirt = float(1.0).sub(smoothstep(spandrelRatio, spandrelRatio + 0.18, cellUV.y)).mul(0.18);
     const glassOrFrame = mix(float(0.05).add(sillDirt), float(0.78), max(max(isFrame, isRoof), solid));
@@ -635,7 +635,7 @@ function createCurtainWallMaterial(opts = {}) {
 
     const ramp = fw.mul(2.0).max(0.02);
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.01, 0.99 - mullionThickness, ramp.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.01, 0.99 - mullionThickness, ramp.y))
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.01, 0.90, ramp.y))
       .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
     const mullionRelief = float(1.0).sub(inPane).mul(0.014).add(coping.mul(0.01));
 
@@ -644,7 +644,7 @@ function createCurtainWallMaterial(opts = {}) {
 
   mat.emissiveNode = Fn(() => {
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.015, 1.0 - mullionThickness - 0.015, fw.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.02, 1.0 - mullionThickness * 0.5, fw.y));
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.02, 0.90, fw.y));
     const paneMask = inPane.mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(isMechFloor))
       .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
@@ -747,8 +747,8 @@ function createPreWarBuildingMaterial(opts = {}) {
   const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.62), fw);
   const shopLit = step(0.24, hash2D(cellId.add(vec2(uSeed, 19.4))));
   const bulbCol = mix(cCoolWindow, cWarmWindow, step(float(1.0).sub(uWarmth), hash2D(cellId.add(vec2(uSeed.mul(1.9), 83.1)))));
-  // Window AC units (~12% of upper-floor windows), none in the floor the band course covers
-  const beltFloor = step(5.0, mod(floor(gridV), 6.0)).mul(front);
+  // Window AC units (~12% of upper-floor windows); the narrow belt no longer replaces an entire floor
+  const beltFloor = float(0.0);
   const acRand = hash2D(cellId.add(vec2(uSeed.mul(1.3).add(7.1), 91.7)));
   const hasAC = step(0.88, acRand).mul(float(1.0).sub(isGroundFloor)).mul(float(1.0).sub(isRoof)).mul(open).mul(float(1.0).sub(beltFloor));
 
@@ -762,7 +762,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     // Horizontal cornice belt every 6 floors (street fronts only) + ground floor storefront fascia at top of floor 0
     const cornicePhase = fract(gridV.div(6.0));
     const isCornice = max(
-      filteredPulse(cornicePhase, 0.86, 1.0, fw.y.div(6.0)).mul(front),
+      filteredPulse(cornicePhase, 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front),
       isGroundFloor.mul(filteredPulse(cellUV.y, 0.86, 1.0, fw.y))
     );
 
@@ -839,7 +839,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const isSillTop = filteredPulse(cellUV.y, effHalfY.sub(0.032), effHalfY, fw.y).mul(sillSpan);
     const isSillUnderShadow = filteredPulse(cellUV.y, effHalfY.sub(0.075), effHalfY.sub(0.032), fw.y).mul(sillSpan);
 
-    const corniceShadow = smoothstep(0.76, 0.86, cornicePhase).mul(0.32).mul(front);
+    const corniceShadow = smoothstep(1.0-.34/(floorHeight*6), 1.0-.22/(floorHeight*6), cornicePhase).mul(0.32).mul(front);
 
     const canyonBand = smoothstep(0.0, 14.0, vCoord).mul(float(1.0).sub(smoothstep(22.0, 75.0, vCoord)));
     const canyonGlow = cCanyonBounce.mul(canyonBand.mul(cityUniforms.uCanyonBounce).mul(0.22));
@@ -905,7 +905,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     // ground-floor shops use 2D reflective storefront glass
     const pooledDirt = float(1.0).sub(smoothstep(0.0, 0.32, winUV.y)).mul(0.36);
     // Grimy soda-lime glazing film (SkyscraperGenerator.js line 1688): baseline haze so panes read as glass, not open holes
-    const upperGrime = float(0.52).add(sootDirt.mul(0.35)).add(pooledDirt).clamp(0.0, 0.90);
+    const upperGrime = float(0.24).add(sootDirt.mul(0.18)).add(pooledDirt.mul(.5)).clamp(0.0, 0.70);
 
     const viewDir = normalize(cameraPosition.sub(positionWorld));
     const fresnel = pow(clamp(float(1.0).sub(abs(dot(viewDir, normalWorldGeometry))), 0.0, 1.0), 2.0);
@@ -916,7 +916,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const shopInterior = bulbCol.mul(smoothstep(0.05, 0.92, winUV.y).mul(0.48).add(0.24)).mul(shopShelves).mul(shopLit);
     const shopGlassBase = mix(cGlass, shopInterior, float(0.62).mul(float(1.0).sub(pooledDirt)));
     const glassBase = mix(upperGlassBase, shopGlassBase, isGroundFloor);
-    const glassCol = mix(glassBase, cityUniforms.uSkyHorizonColor, fresnel.mul(0.52).add(0.08)).mul(recessShade);
+    const glassCol = mix(glassBase, cityUniforms.uSkyHorizonColor, fresnel.mul(0.42).add(0.05)).mul(recessShade);
 
     const frameCol = masonryTint.mul(0.46).mul(recessShade);
     const roofNoise = noise2D(positionWorld.xz.mul(0.35));
@@ -929,7 +929,7 @@ function createPreWarBuildingMaterial(opts = {}) {
   })();
 
   mat.roughnessNode = Fn(() => {
-    const belt = filteredPulse(gridV.div(6.0), 0.86, 1.0, fw.y.div(6.0)).mul(front);
+    const belt = filteredPulse(gridV.div(6.0), 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front);
     const inX = filteredPulse(cellUV.x, halfWinX, 1.0 - halfWinX, fw.x).mul(open).mul(float(1.0).sub(belt));
     const inY = filteredPulse(cellUV.y, halfWinY, 1.0 - halfWinY, fw.y);
     const isWindow = inX.mul(inY).mul(float(1.0).sub(isRoof));
@@ -953,7 +953,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const footprint = max(fwidth(uCoord), fwidth(vCoord)); // Meters per pixel
 
     // Stone band course every 6 floors on street fronts: no window recesses, sills or AC units in it
-    const belt = filteredPulse(gridV.div(6.0), 0.86, 1.0, ramp.y.div(6.0)).mul(front);
+    const belt = filteredPulse(gridV.div(6.0), 1.0-.22/(floorHeight*6), 1.0, ramp.y.div(6.0)).mul(front);
     const inX = filteredPulse(cellUV.x, effHalfX, float(1.0).sub(effHalfX), ramp.x).mul(open).mul(float(1.0).sub(belt));
     const inY = filteredPulse(cellUV.y, effHalfY, float(1.0).sub(effHalfY), ramp.y);
     const isWindow = inX.mul(inY);
@@ -991,7 +991,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const inX = filteredPulse(cellUV.x, glowHalfX, float(1.0).sub(glowHalfX), fw.x).mul(open);
     const inY = filteredPulse(cellUV.y, glowHalfY, float(1.0).sub(glowHalfY), fw.y);
     const isCornice = max(
-      filteredPulse(fract(gridV.div(6.0)), 0.86, 1.0, fw.y.div(6.0)).mul(front),
+      filteredPulse(fract(gridV.div(6.0)), 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front),
       isGroundFloor.mul(filteredPulse(cellUV.y, 0.86, 1.0, fw.y))
     );
 

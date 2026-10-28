@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "WASD, normalized diagonal, sprint, held RMB, Q/E, release, Escape and blur",
+    "text input isolation, viewport-only context handling and optional orbit",
+    "iframe navigation and parent editor input isolation"
+  ],
+  "errors": [],
+  "status": "passed"
+}

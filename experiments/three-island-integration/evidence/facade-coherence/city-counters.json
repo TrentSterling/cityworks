@@ -1,0 +1,62 @@
+{
+  "district": {
+    "before": {
+      "render": {
+        "calls": 276,
+        "frameCalls": 4,
+        "drawCalls": 88,
+        "triangles": 263434,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    },
+    "after": {
+      "render": {
+        "calls": 284,
+        "frameCalls": 4,
+        "drawCalls": 88,
+        "triangles": 263434,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    }
+  },
+  "street": {
+    "before": {
+      "render": {
+        "calls": 540,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 296047,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    },
+    "after": {
+      "render": {
+        "calls": 552,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 296047,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    }
+  }
+}
