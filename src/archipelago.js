@@ -2,7 +2,7 @@
 (function (root) {
   'use strict';
   const G = typeof module !== 'undefined' ? require('./city.js') : root.CityModel;
-  const defaults = Object.freeze({ schemaVersion: 3, seed: 'CITYWORKS-03', coastVariation: .5, streetSpacing: 108, bridgeWidth: 22, density: .6, skylineHeight: 80 });
+  const defaults = Object.freeze({ schemaVersion: 3, seed: 'CITYWORKS-03', coastVariation: .5, streetSpacing: 108, bridgeWidth: 22, density: .6, skylineHeight: 80, mapAreaKm2:2 });
   const length = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
   const mix = (a, b, t) => a.map((v, i) => G.snap(v + (b[i] - v) * t));
   const widths = { arterial: 22, collector: 13, local: 7 };
@@ -14,7 +14,7 @@
     const p = { ...defaults, ...raw };
     if (p.schemaVersion !== 3) throw Error('Expected Cityworks input schema 3');
     if (typeof p.seed !== 'string' || p.seed.length < 1 || p.seed.length > 80) throw Error('Seed must contain 1 to 80 characters');
-    for (const [key, min, max] of [['coastVariation', 0, 1], ['streetSpacing', 90, 130], ['bridgeWidth', 18, 28], ['density', .1, 1], ['skylineHeight', 24, 180]]) {
+    for (const [key, min, max] of [['coastVariation', 0, 1], ['streetSpacing', 90, 130], ['bridgeWidth', 18, 28], ['density', .1, 1], ['skylineHeight', 24, 180], ['mapAreaKm2',1.5,3.2]]) {
       if (!Number.isFinite(p[key]) || p[key] < min || p[key] > max) throw Error(key + ' must be between ' + min + ' and ' + max);
     }
     for (const key of Object.keys(raw)) if (!(key in defaults)) throw Error('Unknown version 3 input: ' + key);
@@ -57,7 +57,7 @@
         core: [[440,-130],[490,-330],[650,-400],[800,-310],[840,-70],[760,140],[600,230],[480,230]],
         terrain: { coastalRise: 8, coastalRun: 50, hills: [{ center: [925,-275], radius: 155, height: 31 }, { center: [800,290], radius: 100, height: 17 }] } }
     ];
-    return definitions.map(d => {
+    const islands=definitions.map(d => {
       const boundary = coast(d.outline, input, d.id, d.rounded);
       // The inherited validator's coordinate bound is for the smaller v0.2 map.
       // A scale-only validation preserves all segment and intersection relations.
@@ -66,6 +66,17 @@
       if (!G.containsRegion(region, urbanCore, .01)) throw Error(d.name + ': planning core falls outside its coast');
       return { id: d.id, name: d.name, character: d.character, boundary, holes: [], regions: [region], buildableRegions: G.offset([region], -16), urbanCore: [urbanCore], elevation: 8, terrain: d.terrain };
     });
+    const points=islands.flatMap(i=>i.boundary),xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
+    const scale=Math.sqrt(input.mapAreaKm2*1e6/((Math.max(...xs)-Math.min(...xs))*(Math.max(...zs)-Math.min(...zs))));
+    const point=p=>p.map(v=>G.snap(v*scale));
+    // Resize the authored planning controls before street coverage and parcels.
+    // Widths, setbacks, buildings, floors and facade bays remain metric.
+    for(const island of islands){
+      island.boundary=G.canonical(island.boundary.map(point));island.regions=[G.shape(island.boundary)];
+      island.urbanCore=island.urbanCore.map(p=>G.shape(G.canonical(p.outer.map(point))));
+      island.buildableRegions=G.offset(island.regions,-16);island.layoutScale=scale;
+      island.terrain.hills=island.terrain.hills.map(h=>({...h,center:point(h.center),radius:h.radius*scale}));
+    }return islands;
   }
 
   function route(id, islandId, points, klass, extra = {}) {
@@ -78,29 +89,32 @@
 
   function coreNetwork(islands, input) {
     const routes = [];
-    const harbourWest = G.clipSegment([-1100,190],[-580,190],islands[1].urbanCore)[0][0];
+    const scale=islands[0].layoutScale,point=p=>p.map(v=>G.snap(v*scale));
+    const plannedRoute=(id,islandId,points,klass)=>route(id,islandId,points.map(point),klass);
+    const harbourWest = G.clipSegment([-1100,190],[-580,190],islands[1].urbanCore.map(p=>G.shape(p.outer.map(q=>q.map(v=>v/scale)))))[0][0];
     for (const island of islands) routes.push(route(island.id + ':coastal-collector', island.id, [...island.urbanCore[0].outer, island.urbanCore[0].outer[0]], 'collector'));
     routes.push(
-      route('civic:spine', 'island:civic', [[-100,-590],[-120,-380],[-80,-180],[-70,20],[-110,190],[-130,360],[-110,450]], 'arterial'),
-      route('civic:harbour-approach', 'island:civic', [[-350,190],[-110,190]], 'arterial'),
-      route('civic:north-approach', 'island:civic', [[-80,-180],[80,-130]], 'arterial'),
-      route('civic:south-approach', 'island:civic', [[-110,190],[-20,210],[70,230]], 'arterial'),
-      route('harbour:main', 'island:harbour', [harbourWest,[-780,190],[-610,190],[-580,190]], 'arterial'),
-      route('headland:parkway', 'island:headland', [[440,-130],[520,-80],[560,30],[540,150],[480,230]], 'arterial'),
-      route('headland:ridge-collector', 'island:headland', [[650,-400],[660,-250],[680,-90],[690,70],[600,230]], 'collector')
+      plannedRoute('civic:spine', 'island:civic', [[-100,-590],[-120,-380],[-80,-180],[-70,20],[-110,190],[-130,360],[-110,450]], 'arterial'),
+      plannedRoute('civic:harbour-approach', 'island:civic', [[-350,190],[-110,190]], 'arterial'),
+      plannedRoute('civic:north-approach', 'island:civic', [[-80,-180],[80,-130]], 'arterial'),
+      plannedRoute('civic:south-approach', 'island:civic', [[-110,190],[-20,210],[70,230]], 'arterial'),
+      plannedRoute('harbour:main', 'island:harbour', [harbourWest,[-780,190],[-610,190],[-580,190]], 'arterial'),
+      plannedRoute('headland:parkway', 'island:headland', [[440,-130],[520,-80],[560,30],[540,150],[480,230]], 'arterial'),
+      plannedRoute('headland:ridge-collector', 'island:headland', [[650,-400],[660,-250],[680,-90],[690,70],[600,230]], 'collector')
     );
     const bridges = [
       { id: 'bridge:harbour', name: 'Harbour Bridge', a: [-580,190], b: [-350,190], fromIsland: 'island:harbour', toIsland: 'island:civic' },
       { id: 'bridge:north-channel', name: 'North Channel Bridge', a: [80,-130], b: [440,-130], fromIsland: 'island:civic', toIsland: 'island:headland' },
       { id: 'bridge:garden', name: 'Garden Bridge', a: [70,230], b: [480,230], fromIsland: 'island:civic', toIsland: 'island:headland' }
-    ].map(b => ({ ...b, width: input.bridgeWidth, sidewalkWidth: 3.5, deckElevation: 8, deckThickness: .9, clearance: 7.1, length: length(b.a, b.b) }));
+    ].map(b => ({ ...b,a:point(b.a),b:point(b.b), width: input.bridgeWidth, sidewalkWidth: 3.5, deckElevation: 8, deckThickness: .9, clearance: 7.1, length: length(point(b.a),point(b.b)) }));
     for (const b of bridges) routes.push(route(b.id, null, [b.a, b.b], 'arterial', { bridge: true, bridgeId: b.id, width: b.width, sidewalkWidth: b.sidewalkWidth }));
     return { routes, bridges };
   }
 
   function localNetwork(islands, input) {
-    const routes = [];
-    function crossStreet(island, id, a, b, klass = 'local') {
+    const routes = [],scale=islands[0].layoutScale;
+    function crossStreet(island, id, a, b, klass = 'local',authored=true) {
+      if(authored){a=a.map(v=>v*scale);b=b.map(v=>v*scale);}
       // The perimeter collector is the clipping boundary. Every accepted local
       // endpoint consequently terminates at that street, not at an arbitrary coast.
       for (const [index, pair] of G.clipSegment(a, b, island.urbanCore).entries()) {
@@ -111,17 +125,17 @@
     const phase = (G.rand(input.seed, 'streets', 'phase') - .5) * 12;
     const spacing = input.streetSpacing;
     for (let i = -4; i <= 3; i++) {
-      const z = i * spacing + phase + 26;
+      const z = i * spacing + phase + 26*scale;
       // Existing arterial cross-streets reserve enough space for useful blocks.
-      if (Math.abs(z - 190) < 42 || Math.abs(z + 150) < 40) continue;
-      crossStreet(civic, 'civic:cross:' + i, [-600,z], [280,z + 13], i === 0 ? 'collector' : 'local');
+      if (Math.abs(z - 190*scale) < 42 || Math.abs(z + 150*scale) < 40) continue;
+      crossStreet(civic, 'civic:cross:' + i, [-600*scale,z], [280*scale,z + 13*scale], i === 0 ? 'collector' : 'local',false);
     }
     for (const [i, x] of [-270,-190,10].entries()) crossStreet(civic, 'civic:long:' + i, [x,-650], [x + 24,500]);
     for (const [i, z] of [295,390].entries()) crossStreet(harbour, 'harbour:quay-cross:' + i, [-1100,z], [-450,z]);
     for (const [i, x] of [-855,-745].entries()) crossStreet(harbour, 'harbour:quay-long:' + i, [x,-50], [x,560]);
     for (let i = 0; i < 4; i++) {
-      const z = -285 + i * spacing * 1.28 + phase;
-      crossStreet(headland, 'headland:contour:' + i, [320,z], [980,z + 32]);
+      const z = -285*scale + i * spacing * 1.28 + phase;
+      crossStreet(headland, 'headland:contour:' + i, [320*scale,z], [980*scale,z + 32*scale],'local',false);
     }
     return routes;
   }
@@ -170,6 +184,11 @@
     // does not contain centimetre-long road edges between overlapping corners.
     const rawEdges = [...edgeMap.values()], parent = new Map([...nodes.keys()].map(id=>[id,id]));
     const find = id => { while(parent.get(id)!==id)id=parent.get(id);return id; };
+    const rawNodes=[...nodes.values()];
+    // Independently snapped intersection/end points can differ by a few mm.
+    // Weld before discarding collapsed edges, so a skipped tiny edge cannot
+    // leave two unconnected ends of the same physical junction.
+    for(let i=0;i<rawNodes.length;i++)for(let j=i+1;j<rawNodes.length;j++)if(length(rawNodes[i].position,rawNodes[j].position)<.004){const a=find(rawNodes[i].id),b=find(rawNodes[j].id);if(a!==b)parent.set(b,a);}
     for(const edge of rawEdges)if(length(edge.a,edge.b)<8){const a=find(edge.from),b=find(edge.to);if(a!==b)parent.set(b,a);}
     const degree = new Map([...nodes.keys()].map(id=>[id,0])), bridgeEnds = new Set();
     for(const e of rawEdges){degree.set(e.from,degree.get(e.from)+1);degree.set(e.to,degree.get(e.to)+1);if(e.bridge){bridgeEnds.add(e.from);bridgeEnds.add(e.to);}}
@@ -241,7 +260,9 @@
     const { routes: primary, bridges } = coreNetwork(islands,input);
     const routes = [...primary,...localNetwork(islands,input)], network = graph(routes), surfaces = coverage(network,landRegions);
     const blocks = makeBlocks(islands,surfaces.rightOfWay,input.seed);
-    const city = { schemaVersion: 3, generatorVersion: '0.3.0', units: 'metres', axis: 'x-z plan, y-up', precision: .001, input, islands, landRegions, routes, bridges, ...network, ...surfaces, blocks, parcels: [], buildings: [], diagnostics: [] };
+    const points=islands.flatMap(i=>i.boundary),xs=points.map(p=>p[0]),zs=points.map(p=>p[1]),bounds={minX:Math.min(...xs),maxX:Math.max(...xs),minZ:Math.min(...zs),maxZ:Math.max(...zs)};
+    const layout={scale:islands[0].layoutScale,bounds,width:bounds.maxX-bounds.minX,depth:bounds.maxZ-bounds.minZ};layout.envelopeKm2=layout.width*layout.depth/1e6;
+    const city = { schemaVersion: 3, generatorVersion: '0.5.1-layout', units: 'metres', axis: 'x-z plan, y-up', precision: .001, input,layout, islands, landRegions, routes, bridges, ...network, ...surfaces, blocks, parcels: [], buildings: [], diagnostics: [] };
     city.dependencies = { land: G.hash(JSON.stringify(islands.map(i=>i.regions))), streets: G.hash(JSON.stringify([routes,input.bridgeWidth])), intent: G.hash(JSON.stringify([input.density,input.skylineHeight])) };
     city.dependencies.blocks = G.hash(city.dependencies.land + city.dependencies.streets);
     city.stats = { islands: islands.length, bridges: bridges.length, landArea: G.snap(G.totalArea(landRegions)), streetLength: G.snap(city.streets.reduce((sum,s)=>sum+length(s.a,s.b),0)), roadArea: G.snap(G.totalArea(city.roadCoverage)), blocks: blocks.length, parcels: 0, buildings: 0, parks: blocks.filter(b=>b.use==='park').length, junctions: city.junctions.filter(j=>j.degree>=3).length, deadEnds: city.junctions.filter(j=>j.degree===1).length, maxHeight: 0, classLengths: Object.fromEntries(['arterial','collector','local'].map(c=>[c,G.snap(city.streets.filter(s=>s.class===c).reduce((sum,s)=>sum+length(s.a,s.b),0))])) };

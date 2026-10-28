@@ -35,7 +35,7 @@
 <script>
 document.querySelector('#city-view').addEventListener('click',function(){
   const input=window.Cityworks?.city?.input;if(!input)return;
-  const q=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth'])q.set(key,input[key]);
+  const q=new URLSearchParams();for(const key of ['seed','coastVariation','streetSpacing','bridgeWidth','mapAreaKm2'])q.set(key,input[key]);
   this.href='index.html?'+q;
 });
 </script>

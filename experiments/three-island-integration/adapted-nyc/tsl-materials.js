@@ -395,6 +395,7 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   let bayWidth = float(windowWidth);
   let gridU = uCoord.div(bayWidth);
   let inPier = float(0.0);
+  let ineligible = float(0.0);
   let kind = float(WALL_KINDS.shop);
   let tone = float(0.5);
   let wallS = float(0.0);
@@ -423,7 +424,13 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
     wallH = box.y;
     exposedHeight = footprintLocal ? box.z : box.y;
     fromTop = footprintLocal ? wall.y : float(0.5).sub(positionGeometry.y).mul(box.y);
-    if (cornerPier > 0) {
+    if (footprintLocal) {
+      const fit=attribute('facadeFit','vec4'),s=along.mul(wallWidth);
+      ineligible=float(1.0).sub(step(.5,fit.y).mul(step(.5,fit.w)));
+      bayWidth=fit.z;
+      gridU=s.sub(fit.x).div(bayWidth).add(wallSeed);
+      inPier=float(1.0).sub(step(.5,fit.y).mul(step(fit.x,s)).mul(step(s,wallWidth.sub(fit.x))));
+    } else if (cornerPier > 0) {
       const pier = min(float(cornerPier), wallWidth.mul(0.2));
       const inner = wallWidth.sub(pier.mul(2.0));
       const bays = max(floor(inner.div(windowWidth).add(0.5)), 1.0);
@@ -440,7 +447,7 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   }
 
   // Cityworks: floor phase is local to each explicit volume base.
-  const vCoord = footprintLocal ? wallH.sub(fromTop).add(0.22) : positionWorld.y;
+  const vCoord = footprintLocal ? wallH.sub(fromTop) : positionWorld.y;
   const gridV = vCoord.div(floorHeight);
   const cellId = vec2(floor(gridU), floor(gridV));
   const cellUV = vec2(fract(gridU), fract(gridV));
@@ -459,14 +466,15 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   if (boxLocal) {
     const top = vCoord.add(fromTop);
     const floorBase = floor(gridV).mul(floorHeight);
-    const whole = step(top.sub(wallH).sub(0.05), floorBase).mul(step(floorBase.add(floorHeight), top.add(0.05)));
+    const whole = step(top.sub(wallH).sub(0.001), floorBase).mul(step(floorBase.add(floorHeight), top.sub(0.32).add(0.001)));
     partial = float(1.0).sub(whole).mul(wall);
     coping = float(1.0).sub(step(0.32, fromTop)).mul(wall);
   }
-  const solid = max(max(inPier.mul(float(1.0).sub(isGroundFloor)), blank), partial);
+  const solid = max(max(footprintLocal?inPier:inPier.mul(float(1.0).sub(isGroundFloor)), blank), partial);
+  const brickU=footprintLocal?attribute('facadeBrick','float'):uCoord;
   return {
     isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, solid, back, blank, tone,
-    wallS, wallW, wallH, exposedHeight, fromTop, boxSeed, partial, coping
+    wallS, wallW, wallH, exposedHeight, fromTop, boxSeed, partial, coping,brickU,ineligible
   };
 }
 
@@ -520,7 +528,7 @@ function createCurtainWallMaterial(opts = {}) {
   // The facade cell and the apartment behind each pane are built once and shared by every output below, so the
   // shader carries a single copy of them (and evaluates the interior mapping once per pixel)
   const facade = facadeCell(uWindowWidth, uFloorHeight, boxLocal || footprintLocal, 0, footprintLocal);
-  const { isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, partial, coping } = facade;
+  const { isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, partial, coping,solid,brickU } = facade;
   // Pane UV inside the mullions & spandrel, the 3D apartment behind it and whether the ground-floor shop is lit
   const winUV = clamp(
     vec2(
@@ -539,7 +547,7 @@ function createCurtainWallMaterial(opts = {}) {
     // No glass in a storey the box cuts short (solid spandrel instead) nor behind the coping
     const isGlassPane = filteredPulse(cellUV.x, mullionThickness * 0.5, 1.0 - mullionThickness * 0.5, fw.x)
       .mul(filteredPulse(cellUV.y, spandrelRatio + 0.015, 1.0 - mullionThickness * 0.5, fw.y))
-      .mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(partial)).mul(float(1.0).sub(coping));
+      .mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
     const louverStripes = sin(vCoord.mul(22.0)).mul(0.5).add(0.5);
 
@@ -603,7 +611,9 @@ function createCurtainWallMaterial(opts = {}) {
     const finalWall = mix(facadeCol, mechCol, isMechFloor.mul(float(1.0).sub(isRoof)));
 
     // Brushed-aluminium coping capping every wall
-    const withCap = mix(finalWall, mix(cFrame, color(0xc9ced3), 0.45), coping);
+    const trimJoint=max(gridLine(brickU,0.6,0.015),gridLine(vCoord,0.3,0.015));
+    const opaqueTrim=mix(cFrame.mul(.8),cFrame.mul(.5),trimJoint);
+    const withCap = mix(mix(finalWall,opaqueTrim,solid), mix(cFrame, color(0xc9ced3), 0.45), coping);
 
     return mix(withCap, roofColor, isRoof);
   })();
@@ -613,7 +623,7 @@ function createCurtainWallMaterial(opts = {}) {
       filteredPulse(cellUV.x, mullionThickness, 1.0 - mullionThickness, fw.x).mul(filteredPulse(cellUV.y, spandrelRatio, 1.0, fw.y))
     );
     const sillDirt = float(1.0).sub(smoothstep(spandrelRatio, spandrelRatio + 0.18, cellUV.y)).mul(0.18);
-    const glassOrFrame = mix(float(0.05).add(sillDirt), float(0.54), max(max(isFrame, isRoof), partial));
+    const glassOrFrame = mix(float(0.05).add(sillDirt), float(0.78), max(max(isFrame, isRoof), solid));
     return mix(glassOrFrame, float(0.36), coping);
   })();
 
@@ -626,7 +636,7 @@ function createCurtainWallMaterial(opts = {}) {
     const ramp = fw.mul(2.0).max(0.02);
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.01, 0.99 - mullionThickness, ramp.x)
       .mul(filteredPulse(cellUV.y, spandrelRatio + 0.01, 0.99 - mullionThickness, ramp.y))
-      .mul(float(1.0).sub(partial)).mul(float(1.0).sub(coping));
+      .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
     const mullionRelief = float(1.0).sub(inPane).mul(0.014).add(coping.mul(0.01));
 
     return bumpNormal(mullionRelief.mul(detailFade));
@@ -636,7 +646,7 @@ function createCurtainWallMaterial(opts = {}) {
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.015, 1.0 - mullionThickness - 0.015, fw.x)
       .mul(filteredPulse(cellUV.y, spandrelRatio + 0.02, 1.0 - mullionThickness * 0.5, fw.y));
     const paneMask = inPane.mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(isMechFloor))
-      .mul(float(1.0).sub(partial)).mul(float(1.0).sub(coping));
+      .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
     const shopShelves = float(1.0).sub(step(0.78, fract(winUV.y.mul(3.0))).mul(0.32));
     const shopEmit = cWarmLight.mul(shopLit).mul(shopShelves).mul(0.62);
@@ -720,7 +730,7 @@ function createPreWarBuildingMaterial(opts = {}) {
   // so the shader carries a single copy of them (and evaluates the interior mapping once per pixel)
   const facade = facadeCell(uWindowWidth, uFloorHeight, boxLocal || footprintLocal, cornerPier, footprintLocal);
   const { isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, solid, back, blank, tone, coping } = facade;
-  const { wallS, wallW, wallH, exposedHeight, fromTop, boxSeed } = facade;
+  const { wallS, wallW, wallH, exposedHeight, fromTop, boxSeed,brickU,ineligible } = facade;
   const open = float(1.0).sub(solid);
   const front = float(1.0).sub(back);
   const effHalfX = mix(float(halfWinX), float(0.11), isGroundFloor);
@@ -793,7 +803,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const brickL = 0.56;
     const rowCoord = vCoord.div(brickH);
     const courseRow = floor(rowCoord);
-    const colCoord = uCoord.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
+    const colCoord = brickU.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
     // Courtyard and party walls use common brick, with weathered parging on some party walls.
     const backBrick = mix(
       mix(color(0x6c3d30), color(0x8a503e), fract(tone.mul(7.31))),
@@ -801,7 +811,7 @@ function createPreWarBuildingMaterial(opts = {}) {
       step(0.58, tone)
     );
     const parged = float(0.0).toVar();
-    If(blank.greaterThan(0.5), () => {
+    If(blank.mul(float(1.0).sub(ineligible)).greaterThan(0.5), () => {
       const patch = smoothstep(0.6, 0.76, noise2D(vec2(uCoord.mul(0.11), vCoord.mul(0.07)).add(tone.mul(37.0))));
       parged.assign(max(step(0.74, fract(tone.mul(3.7))), patch.mul(0.85)));
     });
@@ -837,7 +847,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     // Faded advertisements on broad party walls. Lettering is evaluated only within the painted panel.
     const signW = max(min(wallW.sub(3.0), 18.0), 0.1);
     const signH = max(min(min(min(wallH.mul(0.3), signW.mul(0.42)), 6.5), exposedHeight.sub(1.8)), 0.1);
-    const hasSign = blank.mul(float(1.0).sub(step(0.74, fract(tone.mul(3.7)))))
+    const hasSign = blank.mul(float(1.0).sub(ineligible)).mul(float(1.0).sub(step(0.74, fract(tone.mul(3.7)))))
       .mul(step(0.8, fract(tone.mul(13.7).add(boxSeed.mul(0.618)))))
       .mul(step(5.0, signW)).mul(step(2.6, signH));
     const su = wallS.sub(wallW.sub(signW).mul(0.5)).div(signW);
@@ -952,7 +962,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const brickL = 0.56;
     const rowCoord = vCoord.div(brickH);
     const courseRow = floor(rowCoord);
-    const colCoord = uCoord.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
+    const colCoord = brickU.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
     const distU = float(0.5).sub(abs(fract(colCoord).sub(0.5))).mul(brickL);
     const distV = float(0.5).sub(abs(fract(rowCoord).sub(0.5))).mul(brickH);
     const brickDome = smoothstep(0.0, 0.018, distU).mul(smoothstep(0.0, 0.018, distV)).mul(0.0045)

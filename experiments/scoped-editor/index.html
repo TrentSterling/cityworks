@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Cityworks | Massing editor</title><link rel="stylesheet" href="style.css"></head>
+<body><aside><header><h1>Cityworks</h1><span>Block massing</span></header>
+<div class="row"><button id="undo">Undo</button><button id="redo">Redo</button></div>
+<label for="block">Block</label><select id="block"></select><p id="block-info"></p>
+<button id="reroll" class="primary">Reroll block massing</button>
+<label for="building">Building</label><select id="building"></select>
+<div class="row"><button id="lock">Lock building</button><button id="focus">Focus block</button></div>
+<label for="height">Height (m)</label><div class="row"><input id="height" type="number" min="6" max="180" step=".1"><button id="apply-height">Apply</button></div><button id="clear-height">Use generated height</button>
+<hr><div class="row"><button id="save">Save project</button><button id="load">Load project</button></div><input id="load-file" type="file" accept=".json,application/json" hidden>
+<div class="row"><button id="export">Export city</button><button id="new">New project</button></div>
+<p id="status" role="status" aria-live="polite">Opening project...</p><a href="../../">Released city</a>
+</aside><main><nav aria-label="Camera"><button data-view="aerial">Islands</button><button data-view="overhead">Plan</button><button data-view="district">District</button><button data-view="street">Street</button><button id="toggle">Hide buildings</button></nav><iframe id="preview" title="Editable city preview"></iframe><div id="busy" role="status">Building preview...</div></main>
+<script src="../../vendor/clipper-6.4.2.js"></script><script src="../../src/geometry.js"></script><script src="../../src/city.js"></script><script src="../../src/archipelago.js"></script><script src="../../src/parcel-patterns.js"></script><script src="../../src/building-plan.js"></script><script src="../../src/editor-state.js"></script><script src="editor.js"></script></body></html>

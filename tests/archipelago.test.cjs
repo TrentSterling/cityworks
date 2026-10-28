@@ -76,7 +76,8 @@ test('coastal terrain rises from water, roads stay at grade and eastern natural 
     const abutment=city.bridges.some(b=>C.projection(p,b.a,b.b).distance<b.width/2+b.sidewalkWidth+27);
     if(!abutment)assert.ok(C.heightAt(city,...p)<.05,'Natural coast must meet water away from raised bridge abutments');
   }
-  assert.ok(C.heightAt(city,930,-260)>15,'Eastern headland retains relief');
+  const hill=city.islands.find(i=>i.id==='island:headland').terrain.hills[0];
+  assert.ok(C.heightAt(city,...hill.center)>15,'Eastern headland retains relief at its authored hill');
   assert.equal(C.heightAt(city,-80,0),8);
 });
 test('invalid inputs reject instead of silently reinterpreting their geometry',()=>{

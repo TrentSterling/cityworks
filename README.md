@@ -2,9 +2,9 @@
 
 A deterministic city planning prototype with a Three.js preview and engine-neutral city data.
 
-[Open Cityworks](https://tront.xyz/cityworks/) to explore the integrated three-island city. The default plan has connected streets and bridges, 473 frontage parcels/buildings, 484 building volumes, five towers in two groups and 37 shared block interiors. The building renderer uses documented MIT adaptations of the pinned Slop New York facade system.
+[Open Cityworks](https://tront.xyz/cityworks/) to explore the integrated three-island city. The default plan has a 2 km² bounding envelope, connected streets and bridges, 267 buildings, 279 volumes, seven planned taller outliers across all three islands and 25 shared block interiors. The building renderer uses documented MIT adaptations of the pinned Slop New York facade system.
 
-![Planned district](experiments/three-island-integration/evidence/district.png)
+![Planned district](experiments/three-island-integration/evidence/usable-fabric/district.png)
 
 ## Run and edit
 
@@ -13,6 +13,8 @@ Serve the repository with `python -m http.server 8000` and open `http://localhos
 Use the camera buttons, orbit/zoom, hide buildings, change the seed or export schema 4 JSON. Click a building to edit its height. The **Ground editor** link opens the preserved land/street editor, where coast variation, street spacing and bridge width remain editable. **Open city** brings those settings back into the integrated preview. Changes to the ground regenerate parcels and buildings.
 
 The [ground-only editor](https://tront.xyz/cityworks/ground-editor.html) retains its hierarchy view, road inspection, mobile controls and schema 3 export. Its dependencies are vendored, and `ground-editor.html` can also open directly from disk.
+
+The [scoped massing editor](experiments/scoped-editor/README.md) is available through **Massing editor**. Select buildings, lock them, reroll a block, undo/redo and save an editable project. It preserves neighboring map records and exports an engine-neutral scene contract. The default route remains the city preview.
 
 ## Build and verify
 
@@ -27,6 +29,8 @@ The build updates the default `index.html` from the maintained integration entry
 The release browser harness uses isolated muted headless Chrome and verifies the default route, integrated controls, JSON export, mobile layout and a round trip through the ground editor. Use `--url https://tront.xyz/cityworks/` to verify a deployment. Python Playwright and installed Google Chrome are required. Full geometry and visual checks remain in `experiments/three-island-integration/verify_browser.py`; the retained ground harness is `tools/verify_ground_browser.py`.
 
 ## Scope and evidence
+
+The [0.5.1 release notes](docs/RELEASE_051.md) document minimum usable footprints, deliberate clearances, full-size window bays, solid narrow returns, map dimensions and project compatibility. The map envelope is approximately 1.821 × 1.098 km; roads and building dimensions retain their metric scale.
 
 This is an authored three-island grammar with bounded seed variation. It is not a general GIS or engineering tool. The same ground/road model feeds parcels, explicit footprint rings and building volumes. Shared courts reserve access before subdivision; building footprints must fit land, parcel setbacks and road/sidewalk exclusions. Identity is stable for deterministic rebuilds and unaffected edits within this generator revision, not across arbitrary algorithm migrations.
 
