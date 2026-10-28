@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "localFileRequests": 1,
+  "errors": [],
+  "stats": {
+    "islands": 3,
+    "bridges": 3,
+    "landArea": 1435381.381,
+    "streetLength": 17865.47,
+    "roadArea": 207207.433,
+    "blocks": 75,
+    "parcels": 473,
+    "buildings": 473,
+    "parks": 13,
+    "junctions": 91,
+    "deadEnds": 0,
+    "maxHeight": 74.8,
+    "classLengths": {
+      "arterial": 3460.486,
+      "collector": 6633.506,
+      "local": 7771.477
+    },
+    "volumes": 484,
+    "sharedInteriors": 37,
+    "cornerLots": 194,
+    "courtyards": 2,
+    "towers": 5
+  },
+  "render": {
+    "calls": 384,
+    "frameCalls": 4,
+    "drawCalls": 86,
+    "triangles": 381462,
+    "points": 0,
+    "lines": 0,
+    "timestamp": 0
+  }
+}

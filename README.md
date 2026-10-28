@@ -2,49 +2,38 @@
 
 A deterministic city planning prototype with a Three.js preview and engine-neutral city data.
 
-**Development: 0.3 ground and connected streets.** Three islands, three bridges, a continuous street network and terrain. Buildings are intentionally absent from this milestone so the ground can be reviewed on its own. The [published 0.2 demo](https://tront.xyz/cityworks/) remains available while this branch is reviewed.
+[Open Cityworks](https://tront.xyz/cityworks/) to explore the integrated three-island city. The default plan has connected streets and bridges, 473 frontage parcels/buildings, 484 building volumes, five towers in two groups and 37 shared block interiors. The building renderer uses documented MIT adaptations of the pinned Slop New York facade system.
 
-![Three-island ground plan](docs/images/v03-overhead.png)
+![Planned district](experiments/three-island-integration/evidence/district.png)
 
-## Run
+## Run and edit
 
-Open `index.html` in Chrome, or serve this directory with `python -m http.server 8000` and visit `http://localhost:8000`. Runtime dependencies are vendored; generation happens in your browser.
+Serve the repository with `python -m http.server 8000` and open `http://localhost:8000/`. Use a WebGPU-capable Chrome browser. The integrated preview loads Three.js from a commit-pinned CDN and needs network access; generation happens locally in the browser.
 
-Change coast variation, local street spacing, bridge carriageway width or seed. The island buttons focus each district. Plan, bridge and street views expose the layout at different scales; Hierarchy highlights arterial, collector and local routes. Drag to orbit/look, scroll to zoom, and use WASD plus Q/E in bridge/street views. Click a road to inspect its identity and width. Export saves Cityworks JSON schema 3.
+Use the camera buttons, orbit/zoom, hide buildings, change the seed or export schema 4 JSON. Click a building to edit its height. The **Ground editor** link opens the preserved land/street editor, where coast variation, street spacing and bridge width remain editable. **Open city** brings those settings back into the integrated preview. Changes to the ground regenerate parcels and buildings.
 
-## What 0.3 adds
+The [ground-only editor](https://tront.xyz/cityworks/ground-editor.html) retains its hierarchy view, road inspection, mobile controls and schema 3 export. Its dependencies are vendored, and `ground-editor.html` can also open directly from disk.
 
-- Distinct central urban island, reclaimed harbor and wooded headland, using controlled landform shapes rather than high-frequency coast noise.
-- Three explicit bridges attached to land-side arterial junctions. Either eastern crossing can be removed without disconnecting the network.
-- 22 m arterial, 13 m collector and 7 m local carriageways, with separate sidewalk widths and 0.16 m curbs.
-- Shared graph junctions, unioned asphalt, continuous right of way and blocks derived from that coverage.
-- Coastal slopes, graded urban pads and natural headland relief. Bridge slabs, piers, railings and landings use model dimensions.
-- Directional crosswalk clearance at oblique junctions and dry-road materials adapted from MIT-licensed Slop New York code.
-
-## Test and build
+## Build and verify
 
 ```sh
 npm test
-python tools/build.py
+npm run build
+python tools/verify_release.py
 ```
 
-Node runs the retained 0.2 tests, the new archipelago tests and emitted road-marking geometry tests. No npm install is required. The build produces `artifacts/v0.3/Cityworks-0.3.0-dev.html`, a self-contained offline app with all dependency notices embedded.
+The build updates the default `index.html` from the maintained integration entry and writes `artifacts/three-island-integration/Cityworks-Three-Island-Integration.html`. That single-file preview bundles local modules and keeps the pinned Three.js CDN dependency. `npm run build:ground` builds the separate offline ground editor.
 
-For browser verification, install Python Playwright and Google Chrome:
+The release browser harness uses isolated muted headless Chrome and verifies the default route, integrated controls, JSON export, mobile layout and a round trip through the ground editor. Use `--url https://tront.xyz/cityworks/` to verify a deployment. Python Playwright and installed Google Chrome are required. Full geometry and visual checks remain in `experiments/three-island-integration/verify_browser.py`; the retained ground harness is `tools/verify_ground_browser.py`.
 
-```sh
-python -m pip install playwright
-python tools/verify_ground_browser.py
-```
+## Scope and evidence
 
-The harness uses isolated muted headless Chrome and writes captures/reports under ignored `artifacts/`. An optional `--browser-executable PATH` selects another installed Chrome executable.
+This is an authored three-island grammar with bounded seed variation. It is not a general GIS or engineering tool. The same ground/road model feeds parcels, explicit footprint rings and building volumes. Shared courts reserve access before subdivision; building footprints must fit land, parcel setbacks and road/sidewalk exclusions. Identity is stable for deterministic rebuilds and unaffected edits within this generator revision, not across arbitrary algorithm migrations.
 
-## Scope and review
+The [integration verification](experiments/three-island-integration/VERIFICATION.md) includes matched baseline and NYC comparisons, geometry checks and measured render costs. The [adapter change inventory](experiments/three-island-integration/ADAPTER_CHANGES.md) identifies every derivative module. Earlier source experiments remain available for study and regression checks.
 
-This is an authored three-island planning grammar with bounded seed variation, not a general island or road-network editor. Roads and bridge decks use a common 8 m grade; bridge clearance is conceptual. Buildings/parcels, traffic, collisions, bridge engineering, accessibility details, LOD and a Unity importer are not part of this milestone. The renderer and vegetation remain simpler than Slop New York; no visual or device-performance equivalence is claimed.
-
-Read the [v0.3 data contract](docs/V03_CONTRACT.md), [verification and visual review](docs/V03_REVIEW.md), [matched surface and landing comparisons](docs/V03_SURFACES.md), [development scope](docs/V03_PLAN.md) and [dependency provenance](docs/PROVENANCE.md). Earlier [0.2 contract](docs/CONTRACT.md) and [verification](docs/VERIFICATION.md) remain for that release.
+Facade and roof repetition, plain ground floors, coarse terrain transitions and simple bridges remain. Traffic, authored landmarks, full-app reflections/post-processing and night lighting are absent or untested. Courtyard height edits at or below 6.8 m leave an uncovered entrance. This release does not claim parity with the full Slop New York app or device performance targets.
 
 ## Licensing
 
-No project-wide license has been selected for original Cityworks code. Third-party dependencies and adapted components retain their licenses. See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt).
+No project-wide license has been selected for original Cityworks code. Third-party dependencies and adaptations retain their licenses. See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) and [provenance](docs/PROVENANCE.md). Surveyed NYC geometry used for comparison is not included in the runnable city or repository.

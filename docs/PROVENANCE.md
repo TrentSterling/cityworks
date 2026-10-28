@@ -33,3 +33,9 @@ Planning references: [NACTO intersection principles](https://nacto.org/publicati
 ## Isolated data adapter experiment
 
 `experiments/slop-data-adapter` directly reuses pinned MIT New York building/facade/detail/lighting modules and the Singapore supplied-building decoder. Full provenance, unchanged-file hashes, dependency pins, comparison-data attribution and limitations are recorded in its [README](../experiments/slop-data-adapter/README.md) and `upstream/manifest.json`. The production v0.3 app remains separate. No new license is selected for Cityworks original code.
+
+## Three-island building integration
+
+`experiments/three-island-integration/adapted-nyc` contains four MIT derivatives of the pinned New York building/facade modules. The original ten-file reference baseline remains byte-identical. See the integration adapter change inventory and hash manifest for explicit elevation, frontage, seed and local facade-coordinate changes. `src/building-plan.js`, the adapter and preview control code are original Cityworks work. Ground geometry is carried forward from Cityworks v0.3; dry-road noise retains its MIT attribution. No surveyed geographic data is added to the repository or runnable integration.
+
+The planned-fabric update adds original `src/parcel-patterns.js` for district subdivision, reserved court access and skyline placement. Its rules and passage geometry are Cityworks implementation, with no additional third-party source copied.

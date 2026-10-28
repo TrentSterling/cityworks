@@ -1,0 +1,812 @@
+{
+  "status": "passed",
+  "views": {
+    "aerial": {
+      "view": "aerial",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 122390,
+      "render": {
+        "calls": 412,
+        "frameCalls": 4,
+        "drawCalls": 39,
+        "triangles": 208341,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 49,
+        "programsSize": 1290178,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 87,
+        "uniformBuffersSize": 59520,
+        "total": 183322458
+      },
+      "camera": [
+        949.9999999999999,
+        1050,
+        1150
+      ],
+      "target": [
+        -60,
+        0,
+        0
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "overhead": {
+      "view": "overhead",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 149530,
+      "render": {
+        "calls": 760,
+        "frameCalls": 4,
+        "drawCalls": 60,
+        "triangles": 285731,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 49,
+        "programsSize": 1290178,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 87,
+        "uniformBuffersSize": 59520,
+        "total": 183322458
+      },
+      "camera": [
+        0,
+        2200,
+        0.010000022618214248
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "district": {
+      "view": "district",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 136022,
+      "render": {
+        "calls": 1128,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 351951,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        209.99999999999994,
+        279.99999999999994,
+        380
+      ],
+      "target": [
+        -90,
+        10,
+        -60
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "street": {
+      "view": "street",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 146486,
+      "render": {
+        "calls": 1512,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 381462,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        -78,
+        9.940000000000023,
+        110
+      ],
+      "target": [
+        -78,
+        18.940000000000005,
+        -125
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "bridge": {
+      "view": "bridge",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 141710,
+      "render": {
+        "calls": 1880,
+        "frameCalls": 4,
+        "drawCalls": 83,
+        "triangles": 364399,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        -512,
+        13.00000000000002,
+        191
+      ],
+      "target": [
+        -330,
+        12.000000000000002,
+        190
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "courtyard": {
+      "view": "courtyard",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 152458,
+      "render": {
+        "calls": 2272,
+        "frameCalls": 4,
+        "drawCalls": 79,
+        "triangles": 397596,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        122.21000000000001,
+        103.8,
+        -130.389
+      ],
+      "target": [
+        52.21,
+        15,
+        -220.389
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "comparison-overhead": {
+      "view": "comparison-overhead",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 149878,
+      "render": {
+        "calls": 2636,
+        "frameCalls": 4,
+        "drawCalls": 80,
+        "triangles": 384840,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        -90,
+        858.16,
+        -59.990000004720564
+      ],
+      "target": [
+        -90,
+        8.16,
+        -60
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "passage": {
+      "view": "passage",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 148322,
+      "render": {
+        "calls": 3000,
+        "frameCalls": 4,
+        "drawCalls": 77,
+        "triangles": 383369,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        91.74762984006173,
+        9.940000000000001,
+        -209.81157188433457
+      ],
+      "target": [
+        53.02700000000001,
+        9.94,
+        -220.92100000000002
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    },
+    "passage-ceiling": {
+      "view": "passage-ceiling",
+      "buildMs": 452.2000000476837,
+      "stats": {
+        "islands": 3,
+        "bridges": 3,
+        "landArea": 1435381.381,
+        "streetLength": 17865.47,
+        "roadArea": 207207.433,
+        "blocks": 75,
+        "parcels": 473,
+        "buildings": 473,
+        "parks": 13,
+        "junctions": 91,
+        "deadEnds": 0,
+        "maxHeight": 74.8,
+        "classLengths": {
+          "arterial": 3460.486,
+          "collector": 6633.506,
+          "local": 7771.477
+        },
+        "volumes": 484,
+        "sharedInteriors": 37,
+        "cornerLots": 194,
+        "courtyards": 2,
+        "towers": 5
+      },
+      "nonfinite": 0,
+      "badNormals": 0,
+      "geometries": 39,
+      "materials": 39,
+      "geometryBytes": 2890318,
+      "activeTriangles": 147882,
+      "render": {
+        "calls": 3372,
+        "frameCalls": 4,
+        "drawCalls": 76,
+        "triangles": 382013,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "attributes": 125,
+        "attributesSize": 3973548,
+        "geometries": 41,
+        "indexAttributes": 23,
+        "indexAttributesSize": 117318,
+        "indirectStorageAttributes": 0,
+        "indirectStorageAttributesSize": 0,
+        "programs": 51,
+        "programsSize": 1318086,
+        "readbackBuffers": 0,
+        "readbackBuffersSize": 0,
+        "renderTargets": 4,
+        "storageAttributes": 0,
+        "storageAttributesSize": 0,
+        "textures": 13,
+        "texturesSize": 177881894,
+        "uniformBuffers": 101,
+        "uniformBuffersSize": 62288,
+        "total": 183353134
+      },
+      "camera": [
+        72.5175000000001,
+        9.940000000000001,
+        -215.32900000000046
+      ],
+      "target": [
+        53.02700000000001,
+        15,
+        -220.92100000000002
+      ],
+      "details": {
+        "cornices": 1229,
+        "waterTowers": 70,
+        "hvacUnits": 158,
+        "fireEscapes": 0,
+        "awnings": 186,
+        "scaffoldSheds": 0
+      }
+    }
+  },
+  "courtyardVoidProbes": [
+    {
+      "id": "parcel:4bf48fec:building",
+      "point": [
+        53.02749638215935,
+        -220.92111992545625
+      ],
+      "hits": []
+    },
+    {
+      "id": "parcel:77bffb0a:building",
+      "point": [
+        504.9804724030131,
+        67.12087584804958
+      ],
+      "hits": []
+    }
+  ],
+  "groundPassageProbes": [
+    {
+      "id": "parcel:4bf48fec:building",
+      "hits": []
+    },
+    {
+      "id": "parcel:77bffb0a:building",
+      "hits": []
+    }
+  ],
+  "passageCeilingProbes": [
+    {
+      "id": "parcel:4bf48fec:building",
+      "expectedY": 14.96,
+      "hits": [
+        {
+          "y": 14.960000038146973,
+          "name": "courtyard-passage-soffits"
+        }
+      ]
+    },
+    {
+      "id": "parcel:77bffb0a:building",
+      "expectedY": 14.96,
+      "hits": [
+        {
+          "y": 14.960000038146973,
+          "name": "courtyard-passage-soffits"
+        }
+      ]
+    }
+  ],
+  "treeAccessClearance": true,
+  "buildingGeometry": {
+    "triangles": 6330,
+    "degenerate": 0,
+    "reversed": 0
+  },
+  "detailParcelContainment": {
+    "checked": 1415,
+    "errors": []
+  },
+  "interactions": [
+    "six repeated visibility toggles",
+    "mobile layout",
+    "JSON export",
+    "tower height edit to 6 m",
+    "seed rebuild clears incompatible edits"
+  ],
+  "errors": [],
+  "logs": []
+}
