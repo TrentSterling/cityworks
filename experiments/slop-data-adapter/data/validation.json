@@ -1,0 +1,40 @@
+{
+  "cases": {
+    "courtyardId": "lot:0a4d1fa3:bld",
+    "concaveId": "lot:7193d45f:bld",
+    "concaveProbe": [
+      -72.62600000000008,
+      -164.00600000000014
+    ],
+    "unknownYearId": "lot:bc34c465:bld"
+  },
+  "counts": {
+    "nodes": 57,
+    "streets": 78,
+    "blocks": 26,
+    "parcels": 181,
+    "buildings": 181
+  },
+  "checks": [
+    "Existing topology and parcel invariants",
+    "Every crossing shares a graph node",
+    "Full footprint containment, setbacks and road exclusion",
+    "Footprints and parcels do not overlap",
+    "Frontage references retained",
+    "Missing year defaults to unknown; missing height rejected",
+    "Original geometry-derived IDs and explicit seeds retained",
+    "No footprint topology silently repaired",
+    "Duplicate IDs, touching holes, overlapping holes and parts rejected",
+    "SG quantized footprints stay inside original envelopes and preserve voids",
+    "Nonfinite seed, point-contact holes and unprepared SG packing rejected"
+  ],
+  "sgEncoding": {
+    "gridMetres": 0.1,
+    "conservativeInsetMetres": 0.25,
+    "cleanToleranceMetres": 0.2,
+    "minWallMetres": 0.4,
+    "areaBefore": 85805.60548499993,
+    "areaAfter": 81766.20499999999,
+    "note": "Only SG receives conservatively inset and cleaned rings. Every output revalidated; no excluded buildings."
+  }
+}

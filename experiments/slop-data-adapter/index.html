@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Cityworks · Slop data adapter experiment</title>
+<style>body{margin:0;font:14px system-ui;background:#d5e5ed;color:#153437}canvas{display:block}nav{position:fixed;left:16px;top:16px;display:flex;gap:6px;z-index:2;flex-wrap:wrap;max-width:95vw}button,a{font:inherit;border:1px solid #809598;background:#fffffff0;color:inherit;padding:9px 12px;text-decoration:none;border-radius:3px;cursor:pointer}output{position:fixed;bottom:12px;left:16px;max-width:90vw;padding:9px 12px;background:#ffffffe8;pointer-events:none}#error{white-space:pre-wrap;color:#841a14}</style>
+<script type="importmap">{"imports":{
+"three":"https://cdn.jsdelivr.net/gh/mrdoob/three.js@b3396270682287470d161658ac01084d25e8dba6/build/three.webgpu.js",
+"three/webgpu":"https://cdn.jsdelivr.net/gh/mrdoob/three.js@b3396270682287470d161658ac01084d25e8dba6/build/three.webgpu.js",
+"three/tsl":"https://cdn.jsdelivr.net/gh/mrdoob/three.js@b3396270682287470d161658ac01084d25e8dba6/build/three.tsl.js",
+"three/addons/":"https://cdn.jsdelivr.net/gh/mrdoob/three.js@b3396270682287470d161658ac01084d25e8dba6/examples/jsm/",
+"./upstream/nyc/city-config.js":"./config.js","./upstream/nyc/nyc-geodata.js":"./data.js","./upstream/nyc/building-geodata.js":"./data.js","./upstream/nyc/city-grid.js":"./grid-stub.js",
+"./upstream/singapore/city-config.js":"./config.js","./upstream/singapore/geodata.js":"./data.js"}}</script>
+<nav><button data-view="aerial">District</button><button data-view="overhead">Plan</button><button data-view="street">Street</button><button data-view="courtyard">Courtyard</button><button id="buildings">Hide buildings</button><a href="?pipeline=nyc">NY pipeline</a><a href="?pipeline=sg">SG pipeline</a><a href="?data=nyc">NYC data</a></nav><output id="status">Loading pinned Slop modules…</output><pre id="error"></pre>
+<script>addEventListener('error',e=>document.querySelector('#error').textContent=e.message);addEventListener('unhandledrejection',e=>document.querySelector('#error').textContent=String(e.reason?.stack||e.reason));</script><script type="module" src="app.js"></script></html>

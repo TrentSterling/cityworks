@@ -1,6 +1,6 @@
 # Dependencies and provenance
 
-Cityworks uses synthetic geometry. Its planning rules, street graph construction, frontage parcel allocation and identity rules are original Cityworks code. The renderer includes the MIT-licensed Slop New York adaptations identified below. No surveyed footprints, third-party image assets or proprietary city-generation implementation are included. This project is not represented as a certified clean-room implementation.
+Cityworks uses synthetic geometry. Its planning rules, street graph construction, frontage parcel allocation and identity rules are original Cityworks code. The renderer includes the MIT-licensed Slop New York adaptations identified below. The isolated Slop adapter experiment additionally includes unchanged licensed building modules and comparison screenshots; its optional surveyed-data download remains separate and ignored by Git. This project is not represented as a certified clean-room implementation.
 
 ## Runtime dependencies
 
@@ -29,3 +29,7 @@ Cityworks currently has no project-wide license for its original code. Third-par
 `src/road-material.js` ports the same pinned source's `tsl-materials.js` hash/noise, utility-cut patches and two-scale aggregate shading from TSL to GLSL. This dry-road subset retains MIT attribution and omits wetness, reflections and potholes. `buildings.js` was inspected for footprint/detail separation; no building implementation or geographic data has been copied into this ground milestone.
 
 Planning references: [NACTO intersection principles](https://nacto.org/publication/urban-street-design-guide/intersections/intersection-design-principles/), [urban lane widths](https://nacto.org/publication/urban-street-design-guide/street-design-elements/lane-width/), and [NYC street geometry](https://www.nycstreetdesign.info/geometry). The prototype applies compact junctions, distinct travel/sidewalk widths and network continuity as design goals; it is not an engineering compliance tool.
+
+## Isolated data adapter experiment
+
+`experiments/slop-data-adapter` directly reuses pinned MIT New York building/facade/detail/lighting modules and the Singapore supplied-building decoder. Full provenance, unchanged-file hashes, dependency pins, comparison-data attribution and limitations are recorded in its [README](../experiments/slop-data-adapter/README.md) and `upstream/manifest.json`. The production v0.3 app remains separate. No new license is selected for Cityworks original code.
