@@ -2,7 +2,7 @@
 
 A deterministic city planning prototype with a Three.js preview. Start with land and skyline intent, then derive connected streets, blocks, parcels and building masses from one engine-neutral model.
 
-[Open the live demo](https://trentsterling.github.io/cityworks/)
+[Open the live demo](https://tront.xyz/cityworks/)
 
 ## Run
 
@@ -36,7 +36,7 @@ python -m pip install playwright
 python tools/verify_browser.py
 ```
 
-It runs Chrome headlessly and muted, captures four views, and checks UI edits, export, geometry and resources. Use `--url https://trentsterling.github.io/cityworks/` to verify the deployed app, or `--browser-executable PATH` for a nonstandard Chrome installation. Reports and captures are written to ignored `artifacts/`.
+It runs Chrome headlessly and muted, captures four views, and checks UI edits, export, geometry and resources. Use `--url https://tront.xyz/cityworks/` to verify the deployed app, or `--browser-executable PATH` for a nonstandard Chrome installation. Reports and captures are written to ignored `artifacts/`.
 
 ## Scope
 
