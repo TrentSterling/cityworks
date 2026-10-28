@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse,json,statistics
 from playwright.sync_api import sync_playwright
+from check_ground_surfaces import check as check_ground_surfaces
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'artifacts'/'v0.3'
 OUT.mkdir(parents=True,exist_ok=True)
@@ -18,6 +19,9 @@ with sync_playwright() as p:
         page.route('https://**/*',lambda route:route.abort())
         page.goto((OUT/'Cityworks-0.3.0-dev.html').as_uri())
         page.wait_for_function('window.Cityworks && Cityworks.ready',timeout=60000)
+        print('Checking default rendered ground surfaces',flush=True)
+        report['groundSurfaces']={'default':check_ground_surfaces(page)}
+        print('Default ground surfaces passed; capturing views',flush=True)
         for view in ['aerial','overhead','bridge','street']:
             page.locator('[data-view="'+view+'"]').click();page.wait_for_timeout(900)
             info=page.evaluate('Cityworks.inspect()');frames=info.pop('frameSamples')
@@ -30,12 +34,26 @@ with sync_playwright() as p:
         page.locator('[data-layer="ground"]').click()
         page.locator('[data-island="2"]').click();page.wait_for_timeout(600)
         page.screenshot(path=str(OUT/'cityworks-v03-headland.png'))
+        landing_views=page.evaluate('''() => Cityworks.city.bridges.flatMap(bridge=>{
+          const C=ArchipelagoModel,city=Cityworks.city,length=Math.hypot(bridge.b[0]-bridge.a[0],bridge.b[1]-bridge.a[1]),u=[(bridge.b[0]-bridge.a[0])/length,(bridge.b[1]-bridge.a[1])/length],n=[-u[1],u[0]];
+          return [bridge.fromIsland,bridge.toIsland].map((id,i)=>{
+            const clips=C.clipSegment(bridge.a,bridge.b,city.islands.find(island=>island.id===id).regions),p=i?clips.at(-1)[0]:clips[0][1],sign=i?-1:1;
+            return {name:bridge.id.split(':')[1]+'-'+i,position:[p[0]+sign*(u[0]*30+n[0]*50),6,p[1]+sign*(u[1]*30+n[1]*50)],target:[p[0],4,p[1]]};
+          });
+        })''')
+        for landing in landing_views:
+            page.evaluate('pose=>Cityworks.setCamera(pose.position,pose.target)',landing)
+            page.wait_for_timeout(200)
+            page.screenshot(path=str(OUT/('cityworks-v03-landing-'+landing['name']+'.png')))
         page.locator('[data-view="overhead"]').click()
         for key,value in [('coastVariation','0.7'),('streetSpacing','116'),('bridgeWidth','24')]:
             page.locator('#'+key).fill(value);page.locator('#'+key).dispatch_event('change')
             assert page.evaluate('Cityworks.city.input.'+key)==float(value),key
             assert not page.evaluate('Cityworks.inspect().validation'),key
             report['ui'][key]=True
+        print('Checking edited rendered ground surfaces',flush=True)
+        report['groundSurfaces']['edited']=check_ground_surfaces(page)
+        print('Edited ground surfaces passed',flush=True)
         with page.expect_download() as event:page.locator('#export').click()
         event.value.save_as(OUT/'cityworks-v03-export.json')
         assert json.loads((OUT/'cityworks-v03-export.json').read_text())['schemaVersion']==3

@@ -9,8 +9,8 @@
   root.CityRoadMaterial=function(T){
     const material=new T.MeshStandardMaterial({roughness:.94,metalness:0});
     material.onBeforeCompile=s=>{
-      s.uniforms.cwAsphaltDark={value:new T.Color(0x3d3f43).convertSRGBToLinear()};
-      s.uniforms.cwAsphaltLight={value:new T.Color(0x686a6e).convertSRGBToLinear()};
+      s.uniforms.cwAsphaltDark={value:new T.Color(0x44474a).convertSRGBToLinear()};
+      s.uniforms.cwAsphaltLight={value:new T.Color(0x575b5e).convertSRGBToLinear()};
       s.vertexShader='varying vec3 cwRoadWorld;\n'+s.vertexShader;
       s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\ncwRoadWorld=(modelMatrix*vec4(position,1.0)).xyz;');
       s.fragmentShader=`
@@ -28,21 +28,19 @@
         float fine=mix(.5,cwNoise(q*3.2),1.0-smoothstep(.12,.4,px));
         float patchNoise=cwNoise(q*.18);
         float stain=smoothstep(.52,.84,cwNoise(q*.42))*detail;
-        float seam=(1.0-smoothstep(0.0,.04,abs(patchNoise-.52)))*.42*detail;
-        float mottle=cwNoise(q*.9+41.0)*.65+cwNoise(q*2.3+7.0)*.35;
-        vec3 asphalt=mix(cwAsphaltDark,cwAsphaltLight,fine*.3+micro*.22+patchNoise*.22+smoothstep(.3,.7,mottle)*.26-.04)*(1.0-stain*.32)*(1.0-seam);
-        vec2 cell=floor(q/11.0);
-        float hasPatch=step(.5,cwHash(cell+vec2(3.7,8.1)));
-        vec2 center=(cell+.5+(vec2(cwHash(cell+vec2(1.3,5.9)),cwHash(cell+vec2(9.2,2.4)))-.5)*.4)*11.0;
+        vec3 asphalt=mix(cwAsphaltDark,cwAsphaltLight,.22+fine*.23+micro*.28+patchNoise*.05)*(1.0-stain*.055);
+        vec2 cell=floor(q/24.0);
+        float hasPatch=step(.82,cwHash(cell+vec2(3.7,8.1)));
+        vec2 center=(cell+.5+(vec2(cwHash(cell+vec2(1.3,5.9)),cwHash(cell+vec2(9.2,2.4)))-.5)*.4)*24.0;
         vec2 halfSize=vec2(cwHash(cell+vec2(4.4,.6))*1.8+.6,cwHash(cell+vec2(7.8,3.1))*1.4+.5);
         vec2 edge=abs(q-center)-halfSize;
         float distance=max(edge.x,edge.y),cover=(1.0-smoothstep(-px,px,distance))*hasPatch*detail;
         float sealWidth=max(.022,px*.75),seal=(1.0-smoothstep(sealWidth,sealWidth+px,abs(distance)))*(.022/sealWidth)*hasPatch*detail;
         float fresh=step(.55,cwHash(cell+vec2(12.9,6.6)));
-        diffuseColor.rgb=mix(asphalt,asphalt*mix(1.16,.57,fresh),cover)*(1.0-seal*.5);
+        diffuseColor.rgb=mix(asphalt,asphalt*mix(1.035,.92,fresh),cover)*(1.0-seal*.2);
       `);
     };
-    material.customProgramCacheKey=()=> 'cityworks-slop-dry-asphalt-v1';
+    material.customProgramCacheKey=()=> 'cityworks-slop-dry-asphalt-v2';
     return material;
   };
 })(globalThis);

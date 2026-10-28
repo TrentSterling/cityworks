@@ -17,26 +17,39 @@
     m.onBeforeCompile=s=>{
       s.vertexShader='varying vec3 vWorldMetric;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvWorldMetric=(modelMatrix*vec4(position,1.0)).xyz;');
       s.fragmentShader='varying vec3 vWorldMetric;\n'+s.fragmentShader;
-      const common='vec2 q=vWorldMetric.xz; float grain=fract(sin(dot(floor(q*67.0),vec2(17.13,71.7)))*15632.41); float aa=1.0-smoothstep(.35,2.0,length(fwidth(q))); float grainAa=1.0-smoothstep(.01,.08,length(fwidth(q)));';
-      const detail=texture==='asphalt'?'diffuseColor.rgb*=.96+.035*grain*grainAa;':texture==='paving'?'vec2 p=abs(fract(q/2.8)-.5); float line=smoothstep(.475,.495,max(p.x,p.y)); diffuseColor.rgb*=1.0-.09*line*aa;':texture==='water'?'float ripple=sin(q.x*.035+sin(q.y*.019))*sin(q.y*.045); diffuseColor.rgb*=.98+.025*ripple;':'float patches=sin(q.x*.021+sin(q.y*.013))*sin(q.y*.027);diffuseColor.rgb*=.97+.055*patches+.045*grain*grainAa;';
+      const common='vec2 q=vWorldMetric.xz; float px=max(.0001,length(fwidth(q))); float grain=fract(sin(dot(floor(q*67.0),vec2(17.13,71.7)))*15632.41); float grainAa=1.0-smoothstep(.01,.08,px);';
+      const details={
+        paving:'vec2 slab=floor(q/1.5), edge=min(fract(q/1.5),1.0-fract(q/1.5))*1.5; float joint=(1.0-smoothstep(.006,.006+px,min(edge.x,edge.y)))*(1.0-smoothstep(.12,.4,px)); float tint=fract(sin(dot(slab,vec2(17.13,71.7)))*15632.41); diffuseColor.rgb*=.99+.02*tint-.1*joint+.012*(grain-.5)*grainAa;',
+        concrete:'vec3 wn=abs(cross(dFdx(vWorldMetric),dFdy(vWorldMetric))); float along=wn.x>wn.z?vWorldMetric.z:vWorldMetric.x; vec2 cp=vec2(along,vWorldMetric.y)/vec2(3.0,1.2), ce=min(fract(cp),1.0-fract(cp))*vec2(3.0,1.2); float joint=1.0-smoothstep(.003,.003+max(px,.002),min(ce.x,ce.y)); diffuseColor.rgb*=.99-.045*joint+.015*(grain-.5)*grainAa;',
+        curb:'diffuseColor.rgb*=.995+.012*(grain-.5)*grainAa;',
+        water:'float ripple=sin(q.x*.035+sin(q.y*.019))*sin(q.y*.045); diffuseColor.rgb*=.98+.025*ripple;',
+        earth:'float patches=sin(q.x*.021+sin(q.y*.013))*sin(q.y*.027);diffuseColor.rgb*=.97+.055*patches+.045*grain*grainAa;'
+      },detail=details[texture]||'';
       s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\n'+common+detail);
-    };m.customProgramCacheKey=()=> 'cityworks-ground-v3-'+texture;return m;
+    };m.customProgramCacheKey=()=> 'cityworks-ground-v3-material2-'+texture;return m;
   }
   class Batch{
     constructor(mat,name){this.mat=mat;this.name=name;this.positions=[];}
-    tri(a,b,c){const u=new T.Vector3(...b).sub(new T.Vector3(...a)),v=new T.Vector3(...c).sub(new T.Vector3(...a));if(u.cross(v).lengthSq()>1e-12)this.positions.push(...a,...b,...c);}
+    tri(a,b,c){
+      const normal=new T.Vector3(...b).sub(new T.Vector3(...a)).cross(new T.Vector3(...c).sub(new T.Vector3(...a)));
+      const [fa,fb,fc]=[a,b,c].map(p=>new T.Vector3(...p.map(Math.fround))),packedNormal=fb.sub(fa).cross(fc.sub(fa));
+      // Boolean slivers can be narrower than Float32 precision at city scale.
+      // Do not emit a face that collapses or reverses when packed for the GPU.
+      if(packedNormal.lengthSq()>1e-12&&packedNormal.dot(normal)>0)this.positions.push(...a,...b,...c);
+    }
     surface(region,height,down=false){
       const points=[region.outer,...region.holes].flat(),triangles=T.ShapeUtils.triangulateShape(region.outer.map(p=>new T.Vector2(...p)),region.holes.map(r=>r.map(p=>new T.Vector2(...p))));
       const h=typeof height==='function'?height:()=>height;
       for(const ids of triangles){let [a,b,c]=ids.map(i=>points[i]);if(C.cross(a,b,c)>0)[b,c]=[c,b];if(down)[b,c]=[c,b];this.tri([a[0],h(...a),a[1]],[b[0],h(...b),b[1]],[c[0],h(...c),c[1]]);}
     }
-    wall(ring,low,high){for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length],la=typeof low==='function'?low(...a):low,lb=typeof low==='function'?low(...b):low,ha=typeof high==='function'?high(...a):high,hb=typeof high==='function'?high(...b):high;this.tri([a[0],la,a[1]],[a[0],ha,a[1]],[b[0],lb,b[1]]);this.tri([b[0],lb,b[1]],[a[0],ha,a[1]],[b[0],hb,b[1]]);}}
+    wallEdge(a,b,low,high){const la=typeof low==='function'?low(...a):low,lb=typeof low==='function'?low(...b):low,ha=typeof high==='function'?high(...a):high,hb=typeof high==='function'?high(...b):high;this.tri([a[0],la,a[1]],[a[0],ha,a[1]],[b[0],lb,b[1]]);this.tri([b[0],lb,b[1]],[a[0],ha,a[1]],[b[0],hb,b[1]]);}
+    wall(ring,low,high){for(let i=0;i<ring.length;i++)this.wallEdge(ring[i],ring[(i+1)%ring.length],low,high);}
     prism(region,low,high){this.surface(region,high);for(const ring of [region.outer,...region.holes])this.wall(ring,low,high);}
     box(x,z,w,d,low,high){this.prism(C.shape(C.rect(x-w/2,z-d/2,x+w/2,z+d/2)),low,high);}
     finish(shadow=true,smooth=false){if(!this.positions.length){this.mat.dispose();return null;}const geometry=new T.BufferGeometry();if(smooth){const unique=[],indices=[],lookup=new Map();for(let i=0;i<this.positions.length;i+=3){const p=this.positions.slice(i,i+3),key=p.map(v=>Math.round(v*1000)).join(',');if(!lookup.has(key)){lookup.set(key,unique.length/3);unique.push(...p);}indices.push(lookup.get(key));}geometry.setAttribute('position',new T.Float32BufferAttribute(unique,3));geometry.setIndex(indices);}else geometry.setAttribute('position',new T.Float32BufferAttribute(this.positions,3));geometry.computeVertexNormals();geometry.computeBoundingSphere();const mesh=new T.Mesh(geometry,this.mat);mesh.name=this.name;mesh.castShadow=shadow;mesh.receiveShadow=true;world.add(mesh);return mesh;}
   }
   function dispose(){world.traverse(o=>{o.geometry?.dispose();o.material?.dispose();});scene.remove(world);world=new T.Group();scene.add(world);selected=null;$('selection').hidden=true;}
-  function terrain(){
+  function terrain(abutments){
     const palette=['#b1b69a','#b7ae92','#819976'];
     city.islands.forEach((island,index)=>{
       const region=C.shape(island.boundary,island.holes),excluded=[...city.rightOfWay,...city.blocks.filter(b=>b.islandId===island.id&&b.use==='mixed').map(b=>C.shape(b.polygon,b.holes))],natural=C.boolean([region],excluded,'difference'),xs=island.boundary.map(p=>p[0]),zs=island.boundary.map(p=>p[1]),step=18,batch=new Batch(material(palette[index%3],'earth'),'terrain-'+island.id);
@@ -44,22 +57,44 @@
         const parts=C.boolean([C.shape(C.rect(x,z,x+step,z+step))],natural,'intersection');
         for(const part of parts)batch.surface(part,(px,pz)=>C.heightAt(city,px,pz));
       }
-      batch.finish(false,true);
-      const shore=new Batch(material(index===1?'#878774':'#989b83','earth'),'shore-'+island.id);shore.wall(island.boundary,-1,(x,z)=>Math.max(.25,C.heightAt(city,x,z)));shore.finish();
+      // Match the coast wall to the actual sampled terrain boundary. Sparse
+      // outline vertices alone miss raised bridge pads between those vertices.
+      const vertices=[];for(let i=0;i<batch.positions.length;i+=3)vertices.push([batch.positions[i],batch.positions[i+2]]);
+      const shore=new Batch(material(index===1?'#878774':'#989b83','earth'),'shore-'+island.id);
+      const spans=city.bridges.filter(b=>b.fromIsland===island.id||b.toIsland===island.id).map(b=>({bridge:b,zone:C.corridor(b.a,b.b,b.width+2*b.sidewalkWidth)}));
+      for(let i=0;i<island.boundary.length;i++){
+        const a=island.boundary[i],b=island.boundary[(i+1)%island.boundary.length],stations=[{t:0,p:a},{t:1,p:b}];
+        for(const p of vertices){const hit=C.projection(p,a,b);if(hit.distance<.002)stations.push({t:hit.t,p});}
+        for(const span of spans)for(let j=0;j<span.zone.outer.length;j++){const hit=C.intersection(a,b,span.zone.outer[j],span.zone.outer[(j+1)%span.zone.outer.length]);if(hit)stations.push({t:hit.t,p:hit.point});}
+        stations.sort((u,v)=>u.t-v.t);const cuts=stations.filter((v,j)=>!j||v.t-stations[j-1].t>1e-7);
+        for(let j=0;j<cuts.length-1;j++){
+          const p=cuts[j].p,q=cuts[j+1].p,mid=[(p[0]+q[0])/2,(p[1]+q[1])/2],span=spans.find(s=>C.inShape(s.zone,mid));
+          if(span)abutments.wallEdge(p,q,-1,span.bridge.deckElevation-span.bridge.deckThickness);
+          else shore.wallEdge(p,q,-1,(x,z)=>Math.max(.25,C.heightAt(city,x,z)));
+        }
+      }
+      batch.finish(false,true);shore.finish();
     });
   }
-  function bridgeStructures(){
-    const concrete=new Batch(material('#b5b3a3','paving'),'bridge-structure'),metal=new Batch(material('#697e7b'),'bridge-rails');
+  function bridgeStructures(concrete){
+    const metal=new Batch(material('#697e7b'),'bridge-rails');
     for(const bridge of city.bridges){
       const a=bridge.a,b=bridge.b,length=Math.hypot(b[0]-a[0],b[1]-a[1]),u=[(b[0]-a[0])/length,(b[1]-a[1])/length],n=[-u[1],u[0]],at=(t,offset=0)=>[a[0]+u[0]*t+n[0]*offset,a[1]+u[1]*t+n[1]*offset],half=bridge.width/2+bridge.sidewalkWidth;
-      const deck=C.corridor(a,b,half*2),underside=bridge.deckElevation-bridge.deckThickness;concrete.wall(deck.outer,underside,bridge.deckElevation);concrete.surface(deck,underside,true);
+      // The graph includes approaches inland. Locate the visible span at the
+      // coastline; bury a short deck overlap and rail return into each landing.
+      const water=C.boolean([C.corridor(a,b,half*2)],city.landRegions,'difference'),coastStations=water.flatMap(region=>region.outer.map(p=>C.projection(p,a,b).t*length));
+      const start=Math.min(...coastStations),end=Math.max(...coastStations);
+      const deckStart=Math.max(0,start-6),deckEnd=Math.min(length,end+6),deck=C.corridor(at(deckStart),at(deckEnd),half*2),underside=bridge.deckElevation-bridge.deckThickness;
+      concrete.wall(deck.outer,underside,bridge.deckElevation);concrete.surface(deck,underside,true);
       for(const side of [-1,1]){
-        const A=at(0,side*(half-.35)),B=at(length,side*(half-.35));metal.prism(C.corridor(A,B,.16),8.3,9.2);
-        for(let t=2;t<length;t+=5){const p=at(t,side*(half-.35));metal.box(p[0],p[1],.22,.22,8.16,9.35);}
+        const A=at(deckStart,side*(half-.35)),B=at(deckEnd,side*(half-.35));
+        // Two slim rails preserve views through to the bank and deck support.
+        metal.prism(C.corridor(A,B,.12),8.65,8.77);metal.prism(C.corridor(A,B,.12),9.18,9.3);
+        for(let t=deckStart;t<=deckEnd;t+=3){const p=at(t,side*(half-.35));metal.box(p[0],p[1],.13,.13,8.16,9.3);}
+        const p=at(deckEnd,side*(half-.35));metal.box(p[0],p[1],.13,.13,8.16,9.3);
       }
-      const spans=Math.max(2,Math.ceil(length/65));
-      for(let i=1;i<spans;i++){const p=at(length*i/spans);if(C.inRegions(city.landRegions,p))continue;for(const side of [-1,1]){const q=at(length*i/spans,side*bridge.width*.28);concrete.box(q[0],q[1],2.6,4.3,-2,bridge.deckElevation-bridge.deckThickness);}}
-      for(const t of [0,length]){const p=at(t);concrete.prism(C.corridor(at(t-2),at(t+2),bridge.width+7),4.5,7.9);}
+      const spans=Math.max(2,Math.ceil((end-start)/65));
+      for(let i=1;i<spans;i++){const t=start+(end-start)*i/spans;for(const side of [-1,1]){const q=at(t,side*bridge.width*.28);if(C.inRegions(city.landRegions,q))continue;concrete.prism(C.corridor(at(t-1.5,side*bridge.width*.28),at(t+1.5,side*bridge.width*.28),2.2),-2,underside);}}
     }
     concrete.finish();metal.finish();
   }
@@ -93,15 +128,18 @@
   function makeScene(){
     dispose();const water=new Batch(material('#386773','water'),'water');water.surface(C.shape(C.rect(-4500,-4500,4500,4500)),-.3);water.finish(false);
     const shallow=new Batch(material('#527c7c'),'shallows');for(const region of C.offset(city.landRegions,14))shallow.surface(region,-.17);shallow.finish(false);
-    terrain();
-    const sidewalks=new Batch(material('#c6c3b4','paving'),'sidewalks'),curbs=new Batch(material('#dedace'),'curbs');
-    for(const part of city.sidewalkCoverage||C.boolean(city.rightOfWay,city.roadCoverage,'difference'))sidewalks.surface(part,8.16);
+    const bridgeConcrete=new Batch(material('#a8a99e','concrete'),'bridge-structure');terrain(bridgeConcrete);
+    const sidewalks=new Batch(material('#b4b3aa','paving'),'sidewalks'),curbs=new Batch(material('#c8c9bd','curb'),'curbs');
+    const walkCoverage=city.sidewalkCoverage||C.boolean(city.rightOfWay,city.roadCoverage,'difference'),curbTops=C.boolean(C.boolean(C.offset(city.roadCoverage,.18),city.roadCoverage,'difference'),walkCoverage,'intersection');
+    for(const part of C.boolean(walkCoverage,curbTops,'difference'))sidewalks.surface(part,8.16);
+    for(const part of curbTops)curbs.surface(part,8.16);
+    for(const region of city.rightOfWay)for(const ring of [region.outer,...region.holes])sidewalks.wall(ring,8,8.16);
     for(const region of city.roadCoverage)for(const ring of [region.outer,...region.holes])curbs.wall([...ring].reverse(),8,8.16);
     sidewalks.finish(false);curbs.finish(false);
     const roads=new Batch(CityRoadMaterial(T),'road-surface');for(const region of city.roadCoverage)roads.surface(region,8);roads.finish(false);
     const blocks=new Batch(material('#b9b39f','earth'),'urban-blocks');
     for(const b of city.blocks)if(b.use==='mixed')blocks.surface(C.shape(b.polygon,b.holes),8);
-    blocks.finish(false);bridgeStructures();
+    blocks.finish(false);bridgeStructures(bridgeConcrete);
     const paint=CityRoadMarkings(T,C,city);world.add(paint.mesh);markingInfo={crossings:paint.crossings,strips:paint.strips};trees();
     if(layer==='network'){
       const colors={arterial:'#d39247',collector:'#88b8b5',local:'#efdfb1'};
@@ -141,6 +179,6 @@
   canvas.onpointerup=e=>{if(drag&&drag.d<5){const rect=canvas.getBoundingClientRect(),ray=new T.Raycaster();ray.setFromCamera(new T.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const point=new T.Vector3();if(ray.ray.intersectPlane(new T.Plane(new T.Vector3(0,1,0),-8),point)){const p=[point.x,point.z],near=city.streets.map(s=>({s,d:C.projection(p,s.a,s.b).distance})).sort((a,b)=>a.d-b.d)[0];if(near&&near.d<near.s.width/2+3){selected=near.s.id;$('selection').hidden=false;$('selection').innerHTML='<strong>'+near.s.class+(near.s.bridge?' bridge':' street')+'</strong>'+near.s.width+' m carriageway<br>'+(near.s.sidewalkWidth||3)+' m sidewalk each side<br><code>'+near.s.id+'</code>';}}}drag=null;};
   canvas.addEventListener('wheel',e=>{e.preventDefault();if(view!=='bridge'&&view!=='street'){orbit.radius=Math.max(150,Math.min(4500,orbit.radius*Math.exp(e.deltaY*.001)));orbitCamera();}},{passive:false});
   addEventListener('keydown',e=>{if(!/INPUT|TEXTAREA/.test(e.target.tagName))keys.add(e.key.toLowerCase());});addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));addEventListener('blur',()=>keys.clear());addEventListener('resize',()=>{renderer.setSize(host.clientWidth,host.clientHeight);camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();});
-  if(!rebuild())return;setView('aerial');window.Cityworks={ready:true,get city(){return city;},rebuild,setView,inspect,get selected(){return selected;},get cameraPosition(){return camera.position.toArray();},projectPoint(p){const v=new T.Vector3(...p).project(camera);return {x:host.offsetLeft+(v.x+1)*host.clientWidth/2,y:(1-v.y)*host.clientHeight/2};}};
+  if(!rebuild())return;setView('aerial');window.Cityworks={ready:true,get city(){return city;},rebuild,setView,inspect,setCamera(position,target){setView('bridge');camera.position.fromArray(position);const d=new T.Vector3(...target).sub(camera.position);walk.yaw=Math.atan2(d.x,d.z);walk.pitch=Math.atan2(d.y,Math.hypot(d.x,d.z));walkCamera();render();},geometrySnapshot(name){const g=world.getObjectByName(name)?.geometry;return g?{positions:Array.from(g.attributes.position.array),indices:g.index?Array.from(g.index.array):null}:null;},get selected(){return selected;},get cameraPosition(){return camera.position.toArray();},projectPoint(p){const v=new T.Vector3(...p).project(camera);return {x:host.offsetLeft+(v.x+1)*host.clientWidth/2,y:(1-v.y)*host.clientHeight/2};}};
   function loop(now){const dt=Math.min(50,now-frameAt);if(now-frameAt>0){frames.push(now-frameAt);if(frames.length>240)frames.shift();}frameAt=now;if(view==='bridge'||view==='street'){const speed=dt*.025*(keys.has('shift')?3:1),f=Number(keys.has('w'))-Number(keys.has('s')),r=Number(keys.has('d'))-Number(keys.has('a'));camera.position.x+=(Math.sin(walk.yaw)*f-Math.cos(walk.yaw)*r)*speed;camera.position.z+=(Math.cos(walk.yaw)*f+Math.sin(walk.yaw)*r)*speed;camera.position.y=Math.max(1.8,camera.position.y+(Number(keys.has('e'))-Number(keys.has('q')))*speed);walkCamera();}render();requestAnimationFrame(loop);}requestAnimationFrame(loop);
 })();

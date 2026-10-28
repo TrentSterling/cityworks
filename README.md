@@ -43,7 +43,7 @@ The harness uses isolated muted headless Chrome and writes captures/reports unde
 
 This is an authored three-island planning grammar with bounded seed variation, not a general island or road-network editor. Roads and bridge decks use a common 8 m grade; bridge clearance is conceptual. Buildings/parcels, traffic, collisions, bridge engineering, accessibility details, LOD and a Unity importer are not part of this milestone. The renderer and vegetation remain simpler than Slop New York; no visual or device-performance equivalence is claimed.
 
-Read the [v0.3 data contract](docs/V03_CONTRACT.md), [verification and visual review](docs/V03_REVIEW.md), [development scope](docs/V03_PLAN.md) and [dependency provenance](docs/PROVENANCE.md). Earlier [0.2 contract](docs/CONTRACT.md) and [verification](docs/VERIFICATION.md) remain for that release.
+Read the [v0.3 data contract](docs/V03_CONTRACT.md), [verification and visual review](docs/V03_REVIEW.md), [matched surface and landing comparisons](docs/V03_SURFACES.md), [development scope](docs/V03_PLAN.md) and [dependency provenance](docs/PROVENANCE.md). Earlier [0.2 contract](docs/CONTRACT.md) and [verification](docs/VERIFICATION.md) remain for that release.
 
 ## Licensing
 

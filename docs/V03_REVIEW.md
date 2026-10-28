@@ -1,6 +1,6 @@
 # Version 0.3 ground milestone review
 
-Verified 2026-10-28. This development milestone is not deployed over the published 0.2 release.
+Verified 2026-10-28. This development milestone is not deployed over the published 0.2 release. The [surface and landing follow-up](V03_SURFACES.md) records matched comparisons and the additional rendered-mesh checks.
 
 ## Ground-only evidence
 
@@ -26,7 +26,7 @@ Street markings use directional intersection clearance, with compact sidewalks a
 
 Default model: 1.435 km² land, 17.865 km streets, three bridges, 75 blocks, 91 multiway junctions and zero dead ends. Carriageway lengths: 3.460 km arterial, 6.634 km collector and 7.771 km local.
 
-Measured on desktop Chrome ANGLE D3D11, RTX 5070 Ti, 1600×1100, DPR 1: 24 full-frame draw calls in the overview, 192,537 submitted triangles including shadows/instances, 17 resident geometries, one shadow texture, 12 shader programs and approximately 1.30 MB of vertex attribute buffers. The last measured initial model/scene rebuild was 308 ms. Frame intervals were refresh-paced near 16.7 ms; these are not uncapped GPU timings or mobile/Quest evidence.
+Baseline `6ef61fd`, measured on desktop Chrome ANGLE D3D11, RTX 5070 Ti, 1600×1100, DPR 1: 24 full-frame draw calls in the overview, 192,537 submitted triangles including shadows/instances, 17 resident geometries, one shadow texture, 12 shader programs and approximately 1.30 MB of vertex attribute buffers. The measured initial model/scene rebuild was 308 ms. Frame intervals were refresh-paced near 16.7 ms; these are not uncapped GPU timings or mobile/Quest evidence. Current follow-up costs are listed in the surface review.
 
 ## Reference comparison and remaining work
 
