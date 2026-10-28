@@ -48,3 +48,7 @@ Read the [v0.3 data contract](docs/V03_CONTRACT.md), [verification and visual re
 ## Licensing
 
 No project-wide license has been selected for original Cityworks code. Third-party dependencies and adapted components retain their licenses. See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt).
+
+## Three-island building integration experiment
+
+The experimental [integration preview](experiments/three-island-integration/README.md) connects the ground/road model to frontage parcels and explicit building volumes through a documented derivative of the pinned Slop New York building system. Run it separately from the ground editor; the baseline adapter remains available. See its verification and comparison images before evaluating the milestone.
