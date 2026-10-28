@@ -9,6 +9,7 @@ renderer.setPixelRatio(1);renderer.setSize(innerWidth,innerHeight);renderer.shad
 const scene=new T.Scene(),camera=new T.PerspectiveCamera(55,innerWidth/innerHeight,.2,8000),controls=new OrbitControls(camera,renderer.domElement);
 const lighting=new LightingSystem(scene,renderer);lighting.applyPreset('midday');
 const start=performance.now(),ground=buildGround(scene,city),cityBuildings=buildCityBlocks(scene),buildMs=performance.now()-start;
+if(ground.soffits)cityBuildings.group.add(ground.soffits);
 const samples=[];let last=performance.now(),view,selected;
 function setCamera(p,t){camera.position.fromArray(p);controls.target.fromArray(t);controls.update();lighting.update(camera.position);cityBuildings.update(p[0],p[2],true);}
 function setView(name){view=name;
@@ -17,6 +18,8 @@ function setView(name){view=name;
  else if(name==='district')setCamera([210,280,380],[-90,10,-60]);
  else if(name==='bridge')setCamera([-512,13,191],[-330,12,190]);
  else if(name==='courtyard'){const b=city.buildings.find(b=>b.profile==='courtyard'),[x,z]=b.center;setCamera([x+70,b.height+80,z+90],[x,15,z]);}
+ else if(name==='passage'){const b=city.buildings.find(b=>b.passage),p=b.passage,l=Math.hypot(p.to[0]-p.from[0],p.to[1]-p.from[1]);setCamera([p.from[0]+(p.from[0]-p.to[0])/l*12,9.94,p.from[1]+(p.from[1]-p.to[1])/l*12],[p.to[0],9.94,p.to[1]]);}
+ else if(name==='passage-ceiling'){const b=city.buildings.find(b=>b.passage),p=b.passage,upper=b.volumes.find(v=>v.role==='courtyard-upper'),center=C.center(C.boolean(upper.polygons,p.polygons,'intersection')[0].outer);setCamera([center[0],9.94,center[1]],[p.to[0],15,p.to[1]]);}
  else if(name==='comparison-overhead')setCamera([-90,858.16,-59.99],[-90,8.16,-60]);
  else setCamera([950,1050,1150],[-60,0,0]);
 }
@@ -34,6 +37,8 @@ renderer.domElement.addEventListener('pointerup',e=>{if(!pointerStart||Math.hypo
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
 function inspect(){let nonfinite=0,badNormals=0,geometryBytes=0,activeTriangles=0;const geos=new Set(),mats=new Set();scene.traverse(o=>{if(!o.geometry)return;const g=o.geometry;geos.add(g);for(const m of Array.isArray(o.material)?o.material:[o.material])mats.add(m);activeTriangles+=(g.index?.count||g.attributes.position?.count||0)/3*(o.isInstancedMesh?o.count:1);for(const a of Object.values(g.attributes))for(const n of a.array)if(!Number.isFinite(n))nonfinite++;const n=g.attributes.normal;if(n)for(let i=0;i<n.count;i++){const len=Math.hypot(n.getX(i),n.getY(i),n.getZ(i));if(len<.99||len>1.01)badNormals++;}});for(const g of geos){for(const a of Object.values(g.attributes))geometryBytes+=a.array.byteLength;geometryBytes+=g.index?.array.byteLength||0;}return{view,buildMs,stats:city.stats,nonfinite,badNormals,geometries:geos.size,materials:mats.size,geometryBytes,activeTriangles,render:JSON.parse(JSON.stringify(renderer.info.render)),memory:{...renderer.info.memory},frames:samples.slice(-90),camera:camera.position.toArray(),target:controls.target.toArray(),details:cityBuildings.allBlocks.reduce((s,b)=>{for(const k of ['cornices','waterTowers','hvacUnits','fireEscapes','awnings','scaffoldSheds'])s[k]=(s[k]||0)+(b[k]?.length||0);return s;},{})};}
 window.Integration={ready:false,inspect,setView,setCamera,select,scene,camera,renderer,city,records,cityBuildings,ground,
+ passageHits:(b)=>{const p=b.passage,from=new T.Vector3(p.from[0],9.94,p.from[1]),to=new T.Vector3(p.to[0],9.94,p.to[1]),direction=to.clone().sub(from);scene.updateMatrixWorld(true);return new T.Raycaster(from,direction.clone().normalize(),0,direction.length()).intersectObject(cityBuildings.group,true).map(h=>({distance:h.distance,name:h.object.name}));},
+ ceilingHits:(x,z)=>{scene.updateMatrixWorld(true);return new T.Raycaster(new T.Vector3(x,9.94,z),new T.Vector3(0,1,0),0,20).intersectObject(cityBuildings.group,true).map(h=>({y:h.point.y,name:h.object.name}));},
  roofHits:(x,z)=>{scene.updateMatrixWorld(true);return new T.Raycaster(new T.Vector3(x,1000,z),new T.Vector3(0,-1,0)).intersectObject(cityBuildings.group,true).map(h=>({y:h.point.y,name:h.object.name}));}};
 setView(new URLSearchParams(location.search).get('view')||'aerial');await renderer.compileAsync(scene,camera);
 renderer.setAnimationLoop(()=>{const now=performance.now();samples.push(now-last);last=now;if(samples.length>180)samples.shift();lighting.update(camera.position);cityBuildings.update(camera.position.x,camera.position.z);renderer.render(scene,camera);});

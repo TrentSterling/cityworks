@@ -17,13 +17,19 @@ with sync_playwright() as p:
         page.wait_for_function('window.Integration?.ready',timeout=90000)
         print('Renderer ready',flush=True)
         results={}
-        for view in ['aerial','overhead','district','street','bridge','courtyard','comparison-overhead']:
+        for view in ['aerial','overhead','district','street','bridge','courtyard','comparison-overhead','passage','passage-ceiling']:
             page.evaluate('(v)=>Integration.setView(v)',view);page.wait_for_timeout(1300)
             page.screenshot(path=str(OUT/f'{view}.png'))
             info=page.evaluate('Integration.inspect()');assert not info['nonfinite'] and not info['badNormals'],info
             results[view]=info;print(json.dumps({'view':view,'render':info['render'],'materials':info['materials'],'details':info['details']}),flush=True)
-        probes=page.evaluate('''() => {const bs=Integration.city.buildings.filter(b=>b.profile==='courtyard');return bs.map(b=>{const h=b.volumes[0].polygons[0].holes[0],p=CityFabric.center(h);return {id:b.id,point:p,hits:Integration.roofHits(...p)};});}''')
+        probes=page.evaluate('''() => {const bs=Integration.city.buildings.filter(b=>b.profile==='courtyard');return bs.map(b=>{const h=b.volumes.flatMap(v=>v.polygons).flatMap(p=>p.holes)[0],p=CityFabric.center(h);return {id:b.id,point:p,hits:Integration.roofHits(...p)};});}''')
         assert all(not p['hits'] for p in probes),probes
+        passages=page.evaluate("Integration.city.buildings.filter(b=>b.passage).map(b=>({id:b.id,hits:Integration.passageHits(b)}))")
+        assert all(not p['hits'] for p in passages),passages
+        ceilings=page.evaluate("Integration.city.buildings.filter(b=>b.passage).map(b=>{const upper=b.volumes.find(v=>v.role==='courtyard-upper'),p=CityFabric.center(CityFabric.boolean(upper.polygons,b.passage.polygons,'intersection')[0].outer);return {id:b.id,expectedY:upper.baseElevation,hits:Integration.ceilingHits(...p)};})")
+        assert all(p['hits'] and abs(p['hits'][0]['y']-p['expectedY'])<.001 and p['hits'][0]['name']=='courtyard-passage-soffits' for p in ceilings),ceilings
+        tree_clearance=page.evaluate("Integration.city.blockInteriors.flatMap(c=>c.accesses).every(a=>{const C=CityFabric,s=Integration.city.streets.find(s=>s.id===a.streetId),zone=C.corridor(C.projection(a.from,s.a,s.b).point,a.to,a.width+6);return Integration.ground.markingInfo.treeSites.every(t=>!C.inShape(zone,t.p));})")
+        assert tree_clearance
         geometry=page.evaluate('''() => {
           let degenerate=0,reversed=0,triangles=0;
           Integration.cityBuildings.group.traverse(o=>{if(o.name!=='SurveyedBuildingChunk')return;const g=o.geometry,p=g.attributes.position,n=g.attributes.normal,idx=g.index;
@@ -42,14 +48,14 @@ with sync_playwright() as p:
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         with page.expect_download() as pending:page.locator('#export').click()
         download=pending.value;download.save_as(OUT/'exported-plan.json')
-        exported=json.loads((OUT/'exported-plan.json').read_text());assert exported['schemaVersion']==4 and len(exported['buildings'])==598
+        exported=json.loads((OUT/'exported-plan.json').read_text());assert exported['schemaVersion']==4 and len(exported['buildings'])==exported['stats']['buildings'] and exported['stats']['sharedInteriors']>0
         edit_id=page.evaluate("Integration.city.buildings.find(b=>b.profile==='podium-tower').id")
         page.evaluate('(id)=>Integration.select(id)',edit_id);page.locator('#height').fill('6');page.locator('#apply-height').click();page.wait_for_function('window.Integration?.ready',timeout=90000)
         edited=page.evaluate('(id)=>Integration.city.buildings.find(b=>b.id===id)',edit_id);assert edited['height']==6 and len(edited['volumes'])==1
         page.locator('#seed').fill('INTEGRATION-UI');page.locator('#rebuild button').click();page.wait_for_function('window.Integration?.ready',timeout=90000)
         assert page.evaluate("Integration.city.input.seed==='INTEGRATION-UI' && Object.keys(Integration.city.buildingEdits).length===0")
         assert not errors,errors
-        report={'status':'passed','views':results,'courtyardVoidProbes':probes,'buildingGeometry':geometry,'detailParcelContainment':details,'interactions':['six repeated visibility toggles','mobile layout','JSON export','tower height edit to 6 m','seed rebuild clears incompatible edits'],'errors':errors,'logs':logs}
+        report={'status':'passed','views':results,'courtyardVoidProbes':probes,'groundPassageProbes':passages,'passageCeilingProbes':ceilings,'treeAccessClearance':tree_clearance,'buildingGeometry':geometry,'detailParcelContainment':details,'interactions':['six repeated visibility toggles','mobile layout','JSON export','tower height edit to 6 m','seed rebuild clears incompatible edits'],'errors':errors,'logs':logs}
         (OUT/'browser-report.json').write_text(json.dumps(report,indent=2));print('PASS integration',flush=True)
     except Exception as e:
         page.screenshot(path=str(OUT/'failure.png'))

@@ -3,7 +3,7 @@ import * as T from 'three/webgpu';
 import {createRoadSurfaceMaterial,createSidewalkMaterial,createCurbMaterial} from '../slop-data-adapter/upstream/nyc/tsl-materials.js';
 import {createDryRoadMaterial} from './ground-materials.js';
 export function buildGround(scene,city){
- const C=CityFabric,world=new T.Group();world.name='CityworksGround';scene.add(world);let markingInfo={};
+ const C=CityFabric,world=new T.Group();world.name='CityworksGround';scene.add(world);let markingInfo={},soffits=null;
  const color=hex=>new T.Color(hex);
  function material(hex,texture='none'){
   if(texture==='paving')return createSidewalkMaterial();
@@ -102,9 +102,16 @@ export function buildGround(scene,city){
         if(!C.inRegions(city.landRegions,p)||city.streets.some(s=>s!==e&&C.projection(p,s.a,s.b).distance<s.width/2+4))continue;sites.push({p,h:8.16,scale:.8});
       }
     }
+    // Court trees occupy inset green areas only; paths and building envelopes remain clear.
+    for(const court of city.blockInteriors||[])for(const green of court.greens){
+      const inset=C.offset([green],-3.5);if(!inset.length)continue;
+      const center=C.center(inset[0].outer);if(C.inRegions(inset,center))sites.push({p:center,h:8.18,scale:.8});
+    }
+    const accessExclusion=(city.blockInteriors||[]).flatMap(c=>c.accesses.map(a=>{const street=city.streets.find(s=>s.id===a.streetId);return C.corridor(C.projection(a.from,street.a,street.b).point,a.to,a.width+6);}));
+    for(let i=sites.length-1;i>=0;i--)if(C.inRegions(accessExclusion,sites[i].p))sites.splice(i,1);
     const trunks=new T.InstancedMesh(new T.CylinderGeometry(.23,.3,3.6,5),material('#786c53'),sites.length),crowns=new T.InstancedMesh(new T.IcosahedronGeometry(2.7,1),material('#5e7856'),sites.length),m=new T.Matrix4(),q=new T.Quaternion();
     sites.forEach((s,i)=>{m.compose(new T.Vector3(s.p[0],s.h+1.8,s.p[1]),q,new T.Vector3(1,1,1));trunks.setMatrixAt(i,m);m.compose(new T.Vector3(s.p[0],s.h+4.8*s.scale,s.p[1]),q,new T.Vector3(s.scale,s.scale*1.25,s.scale));crowns.setMatrixAt(i,m);crowns.setColorAt(i,color(['#5e7856','#6c8558','#7e9163'][i%3]));});
-    trunks.name='tree-trunks';crowns.name='tree-crowns';trunks.castShadow=crowns.castShadow=true;trunks.receiveShadow=crowns.receiveShadow=true;world.add(trunks,crowns);markingInfo.trees=sites.length;
+    trunks.name='tree-trunks';crowns.name='tree-crowns';trunks.castShadow=crowns.castShadow=true;trunks.receiveShadow=crowns.receiveShadow=true;world.add(trunks,crowns);markingInfo.trees=sites.length;markingInfo.treeSites=sites.map(s=>({p:s.p,scale:s.scale}));
   }
   function makeScene(){
     const water=new Batch(material('#386773','water'),'water');water.surface(C.shape(C.rect(-45000,-45000,45000,45000)),-.3);water.finish(false);
@@ -124,8 +131,19 @@ export function buildGround(scene,city){
     // Raised parcel pads close the 16 cm sidewalk-to-building base gap.
     const pads=new Batch(material('#858175','earth'),'parcel-pads');
     for(const p of city.parcels)pads.prism(C.shape(p.polygon,p.holes),8,8.16);
-    pads.finish(false);bridgeStructures(bridgeConcrete);
+    pads.finish(false);
+    const courts=new Batch(material('#8d8c7c','earth'),'shared-court-pads'),paths=new Batch(material('#aaaa99','paving'),'court-paths'),greens=new Batch(material('#577342','earth'),'court-gardens');
+    for(const court of city.blockInteriors||[]){
+      if(court.program!=='enclosed-court')for(const p of court.polygons)courts.prism(p,8,8.16);
+      for(const p of court.paths)paths.surface(p,8.18);
+      for(const p of court.greens)greens.surface(p,8.19);
+    }
+    courts.finish(false);paths.finish(false);greens.finish(false);
+    const underpasses=new Batch(bridgeConcrete.mat,'courtyard-passage-soffits');
+    for(const b of city.buildings.filter(b=>b.passage))for(const v of b.volumes.filter(v=>v.role==='courtyard-upper'))for(const p of C.boolean(v.polygons,b.passage.polygons,'intersection'))underpasses.surface(p,v.baseElevation,true);
+    if(underpasses.positions.length)soffits=underpasses.finish(false);
+    bridgeStructures(bridgeConcrete);
     const paint=CityRoadMarkings(T,C,city);world.add(paint.mesh);markingInfo={crossings:paint.crossings,strips:paint.strips};trees();
   }
- makeScene();return {group:world,markingInfo};
+ makeScene();return {group:world,markingInfo,soffits};
 }
