@@ -43,7 +43,8 @@
     const halfplane=A.shape(A.canonical([point(-500,parcel.frontSetback),point(l+500,parcel.frontSetback),point(l+500,parcel.depth?parcel.depth-parcel.rearSetback:1500),point(-500,parcel.depth?parcel.depth-parcel.rearSetback:1500)]));
     return A.boolean(base,[halfplane],'intersection').filter(p=>A.totalArea([p])>70);
   }
-  function generate(input={},buildingEdits={}){
+  function generate(input={},buildingEdits={},massingRevisions={}){
+    for(const [id,revision] of Object.entries(massingRevisions))if(!Number.isSafeInteger(revision)||revision<0||revision>1000000)throw Error('Invalid massing revision '+id);
     const ground=A.generate(input),parcels=[],buildings=[],blockInteriors=[],reserved=new Set();
     for(const islandId of ['island:civic','island:headland']){
       const candidates=ground.blocks.filter(b=>b.islandId===islandId&&b.use==='mixed'&&b.area>5000&&b.area<12000&&A.offset([ringRegion(b)],-14).some(p=>A.totalArea([p])>250));
@@ -53,7 +54,7 @@
     const towerSites=P.skylineSites(parcels);
     for(const parcel of parcels){
       let footprints=allowedFootprints(parcel);if(!footprints.length)continue;
-      const id=parcel.id+':building',seed=parseInt(A.hash(ground.input.seed+'|'+id),16),r=tag=>A.rand(ground.input.seed,id,tag),center=A.center(footprints[0].outer),harbour=parcel.islandId==='island:harbour',garden=parcel.islandId==='island:headland';
+      const id=parcel.id+':building',revision=massingRevisions[id]||0,scopedSeed=ground.input.seed+(revision?'|massing:'+revision:''),seed=parseInt(A.hash(scopedSeed+'|'+id),16),r=tag=>A.rand(scopedSeed,id,tag),partSeed=role=>parseInt(A.hash(id+'|'+role+(revision?'|massing:'+revision:'')),16),center=A.center(footprints[0].outer),harbour=parcel.islandId==='island:harbour',garden=parcel.islandId==='island:headland';
       let profile=parcel.courtyard?'courtyard':harbour?'warehouse':garden?'garden-row':'street-row';
       if(parcel.courtyard){const outer=A.offset([ringRegion(parcel)],-2.4),inner=A.offset(outer,-11);footprints=A.boolean(outer,inner,'difference');if(!footprints.some(p=>p.holes.length))throw Error('Courtyard collapsed '+id);}
       else if(harbour&&parcel.depth>33&&A.totalArea(footprints)>850){
@@ -66,6 +67,7 @@
       let height=(parcel.floorBand||5)*3.4*(.8+.35*ground.input.density);
       if(parcel.courtyard)height=garden?17:23.8;
       if(tower)height=ground.input.skylineHeight*towerIntent.ratio*(.85+.15*ground.input.density);
+      if(revision)height=tower?height*(.95+r('height')*.1):Math.max(6.8,height+(Math.floor(r('floors')*3)-1)*3.4);
       if(buildingEdits[id]){const h=buildingEdits[id].height;if(!Number.isFinite(h)||h<6||h>180)throw Error('Edited height must be 6..180 m: '+id);height=h;}
       height=A.snap(buildingEdits[id]?height:Math.round(height/3.4)*3.4);const baseElevation=8.16,volumes=[];
       const towerFoot=tower&&height>=13.6?A.offset(footprints,-3.6).filter(p=>A.totalArea([p])>80):[];
@@ -79,15 +81,16 @@
         blockInteriors.push({id:parcel.blockId+':interior',blockId:parcel.blockId,program:'enclosed-court',polygons:open,paths,greens,accesses:[{...passage,streetId:parcel.streetId}],elevation:baseElevation});
       }
       volumes.push({id:id+':base',seed,polygons:baseFootprints,baseElevation,topElevation:A.snap(baseElevation+(passage?Math.min(6.8,height):podiumHeight)),facadeIndex:style,role:passage?'courtyard-ground':towerFoot.length?'podium':profile,streetLevel:true});
-      if(passage&&height>6.8)volumes.push({id:id+':court-upper',seed:parseInt(A.hash(id+'|court-upper'),16),polygons:footprints,baseElevation:A.snap(baseElevation+6.8),topElevation:A.snap(baseElevation+height),facadeIndex:style,role:'courtyard-upper',streetLevel:false});
+      if(passage&&height>6.8)volumes.push({id:id+':court-upper',seed:partSeed('court-upper'),polygons:footprints,baseElevation:A.snap(baseElevation+6.8),topElevation:A.snap(baseElevation+height),facadeIndex:style,role:'courtyard-upper',streetLevel:false});
       if(towerFoot.length){
         profile='podium-tower';const topFoot=A.offset(towerFoot,-2.1).filter(p=>A.totalArea([p])>65),hasCrown=height>47&&topFoot.length;
-        volumes.push({id:id+':upper',seed:parseInt(A.hash(id+'|upper'),16),polygons:towerFoot,baseElevation:A.snap(baseElevation+podiumHeight),topElevation:A.snap(baseElevation+(hasCrown?height-6.8:height)),facadeIndex:towerIntent.hub==='exchange'?3:2,role:'tower',streetLevel:false});
-        if(hasCrown)volumes.push({id:id+':crown',seed:parseInt(A.hash(id+'|crown'),16),polygons:topFoot,baseElevation:A.snap(baseElevation+height-6.8),topElevation:A.snap(baseElevation+height),facadeIndex:towerIntent.hub==='exchange'?3:2,role:'tower-crown',streetLevel:false});
+        volumes.push({id:id+':upper',seed:partSeed('upper'),polygons:towerFoot,baseElevation:A.snap(baseElevation+podiumHeight),topElevation:A.snap(baseElevation+(hasCrown?height-6.8:height)),facadeIndex:towerIntent.hub==='exchange'?3:2,role:'tower',streetLevel:false});
+        if(hasCrown)volumes.push({id:id+':crown',seed:partSeed('crown'),polygons:topFoot,baseElevation:A.snap(baseElevation+height-6.8),topElevation:A.snap(baseElevation+height),facadeIndex:towerIntent.hub==='exchange'?3:2,role:'tower-crown',streetLevel:false});
       }
       buildings.push({id,parcelId:parcel.id,blockId:parcel.blockId,islandId:parcel.islandId,seed,district,profile,center: center.map(A.snap),height,baseElevation,frontage:parcel.frontage,access:parcel.access,constructionYear:null,passage,towerIntent:towerIntent||null,attributeSource:{height:'generated massing intent',style:'explicit design palette',base:'urban grading pad'},volumes});
     }
     const known=new Set(buildings.map(b=>b.id));for(const id of Object.keys(buildingEdits))if(!known.has(id))throw Error('Unknown edited building '+id);
+    for(const id of Object.keys(massingRevisions))if(!known.has(id))throw Error('Unknown massing building '+id);
     const city={...ground,schemaVersion:4,generatorVersion:'0.4.1-planned-fabric',parcels,buildings,blockInteriors,buildingEdits,dependencies:{...ground.dependencies,parcels:A.hash(JSON.stringify(parcels)),buildings:A.hash(JSON.stringify(buildings)),blockInteriors:A.hash(JSON.stringify(blockInteriors))}};
     city.stats={...ground.stats,parcels:parcels.length,buildings:buildings.length,volumes:buildings.reduce((s,b)=>s+b.volumes.length,0),maxHeight:Math.max(...buildings.map(b=>b.height)),sharedInteriors:blockInteriors.length,cornerLots:parcels.filter(p=>p.corner).length,courtyards:buildings.filter(b=>b.volumes.some(v=>v.polygons.some(p=>p.holes.length))).length,towers:buildings.filter(b=>b.profile==='podium-tower').length};
     const errors=validate(city);if(errors.length)throw Error(errors.slice(0,8).join('; '));return city;

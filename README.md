@@ -14,6 +14,8 @@ Use the camera buttons, orbit/zoom, hide buildings, change the seed or export sc
 
 The [ground-only editor](https://tront.xyz/cityworks/ground-editor.html) retains its hierarchy view, road inspection, mobile controls and schema 3 export. Its dependencies are vendored, and `ground-editor.html` can also open directly from disk.
 
+The separate [scoped massing editor](experiments/scoped-editor/README.md) is development work. Serve this branch and open `/experiments/scoped-editor/` to select buildings, lock them, reroll a block, undo/redo and save an editable project. It preserves neighboring map records and exports an engine-neutral scene contract. It has not replaced the released route.
+
 ## Build and verify
 
 ```sh
