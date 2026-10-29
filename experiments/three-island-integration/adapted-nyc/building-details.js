@@ -1,5 +1,6 @@
 // Derived from mrdoob/slop-newyork 13dd142 (MIT). Cityworks changes documented in ADAPTER_CHANGES.md.
 import { polygonContains, polygonBoxOverlaps } from '../../slop-data-adapter/upstream/nyc/building-collision.js';
+import {storefrontPlan} from '../facade-layout.js';
 
 function boxCorners(x, z, w, d, cs, sn) {
   return [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2], [-w / 2, d / 2]].map(([u, v]) =>
@@ -48,8 +49,8 @@ function addBuildingDetails(b, detail, { masonry, rand, neighbours }) {
     for (const e of edges.slice(0, 16)) {
       const x = e.x - e.nx * 0.1, z = e.z - e.nz * 0.1;
       const cs = -e.nz, sn = -e.nx;
-      if (!containsBox(b.parcel,x,z,e.length-.1,.65,cs,sn) || blocked(x, z, e.length - 0.1, 0.65, cs, sn, true)) continue;
-      detail.cornices.push({ x, y: roofY, z, w: e.length - 0.1, h: 0.55, d: 0.65, ry: Math.atan2(sn, cs) });
+      if (!containsBox(b.parcel,x,z,e.length-.1,.36,cs,sn) || blocked(x, z, e.length - 0.1, .36, cs, sn, true)) continue;
+      detail.cornices.push({ x, y: roofY, z, w: e.length - 0.1, h: b.facadeIndex===0?.24:.18, d: .36, ry: Math.atan2(sn, cs) });
     }
   }
 
@@ -90,6 +91,7 @@ function addBuildingDetails(b, detail, { masonry, rand, neighbours }) {
   }
 
   if (!b.streetLevel) return streetReserves;
+  const primary=storefrontPlan(b),retailCandidates=[];
   const [fa,fb]=b.frontage, fx=fb.x-fa.x, fz=fb.z-fa.z, fl=Math.hypot(fx,fz);
   let count = 0;
   for (const e of edges) {
@@ -108,11 +110,16 @@ function addBuildingDetails(b, detail, { masonry, rand, neighbours }) {
         if (!containsBox(b.parcel,item.x,item.z,item.w,item.d,cs,sn)) continue;
         detail.scaffoldSheds.push(item);
       } else {
-        item = { x: x + e.nx, y: b.baseY+3.58, z: z + e.nz, w: 1.8, d, colorIdx: Math.floor(rand() * 5), ry };
-        if (!containsBox(b.parcel,item.x,item.z,item.w,item.d,cs,sn)) continue;
-        detail.awnings.push(item);
+        // Preserve the seeded retail choices, then retain the shop nearest the
+        // authored entrance. Multiple random signs do not imply extra doors.
+        const colorIdx=Math.floor(rand()*5);
+        if(!primary)continue;
+        if(!containsBox(b.parcel,x+e.nx,z+e.nz,1.8,d,cs,sn))continue;
+        retailCandidates.push({colorIdx,score:Math.hypot(x-b.entrance.to[0],z-b.entrance.to[1])});
+        count++;
+        continue;
       }
-      const outer = boxCorners(item.x, item.z, item.w, item.d, cs, sn);
+      const outer = boxCorners(item.x, item.z, item.w, item.d, Math.cos(item.ry), Math.sin(item.ry));
       const xs = outer.map((p) => p.x), zs = outer.map((p) => p.z);
       const reserve = { x0: Math.min(...xs), x1: Math.max(...xs), z0: Math.min(...zs), z1: Math.max(...zs),
         height: 0, polygons: [{ outer, holes: [] }] };
@@ -121,6 +128,16 @@ function addBuildingDetails(b, detail, { masonry, rand, neighbours }) {
       count++;
     }
     if (count === 4) break;
+  }
+  const choice=retailCandidates.sort((a,b)=>a.score-b.score)[0];
+  if(choice){
+    const item={...primary,colorIdx:choice.colorIdx},cs=Math.cos(item.ry),sn=Math.sin(item.ry);
+    if(containsBox(b.parcel,item.x,item.z,item.w,item.d,cs,sn)&&!blocked(item.x,item.z,item.w,item.d,cs,sn)){
+      detail.awnings.push(item);
+      const outer=boxCorners(item.x,item.z,item.w,item.d,cs,sn),xs=outer.map(p=>p.x),zs=outer.map(p=>p.z);
+      const reserve={x0:Math.min(...xs),x1:Math.max(...xs),z0:Math.min(...zs),z1:Math.max(...zs),height:0,polygons:[{outer,holes:[]}]};
+      streetReserves.push(reserve);neighbours.push(reserve);
+    }
   }
   return streetReserves;
 }

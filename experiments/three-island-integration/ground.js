@@ -2,6 +2,7 @@
 import * as T from 'three/webgpu';
 import {createRoadSurfaceMaterial,createSidewalkMaterial,createCurbMaterial} from '../slop-data-adapter/upstream/nyc/tsl-materials.js';
 import {createDryRoadMaterial,createMetricPaintMaterial} from './ground-materials.js';
+import {STOREFRONT_METRICS as SHOP} from './facade-layout.js';
 export function buildGround(scene,city){
  const C=CityFabric,world=new T.Group();world.name='CityworksGround';scene.add(world);let markingInfo={},soffits=null,portals=null;
  const realm=city.publicRealm,rampZones=realm.ramps.flatMap(r=>r.polygons);
@@ -136,7 +137,7 @@ export function buildGround(scene,city){
       };
       // One complete glazed entry module covers the original ground-floor
       // opening, with sidelights/transom instead of a blank full-bay patch.
-      const width=Math.max(e.doorWidth+.18,e.portalWidth*.83),height=e.portalHeight*.9+.025;
+      const width=Math.max(e.doorWidth+.18,e.portalWidth*.83),height=Math.min(e.portalHeight*.9+.025,SHOP.displayTop-SHOP.portalFrame);
       slab(panes,width,0,height,0,.055);
       for(const x of [-width/2,width/2])slab(frames,.075,0,height+.04,0,.09,x);
       for(const x of [-e.doorWidth/2,0,e.doorWidth/2])slab(frames,.055,.02,e.doorHeight,0,.09,x);
