@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "WASD, normalized diagonal, sprint, held RMB, Q/E, release, Escape and blur",
+    "Escape ignores held-key repeats until a fresh press; inherited and plaintext editable fields isolate typing",
+    "text input isolation, viewport-only context handling and optional orbit",
+    "iframe input cleanup on parent focus and camera/mode preserved across reroll and undo"
+  ],
+  "errors": [],
+  "status": "passed"
+}

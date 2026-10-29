@@ -44,7 +44,7 @@
       else if(current&&child?.Integration?.ready){clearInterval(timer);resolve();}
       else if(performance.now()-began>90000){clearInterval(timer);reject(Error('Preview timed out. The project was not changed.'));}
     },50);});
-    if(pose){api().setView(pose.view);api().setCamera(pose.camera,pose.target);api().cityBuildings.group.visible=pose.buildingsVisible;$('toggle').textContent=pose.buildingsVisible?'Hide buildings':'Show buildings';}
+    if(pose){api().navigation.setMode(pose.navigationMode||'fly');syncNavigation();api().setView(pose.view);api().setCamera(pose.camera,pose.target);api().cityBuildings.group.visible=pose.buildingsVisible;$('toggle').textContent=pose.buildingsVisible?'Hide buildings':'Show buildings';}
     frame.contentWindow.addEventListener('cityworks-selection',event=>{
       if(busy||!event.detail.buildingId)return;const b=session.city.buildings.find(b=>b.id===event.detail.buildingId);if(!b)return;
       blockId=b.blockId;buildingId=b.id;sync();message('Selected '+b.id.split(':')[1]+'.');
@@ -83,6 +83,8 @@
   $('load').onclick=()=>$('load-file').click();
   $('load-file').onchange=async()=>{const file=$('load-file').files[0];if(!file)return;try{if(file.size>250000)throw Error('Load an editable project smaller than 250 KB, not the full scene export');const source=JSON.parse(await file.text());await change(s=>s.import(source),'Loaded project');}catch(e){message(e.message,true);}finally{$('load-file').value='';}};
   document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>api()?.setView(b.dataset.view));
+  function syncNavigation(){const mode=api()?.navigation.mode||'fly';$('navigation-mode').textContent=mode==='fly'?'Orbit camera':'Fly camera';$('navigation-help').textContent=mode==='fly'?'WASD move · Hold RMB to look · Q/E down/up · Shift faster':'Orbit: drag to rotate · Wheel to zoom';}
+  $('navigation-mode').onclick=()=>{api()?.navigation.setMode(api().navigation.mode==='fly'?'orbit':'fly');syncNavigation();};
   $('toggle').onclick=()=>{const group=api()?.cityBuildings.group;if(group){group.visible=!group.visible;$('toggle').textContent=group.visible?'Hide buildings':'Show buildings';}};
   addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!/INPUT|SELECT|TEXTAREA/.test(e.target.tagName)){e.preventDefault();(e.shiftKey?$('redo'):$('undo')).click();}});
   addEventListener('pagehide',()=>{api()?.dispose();sessionStorage.removeItem(previewKey);});

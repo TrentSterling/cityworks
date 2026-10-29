@@ -21,7 +21,9 @@ with sync_playwright() as p:
             assert not errors,errors
             if label=='after':
                 panels=report['after-brick']['panels'];assert panels
-                assert all(p['kind']==3 for p in panels if not p['windowEligible'])
+                assert all(p['bays']==0 or p['storeys']==0 for p in panels if not p['windowEligible'])
+                # A narrow street-facing panel keeps its facade identity; eligibility alone cannot make it a party wall.
+                assert any(p['kind']==0 and not p['windowEligible'] for p in panels)
                 assert all(abs(p['pier']*2+p['bays']*p['bayWidth']-p['width'])<1e-7 for p in panels)
             page.close()
         report['status']='passed'

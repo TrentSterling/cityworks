@@ -2,7 +2,7 @@
 import * as THREE from 'three/webgpu';
 import { WALL_KINDS } from './tsl-materials.js';
 import { polygonContains } from '../../slop-data-adapter/upstream/nyc/building-collision.js';
-import {facadeLayout} from '../facade-layout.js';
+import {facadeLayout,facadeDomains} from '../facade-layout.js';
 
 function partyWallHeight(record, a, b, neighbours) {
   const dx = b.x - a.x, dz = b.y - a.y, length = Math.hypot(dx, dz);
@@ -29,7 +29,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
     if (!(record.height > 0)) return;
     const key = Math.floor(record.cx / 1000) + ',' + Math.floor(record.cz / 1000);
     let cell = cells.get(key);
-    if (!cell) cells.set(key, (cell = { positions: [], normals: [], indices: [], boxes: [], walls: [], fits: [], bricks: [], panels: [] }));
+    if (!cell) cells.set(key, (cell = { positions: [], normals: [], indices: [], boxes: [], walls: [], fits: [], bricks: [], frames: [], panels: [] }));
     const height = record.height, base = record.baseY, top = height + base;
     const seed = Math.floor(record.seed ?? index * 29) % 1000 + 0.1 + 0.8 * (record.tone ?? 0.5);
     const neighbours = getNeighbours && height <= 60 ? getNeighbours(record) : [];
@@ -44,7 +44,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
       });
       if (rings[0].length < 3) continue;
       rings.forEach((ring, i) => {
-        let perimeter=0;
+        const domains=facadeDomains(ring);
         for (let j = 0; j < ring.length; j++) {
           const a = ring[j], b = ring[(j + 1) % ring.length];
           const dx = b.x - a.x, dz = b.y - a.y, width = Math.hypot(dx, dz);
@@ -52,24 +52,26 @@ function createBuildingFootprints(material, records, getNeighbours) {
           const offset = cell.positions.length / 3;
           const adjacentHeight = !i && neighbours.length ? partyWallHeight(record, a, b, neighbours) : 0;
           const f = record.frontage, fx=f[1].x-f[0].x, fz=f[1].z-f[0].z, fl=Math.hypot(fx,fz);
-          const front = record.streetLevel && Math.abs(dx*fx+dz*fz)/(width*fl)>.999 && Math.abs(fx*((a.y+b.y)/2-f[0].z)-fz*((a.x+b.x)/2-f[0].x))/fl < record.frontSetback+.1;
-          const fit=facadeLayout(width,height,record.facadeIndex??0);
-          const kind = !fit.windowEligible ? WALL_KINDS.lotLine : i ? WALL_KINDS.rear : adjacentHeight ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
-          cell.panels.push({volumeId:record.id,ring:i,edge:j,kind,...fit});
+          const domain=domains[j],da=domain.a,db=domain.b;
+          const domainSeed=Math.floor(Math.fround(seed)+domain.normal.x*17+domain.normal.z*37);
+          const front = record.streetLevel && Math.abs(dx*fx+dz*fz)/(width*fl)>.999 && Math.abs(fx*((da.y+db.y)/2-f[0].z)-fz*((da.x+db.x)/2-f[0].x))/fl < record.frontSetback+.1;
+          const fit=facadeLayout(domain.width,height,record.facadeIndex??0);
+          const kind = i ? WALL_KINDS.rear : adjacentHeight ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
+          cell.panels.push({volumeId:record.id,ring:i,edge:j,edgeWidth:width,domainId:domain.id,domainOffset:domain.offset,domainSeed,domainReverse:domain.reverse,domainTangent:domain.tangent,brickOffset:domain.brickOffset,kind,...fit});
           const exposedHeight = adjacentHeight ? Math.max(0, top - adjacentHeight) : height;
           // Match the positive-world-axis tangent used by the shared interior-map view ray.
-          const reverse = (Math.abs(dz) >= Math.abs(dx) ? dz : dx) < 0;
+          const reverse = domain.reverse;
           cell.positions.push(a.x, base, a.y, b.x, base, b.y, a.x, top, a.y, b.x, top, b.y);
           for (let k = 0; k < 4; k++) {
             cell.normals.push(-dz / width, 0, dx / width);
             // Footprint walls use the box's unused depth for the exposed height above adjoining roofs.
-            cell.boxes.push(width, height, exposedHeight, seed);
-            cell.walls.push(reverse ? 1 - k % 2 : k % 2, k < 2 ? height : 0, kind);
+            cell.boxes.push(domain.width, height, exposedHeight, seed);
+            const along=(domain.offset+(k%2)*width)/domain.width;
+            cell.walls.push(reverse ? 1-along : along, k < 2 ? height : 0, kind);
             cell.fits.push(fit.pier,fit.bays,fit.bayWidth,fit.storeys);
-            cell.bricks.push(perimeter+(k%2)*width);
+            cell.bricks.push(domain.brickOffset+(k%2)*width);cell.frames.push(domain.tangent.x,domain.tangent.z,domainSeed);
           }
           cell.indices.push(offset, offset + 1, offset + 2, offset + 2, offset + 1, offset + 3);
-          perimeter+=width;
         }
       });
       const triangles = THREE.ShapeUtils.triangulateShape(rings[0], rings.slice(1));
@@ -79,7 +81,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
         cell.normals.push(0, 1, 0);
         cell.boxes.push(1, height, height, seed);
         cell.walls.push(0, 0, WALL_KINDS.shop);
-        cell.fits.push(0,0,1,0);cell.bricks.push(0);
+        cell.fits.push(0,0,1,0);cell.bricks.push(0);cell.frames.push(0,0,0);
       }
       for (const [a, b, c] of triangles) cell.indices.push(offset + a, offset + c, offset + b);
     }
@@ -97,6 +99,7 @@ function createBuildingFootprints(material, records, getNeighbours) {
     geometry.setAttribute('facadeWall', new THREE.Float32BufferAttribute(cell.walls, 3));
     geometry.setAttribute('facadeFit', new THREE.Float32BufferAttribute(cell.fits, 4));
     geometry.setAttribute('facadeBrick', new THREE.Float32BufferAttribute(cell.bricks, 1));
+    geometry.setAttribute('facadeFrame', new THREE.Float32BufferAttribute(cell.frames, 3));
     geometry.setIndex(cell.indices);
     geometry.computeBoundingSphere();
     const mesh = new THREE.Mesh(geometry, material);

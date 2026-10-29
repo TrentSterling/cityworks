@@ -1,0 +1,94 @@
+{
+  "before": {
+    "errors": [],
+    "counters": {
+      "geometryBytes": 2498334,
+      "render": {
+        "calls": 180,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 296047,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    }
+  },
+  "after": {
+    "errors": [],
+    "counters": {
+      "geometryBytes": 2594274,
+      "render": {
+        "calls": 160,
+        "frameCalls": 4,
+        "drawCalls": 86,
+        "triangles": 296047,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "materials": 39,
+      "nonfinite": 0,
+      "badNormals": 0
+    },
+    "checks": {
+      "panels": 1599,
+      "joined": 36,
+      "attributes": 12,
+      "target": [
+        {
+          "volumeId": "parcel:a7e98cac:building:base",
+          "ring": 0,
+          "edge": 2,
+          "edgeWidth": 12.306662910797552,
+          "domainId": 2,
+          "domainOffset": 0,
+          "domainSeed": 206,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 0.02083749220274927,
+            "z": 0.9997828758879101
+          },
+          "brickOffset": 25.367109281846325,
+          "kind": 0,
+          "width": 23.995209954806057,
+          "height": 20.4,
+          "bayWidth": 2.6,
+          "floorHeight": 3.4,
+          "bays": 8,
+          "storeys": 6,
+          "pier": 1.5976049774030283,
+          "windowEligible": true
+        },
+        {
+          "volumeId": "parcel:a7e98cac:building:base",
+          "ring": 0,
+          "edge": 3,
+          "edgeWidth": 11.688547044008507,
+          "domainId": 2,
+          "domainOffset": 12.306662910797552,
+          "domainSeed": 206,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 0.02083749220274927,
+            "z": 0.9997828758879101
+          },
+          "brickOffset": 37.67377219264388,
+          "kind": 0,
+          "width": 23.995209954806057,
+          "height": 20.4,
+          "bayWidth": 2.6,
+          "floorHeight": 3.4,
+          "bays": 8,
+          "storeys": 6,
+          "pier": 1.5976049774030283,
+          "windowEligible": true
+        }
+      ]
+    }
+  },
+  "status": "passed"
+}

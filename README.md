@@ -10,7 +10,7 @@ A deterministic city planning prototype with a Three.js preview and engine-neutr
 
 Serve the repository with `python -m http.server 8000` and open `http://localhost:8000/`. Use a WebGPU-capable Chrome browser. The integrated preview loads Three.js from a commit-pinned CDN and needs network access; generation happens locally in the browser.
 
-Use the camera buttons, orbit/zoom, hide buildings, change the seed or export schema 4 JSON. Click a building to edit its height. The **Ground editor** link opens the preserved land/street editor, where coast variation, street spacing and bridge width remain editable. **Open city** brings those settings back into the integrated preview. Changes to the ground regenerate parcels and buildings.
+Use **WASD** to move, hold the **right mouse button** to look, use **Q/E** down/up and **Shift** for faster movement. Orbit remains optional. Camera presets, building visibility, seed changes and schema 4 JSON export remain available. Click a building to edit its height. The **Ground editor** link opens the preserved land/street editor, where coast variation, street spacing and bridge width remain editable. **Open city** brings those settings back into the integrated preview. Changes to the ground regenerate parcels and buildings.
 
 The [ground-only editor](https://tront.xyz/cityworks/ground-editor.html) retains its hierarchy view, road inspection, mobile controls and schema 3 export. Its dependencies are vendored, and `ground-editor.html` can also open directly from disk.
 
@@ -29,6 +29,8 @@ The build updates the default `index.html` from the maintained integration entry
 The release browser harness uses isolated muted headless Chrome and verifies the default route, integrated controls, JSON export, mobile layout and a round trip through the ground editor. Use `--url https://tront.xyz/cityworks/` to verify a deployment. Python Playwright and installed Google Chrome are required. Full geometry and visual checks remain in `experiments/three-island-integration/verify_browser.py`; the retained ground harness is `tools/verify_ground_browser.py`.
 
 ## Scope and evidence
+
+The [0.5.2 release notes](docs/RELEASE_052.md) document coherent facade domains, full opening rows, clearer interior mapping and fly navigation. Matched fixtures and city views retain the same draw, triangle and material counts.
 
 The [0.5.1 release notes](docs/RELEASE_051.md) document minimum usable footprints, deliberate clearances, full-size window bays, solid narrow returns, map dimensions and project compatibility. The map envelope is approximately 1.821 × 1.098 km; roads and building dimensions retain their metric scale.
 
