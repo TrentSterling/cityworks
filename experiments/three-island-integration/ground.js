@@ -1,9 +1,10 @@
 // Original Cityworks v0.3 ground geometry; WebGPU material adapter.
 import * as T from 'three/webgpu';
 import {createRoadSurfaceMaterial,createSidewalkMaterial,createCurbMaterial} from '../slop-data-adapter/upstream/nyc/tsl-materials.js';
-import {createDryRoadMaterial} from './ground-materials.js';
+import {createDryRoadMaterial,createMetricPaintMaterial} from './ground-materials.js';
 export function buildGround(scene,city){
- const C=CityFabric,world=new T.Group();world.name='CityworksGround';scene.add(world);let markingInfo={},soffits=null;
+ const C=CityFabric,world=new T.Group();world.name='CityworksGround';scene.add(world);let markingInfo={},soffits=null,portals=null;
+ const realm=city.publicRealm,rampZones=realm.ramps.flatMap(r=>r.polygons);
  const color=hex=>new T.Color(hex);
  function material(hex,texture='none'){
   if(texture==='paving')return createSidewalkMaterial();
@@ -108,10 +109,46 @@ export function buildGround(scene,city){
       const center=C.center(inset[0].outer);if(C.inRegions(inset,center))sites.push({p:center,h:8.18,scale:.8});
     }
     const accessExclusion=(city.blockInteriors||[]).flatMap(c=>c.accesses.map(a=>{const street=city.streets.find(s=>s.id===a.streetId);return C.corridor(C.projection(a.from,street.a,street.b).point,a.to,a.width+6);}));
+    accessExclusion.push(...C.offset([...realm.entrances.flatMap(e=>e.polygons),...rampZones],1));
     for(let i=sites.length-1;i>=0;i--)if(C.inRegions(accessExclusion,sites[i].p))sites.splice(i,1);
     const trunks=new T.InstancedMesh(new T.CylinderGeometry(.23,.3,3.6,5),material('#786c53'),sites.length),crowns=new T.InstancedMesh(new T.IcosahedronGeometry(2.7,1),material('#5e7856'),sites.length),m=new T.Matrix4(),q=new T.Quaternion();
     sites.forEach((s,i)=>{m.compose(new T.Vector3(s.p[0],s.h+1.8,s.p[1]),q,new T.Vector3(1,1,1));trunks.setMatrixAt(i,m);m.compose(new T.Vector3(s.p[0],s.h+4.8*s.scale,s.p[1]),q,new T.Vector3(s.scale,s.scale*1.25,s.scale));crowns.setMatrixAt(i,m);crowns.setColorAt(i,color(['#5e7856','#6c8558','#7e9163'][i%3]));});
     trunks.name='tree-trunks';crowns.name='tree-crowns';trunks.castShadow=crowns.castShadow=true;trunks.receiveShadow=crowns.receiveShadow=true;world.add(trunks,crowns);markingInfo.trees=sites.length;markingInfo.treeSites=sites.map(s=>({p:s.p,scale:s.scale}));
+  }
+  function curbWall(batch,ring){
+    const cuts=realm.ramps.flatMap(r=>r.panels.flatMap(p=>p.outer));
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],b=ring[(i+1)%ring.length],stations=[{t:0,p:a},{t:1,p:b}];
+      for(const p of cuts){const hit=C.projection(p,a,b);if(hit.distance<.004)stations.push({t:hit.t,p:hit.point});}
+      stations.sort((a,b)=>a.t-b.t);const points=stations.filter((v,j)=>!j||v.t-stations[j-1].t>1e-7);
+      const height=(x,z)=>{const p=[x,z],r=realm.ramps.find(r=>C.inRegions(r.polygons,p));return r?CityPublicRealm.rampHeight(r,p):8.16;};
+      for(let j=0;j<points.length-1;j++)batch.wallEdge(points[j].p,points[j+1].p,8,height);
+    }
+  }
+  function entrancePortals(){
+    const frames=new Batch(material('#414c4c'),'entry-frames'),panes=new Batch(new T.MeshStandardNodeMaterial({color:0x233e45,roughness:.32,metalness:.2}),'entry-panes');
+    for(const e of realm.entrances.filter(e=>e.kind!=='passage')){
+      const point=(x,d)=>[e.to[0]+e.u[0]*x+e.n[0]*d,e.to[1]+e.u[1]*x+e.n[1]*d];
+      const slab=(batch,w,low,high,depth,offset=.06,x=0)=>{
+        const a=point(x-w/2,offset),b=point(x+w/2,offset),verts=[[a[0],e.elevation+low,a[1]],[b[0],e.elevation+low,b[1]],[a[0],e.elevation+high,a[1]],[b[0],e.elevation+high,b[1]]];
+        if(-e.u[1]*e.n[0]+e.u[0]*e.n[1]>0){batch.tri(verts[0],verts[1],verts[2]);batch.tri(verts[2],verts[1],verts[3]);}
+        else{batch.tri(verts[0],verts[2],verts[1]);batch.tri(verts[2],verts[3],verts[1]);}
+      };
+      // One complete glazed entry module covers the original ground-floor
+      // opening, with sidelights/transom instead of a blank full-bay patch.
+      const width=Math.max(e.doorWidth+.18,e.portalWidth*.83),height=e.portalHeight*.9+.025;
+      slab(panes,width,0,height,0,.055);
+      for(const x of [-width/2,width/2])slab(frames,.075,0,height+.04,0,.09,x);
+      for(const x of [-e.doorWidth/2,0,e.doorWidth/2])slab(frames,.055,.02,e.doorHeight,0,.09,x);
+      slab(frames,width+.075,height-.035,height+.04,0,.09);
+      slab(frames,width,e.doorHeight-.035,e.doorHeight+.035,0,.09);
+      slab(frames,width,0,.075,0,.09);
+      slab(frames,e.doorWidth,.02,.2,0,.09);
+      for(const x of [-.13,.13])slab(frames,.025,1.04,1.39,0,.14,x);
+    }
+    portals=new T.Group();portals.name='entrance-portals';
+    for(const batch of [frames,panes]){const mesh=batch.finish(false);if(mesh){mesh.raycast=()=>{};portals.add(mesh);}}
+    world.add(portals);
   }
   function makeScene(){
     const water=new Batch(material('#386773','water'),'water');water.surface(C.shape(C.rect(-45000,-45000,45000,45000)),-.3);water.finish(false);
@@ -119,31 +156,45 @@ export function buildGround(scene,city){
     const bridgeConcrete=new Batch(material('#a8a99e','concrete'),'bridge-structure');terrain(bridgeConcrete);
     const sidewalks=new Batch(material('#b4b3aa','paving'),'sidewalks'),curbs=new Batch(material('#c8c9bd','curb'),'curbs');
     const walkCoverage=city.sidewalkCoverage||C.boolean(city.rightOfWay,city.roadCoverage,'difference'),curbTops=C.boolean(C.boolean(C.offset(city.roadCoverage,.18),city.roadCoverage,'difference'),walkCoverage,'intersection');
-    for(const part of C.boolean(walkCoverage,curbTops,'difference'))sidewalks.surface(part,8.16);
-    for(const part of curbTops)curbs.surface(part,8.16);
+    for(const part of C.boolean(C.boolean(walkCoverage,curbTops,'difference'),rampZones,'difference'))sidewalks.surface(part,8.16);
+    for(const r of realm.ramps)for(const part of r.panels)sidewalks.surface(part,(x,z)=>CityPublicRealm.rampHeight(r,[x,z]));
+    const trimmedCurbs=C.boolean(curbTops,rampZones,'difference');
+    // Millimetre Boolean quantisation can leave almost-collinear needles at a
+    // ramp cut. Remove sub-centimetre spurs before Earcut, which can bridge a
+    // needle with a triangle across the lowered ramp. Never expand the curb.
+    const cleanCurbs=C.boolean(C.offset(C.offset(trimmedCurbs,-.005),.005),trimmedCurbs,'intersection');
+    for(const part of cleanCurbs)curbs.surface(part,8.16);
     for(const region of city.rightOfWay)for(const ring of [region.outer,...region.holes])sidewalks.wall(ring,8,8.16);
-    for(const region of city.roadCoverage)for(const ring of [region.outer,...region.holes])curbs.wall([...ring].reverse(),8,8.16);
+    for(const region of city.roadCoverage)for(const ring of [region.outer,...region.holes])curbWall(curbs,[...ring].reverse());
     sidewalks.finish(false);curbs.finish(false);
     const roads=new Batch(createDryRoadMaterial(),'road-surface');for(const region of city.roadCoverage)roads.surface(region,8);roads.finish(false);
     const blocks=new Batch(material('#b9b39f','earth'),'urban-blocks');
-    for(const b of city.blocks)if(b.use==='mixed')blocks.surface(C.shape(b.polygon,b.holes),8);
-    blocks.finish(false);
-    // Raised parcel pads close the 16 cm sidewalk-to-building base gap.
-    const pads=new Batch(material('#858175','earth'),'parcel-pads');
-    for(const p of city.parcels)pads.prism(C.shape(p.polygon,p.holes),8,8.16);
-    pads.finish(false);
-    const courts=new Batch(material('#8d8c7c','earth'),'shared-court-pads'),paths=new Batch(material('#aaaa99','paving'),'court-paths'),greens=new Batch(material('#577342','earth'),'court-gardens');
-    for(const court of city.blockInteriors||[]){
-      if(court.program!=='enclosed-court')for(const p of court.polygons)courts.prism(p,8,8.16);
-      for(const p of court.paths)paths.surface(p,8.18);
-      for(const p of court.greens)greens.surface(p,8.19);
+    for(const b of city.blocks)if(b.use==='mixed'){
+      blocks.surface(C.shape(b.polygon,b.holes),8);
+      // Close the grading pad against lower terrain without duplicating the
+      // sidewalk's coincident inner wall at street-facing block boundaries.
+      for(const ring of [b.polygon,...(b.holes||[])])for(let i=0;i<ring.length;i++){
+        const a=ring[i],z=ring[(i+1)%ring.length],l=Math.hypot(z[0]-a[0],z[1]-a[1]),mid=[(a[0]+z[0])/2+(z[1]-a[1])/l*.01,(a[1]+z[1])/2-(z[0]-a[0])/l*.01];
+        if(!C.inRegions(walkCoverage,mid))blocks.wallEdge(a,z,8,8.16);
+      }
     }
-    courts.finish(false);paths.finish(false);greens.finish(false);
+    blocks.finish(false);
+    // Partition the whole block surface; no coplanar pad/path overlays.
+    const paving=new Batch(material('#aaaa99','paving'),'frontage-paving'),service=new Batch(createDryRoadMaterial(),'service-paving'),greens=new Batch(material('#577342','earth'),'block-gardens');
+    for(const surface of realm.surfaces){
+      for(const p of surface.paved)(surface.material==='service-paving'?service:paving).surface(p,8.16);
+      for(const p of surface.greens)greens.surface(p,8.16);
+    }
+    for(const route of [...realm.entrances,...realm.courtRoutes]){
+      const connector=C.boolean(C.boolean(route.polygons,city.rightOfWay,'intersection'),[...walkCoverage,...city.roadCoverage],'difference');
+      for(const p of connector)paving.surface(p,8.16);
+    }
+    paving.finish(false);service.finish(false);greens.finish(false);entrancePortals();
     const underpasses=new Batch(bridgeConcrete.mat,'courtyard-passage-soffits');
     for(const b of city.buildings.filter(b=>b.passage))for(const v of b.volumes.filter(v=>v.role==='courtyard-upper'))for(const p of C.boolean(v.polygons,b.passage.polygons,'intersection'))underpasses.surface(p,v.baseElevation,true);
     if(underpasses.positions.length)soffits=underpasses.finish(false);
     bridgeStructures(bridgeConcrete);
-    const paint=CityRoadMarkings(T,C,city);world.add(paint.mesh);markingInfo={crossings:paint.crossings,strips:paint.strips};trees();
+    const paint=CityRoadMarkings(T,C,city);paint.mesh.material.dispose();paint.mesh.material=createMetricPaintMaterial();world.add(paint.mesh);markingInfo={crossings:paint.crossings,strips:paint.strips};trees();
   }
- makeScene();return {group:world,markingInfo,soffits};
+ makeScene();return {group:world,markingInfo,soffits,portals};
 }
