@@ -1,0 +1,4279 @@
+{
+  "baseline": "a8d8a1d9c25792750d8e310b6976012f6a7e8dd3",
+  "cameras": {
+    "books": {
+      "p": [
+        -687,
+        9.86,
+        160
+      ],
+      "t": [
+        -687,
+        11,
+        182.848
+      ]
+    },
+    "cafe": {
+      "p": [
+        -592,
+        9.86,
+        160
+      ],
+      "t": [
+        -592,
+        11,
+        182.848
+      ]
+    },
+    "oblique": {
+      "p": [
+        -682,
+        9.86,
+        172
+      ],
+      "t": [
+        -693.179,
+        10.9,
+        182.848
+      ]
+    },
+    "industrial": {
+      "p": [
+        -780,
+        9.86,
+        162
+      ],
+      "t": [
+        -785.847,
+        10.9,
+        182.848
+      ]
+    },
+    "angled": {
+      "p": [
+        -99,
+        9.86,
+        218
+      ],
+      "t": [
+        -118.034,
+        10.9,
+        209.077
+      ]
+    }
+  },
+  "before": {
+    "views": {
+      "books": {
+        "render": {
+          "calls": 196,
+          "frameCalls": 4,
+          "drawCalls": 51,
+          "triangles": 245697,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      },
+      "cafe": {
+        "render": {
+          "calls": 412,
+          "frameCalls": 4,
+          "drawCalls": 55,
+          "triangles": 263203,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      },
+      "oblique": {
+        "render": {
+          "calls": 604,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 242393,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      },
+      "industrial": {
+        "render": {
+          "calls": 824,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 230081,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      },
+      "angled": {
+        "render": {
+          "calls": 1024,
+          "frameCalls": 4,
+          "drawCalls": 77,
+          "triangles": 298736,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      },
+      "street": {
+        "render": {
+          "calls": 1232,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 308572,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 96,
+          "scaffoldSheds": 0
+        }
+      }
+    },
+    "errors": [],
+    "storefronts": [
+      {
+        "volumeId": "parcel:b861cf8e:building:base",
+        "x": -114.55445108879105,
+        "y": 11.74,
+        "z": 188.0617556381372,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -0.11712323439552087
+      },
+      {
+        "volumeId": "parcel:b861cf8e:building:base",
+        "x": -118.51205108879104,
+        "y": 11.74,
+        "z": 221.69715563813722,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.11712323439552087
+      },
+      {
+        "volumeId": "parcel:6a25d685:building:base",
+        "x": 605.5234487689809,
+        "y": 11.74,
+        "z": 5.587649841834532,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -3.079152245840003
+      },
+      {
+        "volumeId": "parcel:42a9a238:building:base",
+        "x": 707.7789861978273,
+        "y": 11.74,
+        "z": -45.199500637542464,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.3639832742430052
+      },
+      {
+        "volumeId": "parcel:efc4565f:building:base",
+        "x": 701.4929840782888,
+        "y": 11.74,
+        "z": -28.69924507387574,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.36398922796714306
+      },
+      {
+        "volumeId": "parcel:efc4565f:building:base",
+        "x": 696.8659840782889,
+        "y": 11.74,
+        "z": -16.553745073875742,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -0.36398922796714306
+      },
+      {
+        "volumeId": "parcel:44d714b5:building:base",
+        "x": -774.5924285714285,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.454571428571422,
+        "colorIdx": 3,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:44d714b5:building:base",
+        "x": -764.5378571428571,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.454571428571422,
+        "colorIdx": 3,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:8c32437c:building:base",
+        "x": -180.75321359549994,
+        "y": 11.74,
+        "z": 333.5744271909999,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -2.034443935795702
+      },
+      {
+        "volumeId": "parcel:269edb72:building:base",
+        "x": -207.75753199830666,
+        "y": 11.74,
+        "z": 294.5195045560767,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -3.1207115801212444
+      },
+      {
+        "volumeId": "parcel:269edb72:building:base",
+        "x": -207.99103199830665,
+        "y": 11.74,
+        "z": 283.3387545560767,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -3.1207115801212444
+      },
+      {
+        "volumeId": "parcel:4308b03d:building:base",
+        "x": 62.72565443536615,
+        "y": 11.74,
+        "z": -307.1499878791597,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.24492944810647943
+      },
+      {
+        "volumeId": "parcel:f1d5127b:building:base",
+        "x": -86.32409486096628,
+        "y": 11.74,
+        "z": -338.090115514499,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": 3.0466344963156433
+      },
+      {
+        "volumeId": "parcel:89ab784b:building:base",
+        "x": 5.587783807802612,
+        "y": 11.74,
+        "z": -330.13879273083825,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 0.02079422937649546
+      },
+      {
+        "volumeId": "parcel:a5763cd8:building:base",
+        "x": 6.059781441910259,
+        "y": 11.74,
+        "z": -307.5414061811875,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.02090770439235591
+      },
+      {
+        "volumeId": "parcel:8d0f99fa:building:base",
+        "x": -33.25355793844435,
+        "y": 11.74,
+        "z": -464.9735251397495,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.0304394426249168
+      },
+      {
+        "volumeId": "parcel:a60a7d56:building:base",
+        "x": -3.728315451582047,
+        "y": 11.74,
+        "z": -406.5721097548259,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.585612320423177
+      },
+      {
+        "volumeId": "parcel:d11c1f12:building:base",
+        "x": -165.81671675344302,
+        "y": 11.74,
+        "z": -253.97031969990016,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 0.020821204277805688
+      },
+      {
+        "volumeId": "parcel:7c0cc17a:building:base",
+        "x": -165.150217577203,
+        "y": 11.74,
+        "z": -221.997109220171,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.02086073313295614
+      },
+      {
+        "volumeId": "parcel:4ef4fa19:building:base",
+        "x": -163.6144677724979,
+        "y": 11.74,
+        "z": -148.43436857855497,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.020870093554419624
+      },
+      {
+        "volumeId": "parcel:516c7c65:building:base",
+        "x": -659.6904999999999,
+        "y": 11.74,
+        "z": 328.437,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:516c7c65:building:base",
+        "x": -681.2164999999999,
+        "y": 11.74,
+        "z": 328.437,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:516c7c65:building:base",
+        "x": -702.7425,
+        "y": 11.74,
+        "z": 328.437,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:516c7c65:building:base",
+        "x": -724.2684999999999,
+        "y": 11.74,
+        "z": 328.437,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:c589fb94:building:base",
+        "x": -618.9365625,
+        "y": 11.74,
+        "z": 146.842,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:fbe70df3:building:base",
+        "x": -824.1372341708171,
+        "y": 11.74,
+        "z": 291.0457591056278,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 3.11218085226802
+      },
+      {
+        "volumeId": "parcel:fbe70df3:building:base",
+        "x": -823.8325675041505,
+        "y": 11.74,
+        "z": 280.69009243896113,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 3.11218085226802
+      },
+      {
+        "volumeId": "parcel:d943b142:building:base",
+        "x": -771.4415,
+        "y": 11.74,
+        "z": 328.437,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:985ac16b:building:base",
+        "x": -59.88341964995328,
+        "y": 11.74,
+        "z": 86.52947121341452,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 2.9105128215496423
+      },
+      {
+        "volumeId": "parcel:3c7cdc54:building:base",
+        "x": -51.39342751434397,
+        "y": 11.74,
+        "z": 50.44525464127382,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 2.9105471620566066
+      },
+      {
+        "volumeId": "parcel:9336127e:building:base",
+        "x": -203.90449999999998,
+        "y": 11.74,
+        "z": 180.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:9336127e:building:base",
+        "x": -193.6555,
+        "y": 11.74,
+        "z": 180.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:9336127e:building:base",
+        "x": -183.4065,
+        "y": 11.74,
+        "z": 180.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:95779a1b:building:base",
+        "x": -155.9132178985937,
+        "y": 11.74,
+        "z": 220.62237538125706,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 0.020876135058480842
+      },
+      {
+        "volumeId": "parcel:95779a1b:building:base",
+        "x": -155.67121789859374,
+        "y": 11.74,
+        "z": 232.21287538125702,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.020876135058480842
+      },
+      {
+        "volumeId": "parcel:6a6f4b7b:building:base",
+        "x": -209.30203230011233,
+        "y": 11.74,
+        "z": 220.54411509961804,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -3.1207260397299628
+      },
+      {
+        "volumeId": "parcel:58d6544a:building:base",
+        "x": -18.76304890293842,
+        "y": 11.74,
+        "z": 311.0859914262336,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -0.5316907699975176
+      },
+      {
+        "volumeId": "parcel:c2235d5e:building:base",
+        "x": 68.04819742297096,
+        "y": 11.74,
+        "z": 53.77425673348247,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -0.13088006727866056
+      },
+      {
+        "volumeId": "parcel:492937c1:building:base",
+        "x": -270.554375,
+        "y": 11.74,
+        "z": 180.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:492937c1:building:base",
+        "x": -233.20662499999997,
+        "y": 11.74,
+        "z": 180.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:3c7fffaf:building:base",
+        "x": -259.2576444033868,
+        "y": 11.74,
+        "z": 222.26679168611594,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -2.65706358548568
+      },
+      {
+        "volumeId": "parcel:a1f325fc:building:base",
+        "x": -169.55371706029476,
+        "y": 11.74,
+        "z": -433.0408344300222,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 0.020835937595583883
+      },
+      {
+        "volumeId": "parcel:4f1892ea:building:base",
+        "x": -681.2164999999999,
+        "y": 11.74,
+        "z": 146.842,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:5f1e9816:building:base",
+        "x": 70.02981581991307,
+        "y": 11.74,
+        "z": -217.9718964189426,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.11712116312551245
+      },
+      {
+        "volumeId": "parcel:5f1e9816:building:base",
+        "x": 68.7471491532464,
+        "y": 11.74,
+        "z": -207.0703964189426,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.11712116312551245
+      },
+      {
+        "volumeId": "parcel:f23a0d34:building:base",
+        "x": 23.71021723272476,
+        "y": 11.74,
+        "z": -219.35615729721326,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -3.120748441432841
+      },
+      {
+        "volumeId": "parcel:18f46020:building:base",
+        "x": 23.314467253599645,
+        "y": 11.74,
+        "z": -238.34715629591076,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -3.1207474399127895
+      },
+      {
+        "volumeId": "parcel:18f46020:building:base",
+        "x": 23.022967253599646,
+        "y": 11.74,
+        "z": -252.3291562959108,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -3.1207474399127895
+      },
+      {
+        "volumeId": "parcel:753e03ad:building:base",
+        "x": -71.58508067569092,
+        "y": 11.74,
+        "z": -251.7803838648618,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -2.9441970937399122
+      },
+      {
+        "volumeId": "parcel:099822b5:building:base",
+        "x": -76.10608838865032,
+        "y": 11.74,
+        "z": -274.38192243360294,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -2.9442364261379885
+      },
+      {
+        "volumeId": "parcel:cd1c2b54:building:base",
+        "x": 8.313781441910258,
+        "y": 11.74,
+        "z": -199.50740618118752,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 0.02090770439235597
+      },
+      {
+        "volumeId": "parcel:d9fbd3eb:building:base",
+        "x": 489.6520316968938,
+        "y": 11.74,
+        "z": -9.612612856707235,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -2.7928456833320943
+      },
+      {
+        "volumeId": "parcel:b1fa309a:building:base",
+        "x": 525.4749768958911,
+        "y": 11.74,
+        "z": -84.47632430415202,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 1.5223004239365265
+      },
+      {
+        "volumeId": "parcel:b1fa309a:building:base",
+        "x": 537.4459768958911,
+        "y": 11.74,
+        "z": -83.89532430415203,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 1.5223004239365265
+      },
+      {
+        "volumeId": "parcel:97378c47:building:base",
+        "x": 457.97481136596394,
+        "y": 11.74,
+        "z": 80.37772766778048,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -0.1651439603778694
+      },
+      {
+        "volumeId": "parcel:c7c61fb2:building:base",
+        "x": 62.66912842741508,
+        "y": 11.74,
+        "z": -55.57340993172308,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 0.08802355760076169
+      },
+      {
+        "volumeId": "parcel:a22e9b2f:building:base",
+        "x": 65.9128827916016,
+        "y": 11.74,
+        "z": -18.81086046605845,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": 0.08797389979068956
+      },
+      {
+        "volumeId": "parcel:fb837a11:building:base",
+        "x": 696.2633939238322,
+        "y": 11.74,
+        "z": -168.82139898730537,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 0.16514867741462655
+      },
+      {
+        "volumeId": "parcel:826f5eb1:building:base",
+        "x": 588.8614693514521,
+        "y": 11.74,
+        "z": -169.99498744209853,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -3.017260008283431
+      },
+      {
+        "volumeId": "parcel:826f5eb1:building:base",
+        "x": 587.484969351452,
+        "y": 11.74,
+        "z": -181.00898744209854,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -3.017260008283431
+      },
+      {
+        "volumeId": "parcel:ea92140c:building:base",
+        "x": 674.6100204146389,
+        "y": 11.74,
+        "z": -94.27142582638223,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.6192949222891135
+      },
+      {
+        "volumeId": "parcel:1d4952eb:building:base",
+        "x": -801.4265,
+        "y": 11.74,
+        "z": 146.842,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:1d4952eb:building:base",
+        "x": -812.9755,
+        "y": 11.74,
+        "z": 146.842,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:9e7239c1:building:base",
+        "x": -788.9424166666666,
+        "y": 11.74,
+        "z": 90.351,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:9e7239c1:building:base",
+        "x": -755.0969166666667,
+        "y": 11.74,
+        "z": 90.351,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:a91147b4:building:base",
+        "x": 398.0831167525934,
+        "y": 11.74,
+        "z": -53.75856408860978,
+        "w": 1.8,
+        "d": 8.41123625532831,
+        "colorIdx": 4,
+        "ry": -3.030931020112631
+      },
+      {
+        "volumeId": "parcel:a91147b4:building:base",
+        "x": 396.97751675259343,
+        "y": 11.74,
+        "z": -63.708564088609776,
+        "w": 1.8,
+        "d": 8.41123625532831,
+        "colorIdx": 0,
+        "ry": -3.030931020112631
+      },
+      {
+        "volumeId": "parcel:3682b73c:building:base",
+        "x": -123.32030459352814,
+        "y": 11.74,
+        "z": 338.5426071038895,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 0.2186304680564227
+      },
+      {
+        "volumeId": "parcel:21fd5298:building:base",
+        "x": 605.1224731235366,
+        "y": 11.74,
+        "z": -306.1405065044409,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.0304032194087864
+      },
+      {
+        "volumeId": "parcel:ceb6442c:building:base",
+        "x": 664.231514442361,
+        "y": 11.74,
+        "z": -270.6757317132755,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 1.0303550338597278
+      },
+      {
+        "volumeId": "parcel:36daf2a1:building:base",
+        "x": 651.7555424717523,
+        "y": 11.74,
+        "z": -233.62017475604782,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -1.6192728392218512
+      },
+      {
+        "volumeId": "parcel:a5fbfc2a:building:base",
+        "x": -186.86527642281536,
+        "y": 11.74,
+        "z": 19.12189082270455,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -1.5855732873836872
+      },
+      {
+        "volumeId": "parcel:58aba593:building:base",
+        "x": -545.0001170385625,
+        "y": 11.74,
+        "z": 280.7876332243425,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -0.041645261054190565
+      },
+      {
+        "volumeId": "parcel:9b6fbfba:building:base",
+        "x": 468.59833635496886,
+        "y": 11.74,
+        "z": -291.81448564666573,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.9832192964910174
+      },
+      {
+        "volumeId": "parcel:3e805e01:building:base",
+        "x": 428.35085749985467,
+        "y": 11.74,
+        "z": -253.59253562503633,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 2.896613990462928
+      },
+      {
+        "volumeId": "parcel:68aa9b6f:building:base",
+        "x": -681.2164999999999,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:68aa9b6f:building:base",
+        "x": -659.6904999999999,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:016d73cb:building:base",
+        "x": -676.5592499999999,
+        "y": 11.74,
+        "z": 246.264,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:805b9e55:building:base",
+        "x": -707.399,
+        "y": 11.74,
+        "z": 246.264,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:805b9e55:building:base",
+        "x": -722.2330000000001,
+        "y": 11.74,
+        "z": 246.264,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:9fb8c7e2:building:base",
+        "x": -291.238,
+        "y": 11.74,
+        "z": 95.249,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 3.141592653589793
+      },
+      {
+        "volumeId": "parcel:1a73d655:building:base",
+        "x": -227.926217989699,
+        "y": 11.74,
+        "z": 85.71612101825878,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 0.020880499007842127
+      },
+      {
+        "volumeId": "parcel:51466637:building:base",
+        "x": -227.54721745845202,
+        "y": 11.74,
+        "z": 103.8421464723401,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 0.020855039383337142
+      },
+      {
+        "volumeId": "parcel:5c0ee332:building:base",
+        "x": -291.238,
+        "y": 11.74,
+        "z": 8.905,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 3.141592653589793
+      },
+      {
+        "volumeId": "parcel:f8ac3bd0:building:base",
+        "x": -291.238,
+        "y": 11.74,
+        "z": -26.246000000000002,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": 3.141592653589793
+      },
+      {
+        "volumeId": "parcel:b0f32347:building:base",
+        "x": 588.9591813055813,
+        "y": 11.74,
+        "z": 99.23222659575589,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 2.6291892361878073
+      },
+      {
+        "volumeId": "parcel:e647bec1:building:base",
+        "x": -284.48959234706,
+        "y": 11.74,
+        "z": -258.58140099401487,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 3.0118277826573645
+      },
+      {
+        "volumeId": "parcel:a473be75:building:base",
+        "x": -233.95321855808976,
+        "y": 11.74,
+        "z": -203.0864061811875,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": 0.020907704392355557
+      },
+      {
+        "volumeId": "parcel:fcc68169:building:base",
+        "x": -114.99150514726372,
+        "y": 11.74,
+        "z": -385.2145843990917,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": -0.09495824407445756
+      },
+      {
+        "volumeId": "parcel:fcc68169:building:base",
+        "x": -116.09150514726373,
+        "y": 11.74,
+        "z": -373.6653843990917,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 4,
+        "ry": -0.09495824407445756
+      },
+      {
+        "volumeId": "parcel:a04963fa:building:base",
+        "x": -88.11192372710937,
+        "y": 11.74,
+        "z": -166.11463814785478,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 2,
+        "ry": 0.1974180085545862
+      },
+      {
+        "volumeId": "parcel:191555b9:building:base",
+        "x": -629.3688888888889,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:191555b9:building:base",
+        "x": -598.5642222222223,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 0,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:191555b9:building:base",
+        "x": -567.7595555555556,
+        "y": 11.74,
+        "z": 181.848,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": 1.5707963267948966
+      },
+      {
+        "volumeId": "parcel:6fc8afcc:building:base",
+        "x": -543.1178685607448,
+        "y": 11.74,
+        "z": 235.59866973832376,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 1,
+        "ry": -0.04168180674970038
+      },
+      {
+        "volumeId": "parcel:527b7aaf:building:base",
+        "x": -122.28404011590435,
+        "y": 11.74,
+        "z": 20.0756406202538,
+        "w": 1.8,
+        "d": 8.5,
+        "colorIdx": 3,
+        "ry": -1.5855869819691961
+      }
+    ]
+  },
+  "after": {
+    "views": {
+      "books": {
+        "render": {
+          "calls": 196,
+          "frameCalls": 4,
+          "drawCalls": 51,
+          "triangles": 245577,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      },
+      "cafe": {
+        "render": {
+          "calls": 412,
+          "frameCalls": 4,
+          "drawCalls": 55,
+          "triangles": 263203,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      },
+      "oblique": {
+        "render": {
+          "calls": 608,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 242249,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      },
+      "industrial": {
+        "render": {
+          "calls": 824,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 230009,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      },
+      "angled": {
+        "render": {
+          "calls": 1024,
+          "frameCalls": 4,
+          "drawCalls": 77,
+          "triangles": 299240,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      },
+      "street": {
+        "render": {
+          "calls": 1232,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 309052,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        }
+      }
+    },
+    "errors": [],
+    "storefronts": [
+      {
+        "volumeId": "parcel:b861cf8e:building:base",
+        "id": "parcel:b861cf8e:building:storefront",
+        "entranceId": "parcel:b861cf8e:building:entry",
+        "baseY": 8.16,
+        "x": -117.3239861989072,
+        "z": 209.16095819669647,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -0.11712323439552087,
+        "nx": 0.9931489112089604,
+        "nz": 0.1168556381372178,
+        "wallX": -118.03408767042161,
+        "wallZ": 209.07740641542836,
+        "domain": {
+          "a": [
+            -121.484,
+            238.398
+          ],
+          "b": [
+            -114.888,
+            182.339
+          ],
+          "width": 56.4457146026162,
+          "reverse": true,
+          "pier": 2.2228573013080997,
+          "bayWidth": 2.6,
+          "bayFirst": 8,
+          "bayCount": 3,
+          "entryBay": 9
+        },
+        "sign": {
+          "x": -117.93468510887911,
+          "z": 209.08868556381373,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:6a25d685:building:base",
+        "id": "parcel:6a25d685:building:storefront",
+        "entranceId": "parcel:6a25d685:building:entry",
+        "baseY": 8.16,
+        "x": 605.4023933698212,
+        "z": -0.9158841130883105,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -3.079152245840003,
+        "nx": -0.9980512310192425,
+        "nz": 0.06239984183453272,
+        "wallX": 606.116,
+        "wallZ": -0.9605000000000015,
+        "domain": {
+          "a": [
+            605.305,
+            -13.932
+          ],
+          "b": [
+            606.927,
+            12.011
+          ],
+          "width": 25.99365562978782,
+          "reverse": false,
+          "pier": 1.2968278148939092,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 606.0161948768981,
+          "z": -0.9547600158165467,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:42a9a238:building:base",
+        "id": "parcel:42a9a238:building:storefront",
+        "entranceId": "parcel:42a9a238:building:entry",
+        "baseY": 8.16,
+        "x": 709.3471576314465,
+        "z": -50.11646045584286,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": -0.3639832742430052,
+        "nx": 0.934486197827355,
+        "nz": 0.3559993624575381,
+        "wallX": 708.679,
+        "wallZ": -50.371,
+        "domain": {
+          "a": [
+            705.01,
+            -40.74
+          ],
+          "b": [
+            712.348,
+            -60.002
+          ],
+          "width": 20.612396464263913,
+          "reverse": true,
+          "pier": 1.2061982321319569,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": 708.7724486197827,
+          "z": -50.33540006375425,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:efc4565f:building:base",
+        "id": "parcel:efc4565f:building:storefront",
+        "entranceId": "parcel:efc4565f:building:entry",
+        "baseY": 8.16,
+        "x": 698.9131561159764,
+        "z": -22.727956477821156,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -0.36398922796714306,
+        "nx": 0.9344840782887953,
+        "nz": 0.356004926124261,
+        "wallX": 698.245,
+        "wallZ": -22.9825,
+        "domain": {
+          "a": [
+            693.618,
+            -10.837
+          ],
+          "b": [
+            702.872,
+            -35.128
+          ],
+          "width": 25.994022332067008,
+          "reverse": true,
+          "pier": 1.2970111660335029,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 698.3384484078289,
+          "z": -22.94639950738757,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:44d714b5:building:base",
+        "id": "parcel:44d714b5:building:storefront",
+        "entranceId": "parcel:44d714b5:building:entry",
+        "baseY": 8.16,
+        "x": -785.847,
+        "z": 182.133,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -785.847,
+        "wallZ": 182.848,
+        "domain": {
+          "a": [
+            -749.456,
+            182.848
+          ],
+          "b": [
+            -819.838,
+            182.848
+          ],
+          "width": 70.38199999999995,
+          "reverse": true,
+          "pier": 1.5909999999999727,
+          "bayWidth": 2.4,
+          "bayFirst": 12,
+          "bayCount": 3,
+          "entryBay": 13
+        },
+        "sign": {
+          "x": -785.847,
+          "z": 182.74800000000002,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:8c32437c:building:base",
+        "id": "parcel:8c32437c:building:storefront",
+        "entranceId": "parcel:8c32437c:building:entry",
+        "baseY": 8.16,
+        "x": -180.62575772078247,
+        "z": 333.31951544156493,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": -2.034443935795702,
+        "nx": -0.44721359549995726,
+        "nz": 0.8944271909999162,
+        "wallX": -180.306,
+        "wallZ": 332.68,
+        "domain": {
+          "a": [
+            -203.966,
+            320.85
+          ],
+          "b": [
+            -156.646,
+            344.51
+          ],
+          "width": 52.90536834764503,
+          "reverse": false,
+          "pier": 1.2526841738225158,
+          "bayWidth": 2.4,
+          "bayFirst": 9,
+          "bayCount": 3,
+          "entryBay": 10
+        },
+        "sign": {
+          "x": -180.35072135955,
+          "z": 332.76944271909997,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:269edb72:building:base",
+        "id": "parcel:269edb72:building:storefront",
+        "entranceId": "parcel:269edb72:building:entry",
+        "baseY": 8.16,
+        "x": -207.82284412878926,
+        "z": 277.7424288825949,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": -3.1207115801212444,
+        "nx": -0.9997819983066508,
+        "nz": 0.020879556076703477,
+        "wallX": -207.108,
+        "wallZ": 277.7275,
+        "domain": {
+          "a": [
+            -207.575,
+            255.366
+          ],
+          "b": [
+            -206.641,
+            300.089
+          ],
+          "width": 44.732751815643965,
+          "reverse": false,
+          "pier": 1.966375907821984,
+          "bayWidth": 2.4,
+          "bayFirst": 7,
+          "bayCount": 3,
+          "entryBay": 8
+        },
+        "sign": {
+          "x": -207.20797819983068,
+          "z": 277.7300879556077,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:4308b03d:building:base",
+        "id": "parcel:4308b03d:building:storefront",
+        "entranceId": "parcel:4308b03d:building:entry",
+        "baseY": 8.16,
+        "x": 62.4491604212868,
+        "z": -307.08087883359923,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.24492944810647943,
+        "nx": 0.9701544353661573,
+        "nz": -0.24248787915970652,
+        "wallX": 61.7555,
+        "wallZ": -306.9075,
+        "domain": {
+          "a": [
+            63.548,
+            -299.736
+          ],
+          "b": [
+            59.963,
+            -314.079
+          ],
+          "width": 14.78424411324436,
+          "reverse": true,
+          "pier": 1.3921220566221804,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 61.85301544353661,
+          "z": -306.93124878791593,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:f1d5127b:building:base",
+        "id": "parcel:f1d5127b:building:storefront",
+        "entranceId": "parcel:f1d5127b:building:entry",
+        "baseY": 8.16,
+        "x": -83.81077882559089,
+        "z": -361.4722930928668,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": 3.0466344963156433,
+        "nx": -0.9954948609662867,
+        "nz": -0.09481551449901882,
+        "wallX": -83.09899999999999,
+        "wallZ": -361.4045,
+        "domain": {
+          "a": [
+            -80.312,
+            -390.666
+          ],
+          "b": [
+            -85.886,
+            -332.143
+          ],
+          "width": 58.78784742614754,
+          "reverse": false,
+          "pier": 1.7939237130737737,
+          "bayWidth": 2.4,
+          "bayFirst": 10,
+          "bayCount": 3,
+          "entryBay": 11
+        },
+        "sign": {
+          "x": -83.19854948609664,
+          "z": -361.4134815514499,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:89ab784b:building:base",
+        "id": "parcel:89ab784b:building:storefront",
+        "entranceId": "parcel:89ab784b:building:entry",
+        "baseY": 8.16,
+        "x": 5.2778941455730495,
+        "z": -331.33260737191245,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.02079422937649546,
+        "nx": 0.9997838078026124,
+        "nz": -0.020792730838182547,
+        "wallX": 4.563048722994181,
+        "wallZ": -331.31774056936314,
+        "domain": {
+          "a": [
+            4.768,
+            -321.463
+          ],
+          "b": [
+            4.408,
+            -338.773
+          ],
+          "width": 17.313743096164966,
+          "reverse": true,
+          "pier": 1.4568715480824839,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 4.662978380780261,
+          "z": -331.3200792730838,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:a5763cd8:building:base",
+        "id": "parcel:a5763cd8:building:storefront",
+        "entranceId": "parcel:a5763cd8:building:entry",
+        "baseY": 8.16,
+        "x": 5.774843730965835,
+        "z": -307.53544791954903,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 0.02090770439235591,
+        "nx": 0.999781441910258,
+        "nz": -0.020906181187516866,
+        "wallX": 5.0600000000000005,
+        "wallZ": -307.52049999999997,
+        "domain": {
+          "a": [
+            5.226,
+            -299.582
+          ],
+          "b": [
+            4.894,
+            -315.459
+          ],
+          "width": 15.880470805363434,
+          "reverse": true,
+          "pier": 1.4402354026817168,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 5.159978144191025,
+          "z": -307.52209061811874,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:8d0f99fa:building:base",
+        "id": "parcel:8d0f99fa:building:storefront",
+        "entranceId": "parcel:8d0f99fa:building:entry",
+        "baseY": 8.16,
+        "x": -27.541643814830817,
+        "z": -461.2142817295131,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.1999999999999975,
+        "ry": 1.03042636151455,
+        "nx": 0.5144532788926269,
+        "nz": -0.8575184102027344,
+        "wallX": -27.909477909239044,
+        "wallZ": -460.60115606621815,
+        "domain": {
+          "a": [
+            -17.063,
+            -454.094
+          ],
+          "b": [
+            -40.814,
+            -468.343
+          ],
+          "width": 27.69736453512344,
+          "reverse": true,
+          "pier": 1.8486822675617205,
+          "bayWidth": 2.4,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": -27.857554672110737,
+          "z": -460.6867518410203,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:a60a7d56:building:base",
+        "id": "parcel:a60a7d56:building:storefront",
+        "entranceId": "parcel:a60a7d56:building:entry",
+        "baseY": 8.16,
+        "x": -5.023950366607558,
+        "z": -406.8763385617571,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": -1.585612320423177,
+        "nx": -0.014815451582047268,
+        "nz": 0.999890245174149,
+        "wallX": -5.013357318726394,
+        "wallZ": -407.59126008705664,
+        "domain": {
+          "a": [
+            -10.26,
+            -407.669
+          ],
+          "b": [
+            2.833,
+            -407.475
+          ],
+          "width": 13.094437177672052,
+          "reverse": false,
+          "pier": 1.347218588836026,
+          "bayWidth": 2.6,
+          "bayFirst": 0,
+          "bayCount": 3,
+          "entryBay": 1
+        },
+        "sign": {
+          "x": -5.014481545158205,
+          "z": -407.4910109754826,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:d11c1f12:building:base",
+        "id": "parcel:d11c1f12:building:storefront",
+        "entranceId": "parcel:d11c1f12:building:entry",
+        "baseY": 8.16,
+        "x": -166.10165497871176,
+        "z": -253.96438608542863,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.020821204277805688,
+        "nx": 0.999783246557006,
+        "nz": -0.020819699900161446,
+        "wallX": -166.81650000000002,
+        "wallZ": -253.9495,
+        "domain": {
+          "a": [
+            -166.65,
+            -245.954
+          ],
+          "b": [
+            -166.983,
+            -261.945
+          ],
+          "width": 15.994466855759825,
+          "reverse": true,
+          "pier": 1.9972334278799124,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -166.7170216753443,
+          "z": -253.95108196999004,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:7c0cc17a:building:base",
+        "id": "parcel:7c0cc17a:building:storefront",
+        "entranceId": "parcel:7c0cc17a:building:entry",
+        "baseY": 8.16,
+        "x": -165.58727255392247,
+        "z": -229.2821314920584,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": 0.02086073313295614,
+        "nx": 0.9997824227970088,
+        "nz": -0.020859220171020446,
+        "wallX": -166.30211698622233,
+        "wallZ": -229.2672171496361,
+        "domain": {
+          "a": [
+            -166.025,
+            -215.985
+          ],
+          "b": [
+            -166.525,
+            -239.95
+          ],
+          "width": 23.9702153724158,
+          "reverse": true,
+          "pier": 1.5851076862079,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -166.2020217577203,
+          "z": -229.2690859220171,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:4ef4fa19:building:base",
+        "id": "parcel:4ef4fa19:building:storefront",
+        "entranceId": "parcel:4ef4fa19:building:entry",
+        "baseY": 8.16,
+        "x": -163.784655707336,
+        "z": -142.93092103366678,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": 0.020870093554419624,
+        "nx": 0.9997822275021173,
+        "nz": -0.020868578554955657,
+        "wallX": -164.4995,
+        "wallZ": -142.916,
+        "domain": {
+          "a": [
+            -164.27,
+            -131.921
+          ],
+          "b": [
+            -164.729,
+            -153.911
+          ],
+          "width": 21.994789860328297,
+          "reverse": true,
+          "pier": 1.8973949301641486,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -164.39902177724977,
+          "z": -142.91808685785549,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:516c7c65:building:base",
+        "id": "parcel:516c7c65:building:storefront",
+        "entranceId": "parcel:516c7c65:building:entry",
+        "baseY": 8.16,
+        "x": -693.1795,
+        "z": 328.152,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000003,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -693.1795,
+        "wallZ": 327.437,
+        "domain": {
+          "a": [
+            -729.65,
+            327.437
+          ],
+          "b": [
+            -654.309,
+            327.437
+          ],
+          "width": 75.34100000000001,
+          "reverse": false,
+          "pier": 1.670500000000004,
+          "bayWidth": 2.4,
+          "bayFirst": 13,
+          "bayCount": 3,
+          "entryBay": 14
+        },
+        "sign": {
+          "x": -693.179,
+          "z": 327.53700000000003,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:c589fb94:building:base",
+        "id": "parcel:c589fb94:building:storefront",
+        "entranceId": "parcel:c589fb94:building:entry",
+        "baseY": 8.16,
+        "x": -592.9925000000001,
+        "z": 146.55700000000002,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -592.9925000000001,
+        "wallZ": 145.842,
+        "domain": {
+          "a": [
+            -634.503,
+            145.842
+          ],
+          "b": [
+            -551.482,
+            145.842
+          ],
+          "width": 83.02100000000007,
+          "reverse": false,
+          "pier": 1.9105000000000345,
+          "bayWidth": 2.4,
+          "bayFirst": 15,
+          "bayCount": 3,
+          "entryBay": 16
+        },
+        "sign": {
+          "x": -592.993,
+          "z": 145.942,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:fbe70df3:building:base",
+        "id": "parcel:fbe70df3:building:storefront",
+        "entranceId": "parcel:fbe70df3:building:entry",
+        "baseY": 8.16,
+        "x": -823.9694016922209,
+        "z": 295.03249258887655,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 3.11218085226802,
+        "nx": -0.9995675041505435,
+        "nz": -0.02940756103883812,
+        "wallX": -823.2547109267533,
+        "wallZ": 295.0535189950193,
+        "domain": {
+          "a": [
+            -822.376,
+            265.186
+          ],
+          "b": [
+            -824.204,
+            327.32
+          ],
+          "width": 62.16088432446889,
+          "reverse": false,
+          "pier": 2.280442162234447,
+          "bayWidth": 2.4,
+          "bayFirst": 10,
+          "bayCount": 3,
+          "entryBay": 11
+        },
+        "sign": {
+          "x": -823.354956750415,
+          "z": 295.0510592438961,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:d943b142:building:base",
+        "id": "parcel:d943b142:building:storefront",
+        "entranceId": "parcel:d943b142:building:entry",
+        "baseY": 8.16,
+        "x": -764.113,
+        "z": 328.152,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000001,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -764.113,
+        "wallZ": 327.437,
+        "domain": {
+          "a": [
+            -778.77,
+            327.437
+          ],
+          "b": [
+            -749.456,
+            327.437
+          ],
+          "width": 29.313999999999965,
+          "reverse": false,
+          "pier": 1.456999999999983,
+          "bayWidth": 2.4,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": -764.113,
+          "z": 327.53700000000003,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:985ac16b:building:base",
+        "id": "parcel:985ac16b:building:storefront",
+        "entranceId": "parcel:985ac16b:building:entry",
+        "baseY": 8.16,
+        "x": -59.6059950497166,
+        "z": 86.59474441759139,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999999,
+        "ry": 2.9105128215496423,
+        "nx": -0.973419649953289,
+        "nz": -0.22902878658547793,
+        "wallX": -58.91,
+        "wallZ": 86.7585,
+        "domain": {
+          "a": [
+            -55.279,
+            71.326
+          ],
+          "b": [
+            -62.541,
+            102.191
+          ],
+          "width": 31.70780454399201,
+          "reverse": false,
+          "pier": 1.5539022719960052,
+          "bayWidth": 2.6,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": -59.00734196499533,
+          "z": 86.73609712134146,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:3c7cdc54:building:base",
+        "id": "parcel:3c7cdc54:building:storefront",
+        "entranceId": "parcel:3c7cdc54:building:entry",
+        "baseY": 8.16,
+        "x": -52.57469463909996,
+        "z": 56.711224087157944,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": 2.9105471620566066,
+        "nx": -0.9734275143439658,
+        "nz": -0.22899535872617263,
+        "wallX": -51.878693966344024,
+        "wallZ": 56.874955768647155,
+        "domain": {
+          "a": [
+            -49.259,
+            45.739
+          ],
+          "b": [
+            -53.903,
+            65.48
+          ],
+          "width": 20.279887006588577,
+          "reverse": false,
+          "pier": 2.339943503294288,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -51.976342751434395,
+          "z": 56.85210046412738,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:9336127e:building:base",
+        "id": "parcel:9336127e:building:storefront",
+        "entranceId": "parcel:9336127e:building:entry",
+        "baseY": 8.16,
+        "x": -184.7065,
+        "z": 181.133,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -184.7065,
+        "wallZ": 181.848,
+        "domain": {
+          "a": [
+            -157.784,
+            181.848
+          ],
+          "b": [
+            -209.029,
+            181.848
+          ],
+          "width": 51.245000000000005,
+          "reverse": true,
+          "pier": 2.2225,
+          "bayWidth": 2.6,
+          "bayFirst": 7,
+          "bayCount": 3,
+          "entryBay": 8
+        },
+        "sign": {
+          "x": -184.706,
+          "z": 181.74800000000002,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:95779a1b:building:base",
+        "id": "parcel:95779a1b:building:storefront",
+        "entranceId": "parcel:95779a1b:building:entry",
+        "baseY": 8.16,
+        "x": -156.10220533998609,
+        "z": 225.22383612591128,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999998,
+        "ry": 0.020876135058480842,
+        "nx": 0.9997821014062693,
+        "nz": -0.02087461874296256,
+        "wallX": -156.81704954249156,
+        "wallZ": 225.23876147831248,
+        "domain": {
+          "a": [
+            -156.55,
+            238.029
+          ],
+          "b": [
+            -157.034,
+            214.848
+          ],
+          "width": 23.18605220817031,
+          "reverse": true,
+          "pier": 1.9930261040851551,
+          "bayWidth": 2.4,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -156.7170217898594,
+          "z": 225.23691253812572,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:6a6f4b7b:building:base",
+        "id": "parcel:6a6f4b7b:building:storefront",
+        "entranceId": "parcel:6a6f4b7b:building:entry",
+        "baseY": 8.16,
+        "x": -208.9003443445803,
+        "z": 226.1324185462269,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": -3.1207260397299628,
+        "nx": -0.9997823001123444,
+        "nz": 0.02086509961802197,
+        "wallX": -208.1855,
+        "wallZ": 226.1175,
+        "domain": {
+          "a": [
+            -208.419,
+            214.929
+          ],
+          "b": [
+            -207.952,
+            237.306
+          ],
+          "width": 22.38187253113556,
+          "reverse": false,
+          "pier": 2.0909362655677803,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -208.28497823001123,
+          "z": 226.1200865099618,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:58d6544a:building:base",
+        "id": "parcel:58d6544a:building:storefront",
+        "entranceId": "parcel:58d6544a:building:entry",
+        "baseY": 8.16,
+        "x": -16.57979381970459,
+        "z": 306.8120352959371,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999999,
+        "ry": -0.5316907699975176,
+        "nx": 0.8619510970615823,
+        "nz": 0.5069914262335555,
+        "wallX": -17.19608885410362,
+        "wallZ": 306.4495364261801,
+        "domain": {
+          "a": [
+            -22.713,
+            315.829
+          ],
+          "b": [
+            -10.361,
+            294.829
+          ],
+          "width": 24.363331135130103,
+          "reverse": true,
+          "pier": 1.7816655675650512,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": -17.109804890293844,
+          "z": 306.5006991426233,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:c2235d5e:building:base",
+        "id": "parcel:c2235d5e:building:storefront",
+        "entranceId": "parcel:c2235d5e:building:entry",
+        "baseY": 8.16,
+        "x": 66.77172615389703,
+        "z": 61.2876939643022,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8000000000000025,
+        "ry": -0.13088006727866056,
+        "nx": 0.9914474229709499,
+        "nz": 0.13050673348246172,
+        "wallX": 66.0628412464728,
+        "wallZ": 61.19438164986224,
+        "domain": {
+          "a": [
+            64.584,
+            72.429
+          ],
+          "b": [
+            67.881,
+            47.382
+          ],
+          "width": 25.263064303445063,
+          "reverse": true,
+          "pier": 2.231532151722531,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 66.1621447422971,
+          "z": 61.20705067334825,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:492937c1:building:base",
+        "id": "parcel:492937c1:building:storefront",
+        "entranceId": "parcel:492937c1:building:entry",
+        "baseY": 8.16,
+        "x": -253.1805,
+        "z": 181.133,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -253.1805,
+        "wallZ": 181.848,
+        "domain": {
+          "a": [
+            -226.982,
+            181.848
+          ],
+          "b": [
+            -276.779,
+            181.848
+          ],
+          "width": 49.797,
+          "reverse": true,
+          "pier": 1.4984999999999964,
+          "bayWidth": 2.6,
+          "bayFirst": 7,
+          "bayCount": 3,
+          "entryBay": 8
+        },
+        "sign": {
+          "x": -253.18,
+          "z": 181.74800000000002,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:3c7fffaf:building:base",
+        "id": "parcel:3c7fffaf:building:storefront",
+        "entranceId": "parcel:3c7fffaf:building:entry",
+        "baseY": 8.16,
+        "x": -256.56619949842155,
+        "z": 226.7680410555729,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": -2.65706358548568,
+        "nx": -0.8848944033867961,
+        "nz": 0.4657916861159352,
+        "wallX": -255.9335,
+        "wallZ": 226.435,
+        "domain": {
+          "a": [
+            -260.812,
+            217.167
+          ],
+          "b": [
+            -251.055,
+            235.703
+          ],
+          "width": 20.94713214261084,
+          "reverse": false,
+          "pier": 1.3735660713054205,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -256.02148944033866,
+          "z": 226.4815791686116,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:a1f325fc:building:base",
+        "id": "parcel:a1f325fc:building:storefront",
+        "entranceId": "parcel:a1f325fc:building:entry",
+        "baseY": 8.16,
+        "x": -169.83865519811076,
+        "z": -433.0348966174659,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.020835937595583883,
+        "nx": 0.9997829397052398,
+        "nz": -0.020834430022182084,
+        "wallX": -170.5535,
+        "wallZ": -433.02000000000004,
+        "domain": {
+          "a": [
+            -170.399,
+            -425.606
+          ],
+          "b": [
+            -170.708,
+            -440.434
+          ],
+          "width": 14.831219268826176,
+          "reverse": true,
+          "pier": 1.4156096344130882,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -170.45302170602946,
+          "z": -433.0220834430022,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:4f1892ea:building:base",
+        "id": "parcel:4f1892ea:building:storefront",
+        "entranceId": "parcel:4f1892ea:building:entry",
+        "baseY": 8.16,
+        "x": -693.1795,
+        "z": 146.55700000000002,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000003,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -693.1795,
+        "wallZ": 145.842,
+        "domain": {
+          "a": [
+            -729.65,
+            145.842
+          ],
+          "b": [
+            -654.309,
+            145.842
+          ],
+          "width": 75.34100000000001,
+          "reverse": false,
+          "pier": 1.670500000000004,
+          "bayWidth": 2.4,
+          "bayFirst": 13,
+          "bayCount": 3,
+          "entryBay": 14
+        },
+        "sign": {
+          "x": -693.179,
+          "z": 145.942,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:5f1e9816:building:base",
+        "id": "parcel:5f1e9816:building:storefront",
+        "entranceId": "parcel:5f1e9816:building:entry",
+        "baseY": 8.16,
+        "x": 70.54001129994582,
+        "z": -224.7470435887643,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999997,
+        "ry": -0.11712116312551245,
+        "nx": 0.9931491532464087,
+        "nz": 0.11685358105741347,
+        "wallX": 69.82990965537464,
+        "wallZ": -224.83059389922036,
+        "domain": {
+          "a": [
+            65.83,
+            -190.835
+          ],
+          "b": [
+            73.526,
+            -256.244
+          ],
+          "width": 65.86019812451221,
+          "reverse": true,
+          "pier": 1.7300990622561017,
+          "bayWidth": 2.6,
+          "bayFirst": 10,
+          "bayCount": 3,
+          "entryBay": 11
+        },
+        "sign": {
+          "x": 69.92931491532464,
+          "z": -224.81931464189424,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:f23a0d34:building:base",
+        "id": "parcel:f23a0d34:building:storefront",
+        "entranceId": "parcel:f23a0d34:building:entry",
+        "baseY": 8.16,
+        "x": 23.9951553213982,
+        "z": -219.36209746750745,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": -3.120748441432841,
+        "nx": -0.9997827672752431,
+        "nz": 0.020842702786758753,
+        "wallX": 24.71,
+        "wallZ": -219.37699999999998,
+        "domain": {
+          "a": [
+            24.585,
+            -225.373
+          ],
+          "b": [
+            24.835,
+            -213.381
+          ],
+          "width": 11.994605620861394,
+          "reverse": false,
+          "pier": 2.0973028104306968,
+          "bayWidth": 2.6,
+          "bayFirst": 0,
+          "bayCount": 3,
+          "entryBay": 1
+        },
+        "sign": {
+          "x": 24.610021723272478,
+          "z": -219.37491572972132,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:18f46020:building:base",
+        "id": "parcel:18f46020:building:storefront",
+        "entranceId": "parcel:18f46020:building:entry",
+        "baseY": 8.16,
+        "x": 23.453655336323745,
+        "z": -245.34409675157622,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -3.1207474399127895,
+        "nx": -0.9997827464003569,
+        "nz": 0.020843704089236522,
+        "wallX": 24.1685,
+        "wallZ": -245.359,
+        "domain": {
+          "a": [
+            23.877,
+            -259.341
+          ],
+          "b": [
+            24.46,
+            -231.377
+          ],
+          "width": 27.970076599823603,
+          "reverse": false,
+          "pier": 2.2850382999118004,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 24.069021725359963,
+          "z": -245.35691562959107,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:753e03ad:building:base",
+        "id": "parcel:753e03ad:building:storefront",
+        "entranceId": "parcel:753e03ad:building:entry",
+        "baseY": 8.16,
+        "x": -71.05066420743938,
+        "z": -250.56152208497798,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": -2.9441970937399122,
+        "nx": -0.98058067569092,
+        "nz": 0.1961161351381843,
+        "wallX": -70.34954902432037,
+        "wallZ": -250.7017451216018,
+        "domain": {
+          "a": [
+            -72.48,
+            -261.354
+          ],
+          "b": [
+            -68.729,
+            -242.599
+          ],
+          "width": 19.126422195486533,
+          "reverse": false,
+          "pier": 1.763211097743266,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": -70.4480580675691,
+          "z": -250.68238838648617,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:099822b5:building:base",
+        "id": "parcel:099822b5:building:storefront",
+        "entranceId": "parcel:099822b5:building:entry",
+        "baseY": 8.16,
+        "x": -75.57171986156887,
+        "z": -273.1630396347807,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -2.9442364261379885,
+        "nx": -0.980588388650317,
+        "nz": 0.19607756639701274,
+        "wallX": -74.87059916368389,
+        "wallZ": -273.3032350947546,
+        "domain": {
+          "a": [
+            -76.592,
+            -281.912
+          ],
+          "b": [
+            -73.659,
+            -267.244
+          ],
+          "width": 14.958365986965235,
+          "reverse": false,
+          "pier": 2.2791829934826175,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -74.96905883886502,
+          "z": -273.2833922433603,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:cd1c2b54:building:base",
+        "id": "parcel:cd1c2b54:building:storefront",
+        "entranceId": "parcel:cd1c2b54:building:entry",
+        "baseY": 8.16,
+        "x": 8.028843730965834,
+        "z": -199.5014479195491,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.02090770439235597,
+        "nx": 0.999781441910258,
+        "nz": -0.020906181187516925,
+        "wallX": 7.314,
+        "wallZ": -199.4865,
+        "domain": {
+          "a": [
+            7.48,
+            -191.548
+          ],
+          "b": [
+            7.148,
+            -207.425
+          ],
+          "width": 15.880470805363434,
+          "reverse": true,
+          "pier": 1.9402354026817168,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 7.4139781441910255,
+          "z": -199.48809061811875,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:d9fbd3eb:building:base",
+        "id": "parcel:d9fbd3eb:building:storefront",
+        "entranceId": "parcel:d9fbd3eb:building:entry",
+        "baseY": 8.16,
+        "x": 486.2755418299457,
+        "z": -19.73266985921234,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999999,
+        "ry": -2.7928456833320943,
+        "nx": -0.9398016364395381,
+        "nz": 0.3417204766260962,
+        "wallX": 486.9475,
+        "wallZ": -19.977,
+        "domain": {
+          "a": [
+            481.481,
+            -35.011
+          ],
+          "b": [
+            492.414,
+            -4.943
+          ],
+          "width": 31.993985575417142,
+          "reverse": false,
+          "pier": 1.6969927877085702,
+          "bayWidth": 2.6,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": 486.85401983635603,
+          "z": -19.942827952337392,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:b1fa309a:building:base",
+        "id": "parcel:b1fa309a:building:storefront",
+        "entranceId": "parcel:b1fa309a:building:entry",
+        "baseY": 8.16,
+        "x": 530.1481893851645,
+        "z": -83.96417934212711,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": 1.5223004239365265,
+        "nx": 0.04847689589109729,
+        "nz": -0.9988243041520185,
+        "wallX": 530.1135284046024,
+        "wallZ": -83.25001996465842,
+        "domain": {
+          "a": [
+            543.383,
+            -82.606
+          ],
+          "b": [
+            519.441,
+            -83.768
+          ],
+          "width": 23.970181643033083,
+          "reverse": true,
+          "pier": 1.5850908215165411,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": 530.1188476895892,
+          "z": -83.3498824304152,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:97378c47:building:base",
+        "id": "parcel:97378c47:building:storefront",
+        "entranceId": "parcel:97378c47:building:entry",
+        "baseY": 8.16,
+        "x": 456.73877220999753,
+        "z": 86.0605419491297,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000004,
+        "ry": -0.1651439603778694,
+        "nx": 0.9863946992972359,
+        "nz": 0.1643943344471323,
+        "wallX": 456.0335,
+        "wallZ": 85.943,
+        "domain": {
+          "a": [
+            450.304,
+            120.321
+          ],
+          "b": [
+            461.763,
+            51.565
+          ],
+          "width": 69.70434862331044,
+          "reverse": true,
+          "pier": 2.3521743116552187,
+          "bayWidth": 2.6,
+          "bayFirst": 11,
+          "bayCount": 3,
+          "entryBay": 12
+        },
+        "sign": {
+          "x": 456.1326394699297,
+          "z": 85.95943943344471,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:c7c61fb2:building:base",
+        "id": "parcel:c7c61fb2:building:storefront",
+        "entranceId": "parcel:c7c61fb2:building:entry",
+        "baseY": 8.16,
+        "x": 62.26472829383353,
+        "z": -56.90889560766045,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 0.08807964971394272,
+        "nx": 0.9961234947941725,
+        "nz": -0.0879658065332443,
+        "wallX": 61.5524999950557,
+        "wallZ": -56.84600005598918,
+        "domain": {
+          "a": [
+            62.23,
+            -49.174
+          ],
+          "b": [
+            60.875,
+            -64.518
+          ],
+          "width": 15.403712684388463,
+          "reverse": true,
+          "pier": 1.2018563421942314,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 61.651612349479414,
+          "z": -56.85479658065332,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:a22e9b2f:building:base",
+        "id": "parcel:a22e9b2f:building:storefront",
+        "entranceId": "parcel:a22e9b2f:building:entry",
+        "baseY": 8.16,
+        "x": 66.20573494599515,
+        "z": -12.246820233231793,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 0.08797389979068956,
+        "nx": 0.9961327916015973,
+        "nz": -0.08786046605845264,
+        "wallX": 65.49350000000001,
+        "wallZ": -12.184,
+        "domain": {
+          "a": [
+            66.647,
+            0.894
+          ],
+          "b": [
+            64.34,
+            -25.262
+          ],
+          "width": 26.257543392328234,
+          "reverse": true,
+          "pier": 2.328771696164118,
+          "bayWidth": 2.4,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 65.59361327916017,
+          "z": -12.192786046605844,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:fb837a11:building:base",
+        "id": "parcel:fb837a11:building:storefront",
+        "entranceId": "parcel:fb837a11:building:entry",
+        "baseY": 8.16,
+        "x": 695.98227165554,
+        "z": -168.77454527592334,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999999,
+        "ry": 0.16514867741462655,
+        "nx": 0.9863939238321439,
+        "nz": -0.164398987305357,
+        "wallX": 695.277,
+        "wallZ": -168.657,
+        "domain": {
+          "a": [
+            697.907,
+            -152.877
+          ],
+          "b": [
+            692.647,
+            -184.437
+          ],
+          "width": 31.995330909368633,
+          "reverse": true,
+          "pier": 1.6976654546843157,
+          "bayWidth": 2.6,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": 695.3756393923833,
+          "z": -168.67343989873055,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:826f5eb1:building:base",
+        "id": "parcel:826f5eb1:building:storefront",
+        "entranceId": "parcel:826f5eb1:building:entry",
+        "baseY": 8.16,
+        "x": 588.4560193362883,
+        "z": -175.53733102110047,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": -3.017260008283431,
+        "nx": -0.992280648547953,
+        "nz": 0.12401255790142354,
+        "wallX": 589.1655000000001,
+        "wallZ": -175.62599999999998,
+        "domain": {
+          "a": [
+            587.789,
+            -186.64
+          ],
+          "b": [
+            590.542,
+            -164.612
+          ],
+          "width": 22.199364698116923,
+          "reverse": false,
+          "pier": 1.999682349058462,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": 589.0667719351453,
+          "z": -175.61359874420987,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:ea92140c:building:base",
+        "id": "parcel:ea92140c:building:storefront",
+        "entranceId": "parcel:ea92140c:building:entry",
+        "baseY": 8.16,
+        "x": 669.447337096467,
+        "z": -94.8073407158633,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": -1.6192949222891135,
+        "nx": -0.04847958536104768,
+        "nz": 0.9988241736177699,
+        "wallX": 669.4820000000001,
+        "wallZ": -95.5215,
+        "domain": {
+          "a": [
+            659.129,
+            -96.024
+          ],
+          "b": [
+            679.835,
+            -95.019
+          ],
+          "width": 20.730375322217412,
+          "reverse": false,
+          "pier": 1.2651876611087065,
+          "bayWidth": 2.6,
+          "bayFirst": 2,
+          "bayCount": 3,
+          "entryBay": 3
+        },
+        "sign": {
+          "x": 669.4771520414639,
+          "z": -95.42111758263822,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:1d4952eb:building:base",
+        "id": "parcel:1d4952eb:building:storefront",
+        "entranceId": "parcel:1d4952eb:building:entry",
+        "baseY": 8.16,
+        "x": -784.1030000000001,
+        "z": 146.55700000000002,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -784.1030000000001,
+        "wallZ": 145.842,
+        "domain": {
+          "a": [
+            -818.75,
+            145.842
+          ],
+          "b": [
+            -749.456,
+            145.842
+          ],
+          "width": 69.29399999999998,
+          "reverse": false,
+          "pier": 2.246999999999993,
+          "bayWidth": 2.4,
+          "bayFirst": 12,
+          "bayCount": 3,
+          "entryBay": 13
+        },
+        "sign": {
+          "x": -784.103,
+          "z": 145.942,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:9e7239c1:building:base",
+        "id": "parcel:9e7239c1:building:storefront",
+        "entranceId": "parcel:9e7239c1:building:entry",
+        "baseY": 8.16,
+        "x": -783.3015,
+        "z": 90.636,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -783.3015,
+        "wallZ": 91.351,
+        "domain": {
+          "a": [
+            -749.456,
+            91.351
+          ],
+          "b": [
+            -817.147,
+            91.351
+          ],
+          "width": 67.69100000000003,
+          "reverse": true,
+          "pier": 1.4455000000000169,
+          "bayWidth": 2.4,
+          "bayFirst": 12,
+          "bayCount": 3,
+          "entryBay": 13
+        },
+        "sign": {
+          "x": -783.301,
+          "z": 91.251,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:3682b73c:building:base",
+        "id": "parcel:3682b73c:building:storefront",
+        "entranceId": "parcel:3682b73c:building:entry",
+        "baseY": 8.16,
+        "x": -125.1270202843726,
+        "z": 331.724921579281,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 0.2186304680564227,
+        "nx": 0.9761954064718779,
+        "nz": -0.21689289611051163,
+        "wallX": -125.825,
+        "wallZ": 331.88,
+        "domain": {
+          "a": [
+            -122.768,
+            345.639
+          ],
+          "b": [
+            -128.882,
+            318.121
+          ],
+          "width": 28.189028362112833,
+          "reverse": true,
+          "pier": 2.3945141810564152,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": -125.72738045935282,
+          "z": 331.85831071038893,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:21fd5298:building:base",
+        "id": "parcel:21fd5298:building:storefront",
+        "entranceId": "parcel:21fd5298:building:entry",
+        "baseY": 8.16,
+        "x": 610.5478482833287,
+        "z": -302.55311715067523,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8000000000000025,
+        "ry": 1.0304032194087864,
+        "nx": 0.5144731235366088,
+        "nz": -0.8575065044409198,
+        "wallX": 610.18,
+        "wallZ": -301.94,
+        "domain": {
+          "a": [
+            621.324,
+            -295.254
+          ],
+          "b": [
+            599.036,
+            -308.626
+          ],
+          "width": 25.991639578910743,
+          "reverse": true,
+          "pier": 1.2958197894553702,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 610.2314473123536,
+          "z": -302.0257506504441,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:ceb6442c:building:base",
+        "id": "parcel:ceb6442c:building:storefront",
+        "entranceId": "parcel:ceb6442c:building:entry",
+        "baseY": 8.16,
+        "x": 670.2606040535462,
+        "z": -266.7257306499226,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 1.0303550338597278,
+        "nx": 0.5145144423610666,
+        "nz": -0.8574817132754964,
+        "wallX": 669.8927262272581,
+        "wallZ": -266.1126312249306,
+        "domain": {
+          "a": [
+            678.9,
+            -260.708
+          ],
+          "b": [
+            658.656,
+            -272.855
+          ],
+          "width": 23.608666734909047,
+          "reverse": true,
+          "pier": 1.404333367454523,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 669.9444514442362,
+          "z": -266.19874817132757,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:36daf2a1:building:base",
+        "id": "parcel:36daf2a1:building:storefront",
+        "entranceId": "parcel:36daf2a1:building:entry",
+        "baseY": 8.16,
+        "x": 651.7693528673029,
+        "z": -233.9048399505742,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -1.6192728392218512,
+        "nx": -0.04845752824781929,
+        "nz": 0.99882524395217,
+        "wallX": 651.8040000000001,
+        "wallZ": -234.619,
+        "domain": {
+          "a": [
+            642.817,
+            -235.055
+          ],
+          "b": [
+            660.791,
+            -234.183
+          ],
+          "width": 17.995139899428448,
+          "reverse": false,
+          "pier": 2.497569949714224,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 651.7991542471752,
+          "z": -234.5191174756048,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:a5fbfc2a:building:base",
+        "id": "parcel:a5fbfc2a:building:storefront",
+        "entranceId": "parcel:a5fbfc2a:building:entry",
+        "baseY": 8.16,
+        "x": -188.16092321182887,
+        "z": 18.817712588573805,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -1.5855732873836872,
+        "nx": -0.014776422815345702,
+        "nz": 0.9998908227045503,
+        "wallX": -188.1503580695159,
+        "wallZ": 18.10279065034005,
+        "domain": {
+          "a": [
+            -212.429,
+            17.744
+          ],
+          "b": [
+            -161.272,
+            18.5
+          ],
+          "width": 51.16258579274508,
+          "reverse": false,
+          "pier": 2.181292896372536,
+          "bayWidth": 2.6,
+          "bayFirst": 7,
+          "bayCount": 3,
+          "entryBay": 8
+        },
+        "sign": {
+          "x": -188.15147764228155,
+          "z": 18.202989082270456,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:58aba593:building:base",
+        "id": "parcel:58aba593:building:storefront",
+        "entranceId": "parcel:58aba593:building:entry",
+        "baseY": 8.16,
+        "x": -545.9810798017833,
+        "z": 297.4837273091299,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": -0.041645261054190565,
+        "nx": 0.9991329614374859,
+        "nz": 0.041633224342574264,
+        "wallX": -546.695459869211,
+        "wallZ": 297.453959553725,
+        "domain": {
+          "a": [
+            -547.938,
+            327.273
+          ],
+          "b": [
+            -545.353,
+            265.237
+          ],
+          "width": 62.08983428066145,
+          "reverse": true,
+          "pier": 2.2449171403307275,
+          "bayWidth": 2.4,
+          "bayFirst": 11,
+          "bayCount": 3,
+          "entryBay": 12
+        },
+        "sign": {
+          "x": -546.5950867038563,
+          "z": 297.45816332243425,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:9b6fbfba:building:base",
+        "id": "parcel:9b6fbfba:building:storefront",
+        "entranceId": "parcel:9b6fbfba:building:entry",
+        "baseY": 8.16,
+        "x": 478.48290632713605,
+        "z": -295.82804890403264,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8000000000000025,
+        "ry": 1.9832192964910174,
+        "nx": -0.4008303116977995,
+        "nz": -0.9161523133323656,
+        "wallX": 478.7695,
+        "wallZ": -295.173,
+        "domain": {
+          "a": [
+            493.425,
+            -301.585
+          ],
+          "b": [
+            464.114,
+            -288.761
+          ],
+          "width": 31.993588373297563,
+          "reverse": true,
+          "pier": 1.6967941866487806,
+          "bayWidth": 2.6,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": 478.7299169688302,
+          "z": -295.26461523133327,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:3e805e01:building:base",
+        "id": "parcel:3e805e01:building:storefront",
+        "entranceId": "parcel:3e805e01:building:entry",
+        "baseY": 8.16,
+        "x": 428.6273481123961,
+        "z": -253.52341297190097,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 2.896613990462928,
+        "nx": -0.9701425001453317,
+        "nz": -0.24253562503633383,
+        "wallX": 429.32099999999997,
+        "wallZ": -253.35,
+        "domain": {
+          "a": [
+            431.221,
+            -260.95
+          ],
+          "b": [
+            427.421,
+            -245.75
+          ],
+          "width": 15.667801377347102,
+          "reverse": false,
+          "pier": 1.333900688673551,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": 429.2239857499855,
+          "z": -253.37425356250364,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:68aa9b6f:building:base",
+        "id": "parcel:68aa9b6f:building:storefront",
+        "entranceId": "parcel:68aa9b6f:building:entry",
+        "baseY": 8.16,
+        "x": -693.1795,
+        "z": 182.133,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000003,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -693.1795,
+        "wallZ": 182.848,
+        "domain": {
+          "a": [
+            -654.309,
+            182.848
+          ],
+          "b": [
+            -729.65,
+            182.848
+          ],
+          "width": 75.34100000000001,
+          "reverse": true,
+          "pier": 1.670500000000004,
+          "bayWidth": 2.4,
+          "bayFirst": 13,
+          "bayCount": 3,
+          "entryBay": 14
+        },
+        "sign": {
+          "x": -693.179,
+          "z": 182.74800000000002,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:016d73cb:building:base",
+        "id": "parcel:016d73cb:building:storefront",
+        "entranceId": "parcel:016d73cb:building:entry",
+        "baseY": 8.16,
+        "x": -669.1424999999999,
+        "z": 245.979,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000001,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -669.1424999999999,
+        "wallZ": 245.264,
+        "domain": {
+          "a": [
+            -683.976,
+            245.264
+          ],
+          "b": [
+            -654.309,
+            245.264
+          ],
+          "width": 29.66700000000003,
+          "reverse": false,
+          "pier": 1.6335000000000157,
+          "bayWidth": 2.4,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": -669.142,
+          "z": 245.364,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:805b9e55:building:base",
+        "id": "parcel:805b9e55:building:storefront",
+        "entranceId": "parcel:805b9e55:building:entry",
+        "baseY": 8.16,
+        "x": -714.816,
+        "z": 245.979,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.200000000000001,
+        "ry": -1.5707963267948966,
+        "nx": -0.0,
+        "nz": 1,
+        "wallX": -714.816,
+        "wallZ": 245.264,
+        "domain": {
+          "a": [
+            -729.65,
+            245.264
+          ],
+          "b": [
+            -699.982,
+            245.264
+          ],
+          "width": 29.668000000000006,
+          "reverse": false,
+          "pier": 1.634000000000004,
+          "bayWidth": 2.4,
+          "bayFirst": 4,
+          "bayCount": 3,
+          "entryBay": 5
+        },
+        "sign": {
+          "x": -714.816,
+          "z": 245.364,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:9fb8c7e2:building:base",
+        "id": "parcel:9fb8c7e2:building:storefront",
+        "entranceId": "parcel:9fb8c7e2:building:entry",
+        "baseY": 8.16,
+        "x": -290.953,
+        "z": 95.249,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -3.141592653589793,
+        "nx": -1,
+        "nz": 0,
+        "wallX": -290.238,
+        "wallZ": 95.249,
+        "domain": {
+          "a": [
+            -290.238,
+            87.252
+          ],
+          "b": [
+            -290.238,
+            103.246
+          ],
+          "width": 15.994,
+          "reverse": false,
+          "pier": 1.4969999999999999,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -290.338,
+          "z": 95.249,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:1a73d655:building:base",
+        "id": "parcel:1a73d655:building:storefront",
+        "entranceId": "parcel:1a73d655:building:entry",
+        "baseY": 8.16,
+        "x": -228.21115586263483,
+        "z": 85.72207152805501,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.8,
+        "ry": 0.020880499007842127,
+        "nx": 0.9997820103009704,
+        "nz": -0.020878981741226633,
+        "wallX": -228.92600000000002,
+        "wallZ": 85.737,
+        "domain": {
+          "a": [
+            -228.796,
+            91.962
+          ],
+          "b": [
+            -229.056,
+            79.512
+          ],
+          "width": 12.452714563499802,
+          "reverse": true,
+          "pier": 2.3263572817499005,
+          "bayWidth": 2.6,
+          "bayFirst": 0,
+          "bayCount": 3,
+          "entryBay": 1
+        },
+        "sign": {
+          "x": -228.8260217989699,
+          "z": 85.73491210182587,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:51466637:building:base",
+        "id": "parcel:51466637:building:storefront",
+        "entranceId": "parcel:51466637:building:entry",
+        "baseY": 8.16,
+        "x": -227.83215548279318,
+        "z": 103.84808972772318,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000002,
+        "ry": 0.020855039383337142,
+        "nx": 0.9997825415479797,
+        "nz": -0.02085352765989348,
+        "wallX": -228.547,
+        "wallZ": 103.863,
+        "domain": {
+          "a": [
+            -228.424,
+            109.76
+          ],
+          "b": [
+            -228.67,
+            97.966
+          ],
+          "width": 11.79656526282122,
+          "reverse": true,
+          "pier": 1.9982826314106097,
+          "bayWidth": 2.6,
+          "bayFirst": 0,
+          "bayCount": 3,
+          "entryBay": 1
+        },
+        "sign": {
+          "x": -228.4470217458452,
+          "z": 103.86091464723401,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:5c0ee332:building:base",
+        "id": "parcel:5c0ee332:building:storefront",
+        "entranceId": "parcel:5c0ee332:building:entry",
+        "baseY": 8.16,
+        "x": -290.953,
+        "z": 8.905,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": -3.141592653589793,
+        "nx": -1,
+        "nz": 0,
+        "wallX": -290.238,
+        "wallZ": 8.905,
+        "domain": {
+          "a": [
+            -290.238,
+            1.259
+          ],
+          "b": [
+            -290.238,
+            16.551
+          ],
+          "width": 15.291999999999998,
+          "reverse": false,
+          "pier": 1.645999999999999,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -290.338,
+          "z": 8.905,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:f8ac3bd0:building:base",
+        "id": "parcel:f8ac3bd0:building:storefront",
+        "entranceId": "parcel:f8ac3bd0:building:entry",
+        "baseY": 8.16,
+        "x": -290.953,
+        "z": -35.045,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": -3.141592653589793,
+        "nx": -1,
+        "nz": 0,
+        "wallX": -290.238,
+        "wallZ": -35.045,
+        "domain": {
+          "a": [
+            -290.238,
+            -48.743
+          ],
+          "b": [
+            -290.238,
+            -18.747
+          ],
+          "width": 29.996000000000002,
+          "reverse": false,
+          "pier": 1.998000000000001,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": -290.338,
+          "z": -35.045,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 3
+      },
+      {
+        "volumeId": "parcel:b0f32347:building:base",
+        "id": "parcel:b0f32347:building:storefront",
+        "entranceId": "parcel:b0f32347:building:entry",
+        "baseY": 8.16,
+        "x": 585.6999729579733,
+        "z": 105.6074938187099,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 2.6291892361878073,
+        "nx": -0.8715686944188008,
+        "nz": -0.49027340424410826,
+        "wallX": 586.3231445744827,
+        "wallZ": 105.95803930274444,
+        "domain": {
+          "a": [
+            592.701,
+            94.62
+          ],
+          "b": [
+            581.22,
+            115.03
+          ],
+          "width": 23.41754600721433,
+          "reverse": false,
+          "pier": 1.3087730036071648,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": 586.2358431305581,
+          "z": 105.90897265957558,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:e647bec1:building:base",
+        "id": "parcel:e647bec1:building:storefront",
+        "entranceId": "parcel:e647bec1:building:entry",
+        "baseY": 8.16,
+        "x": -284.2069885281479,
+        "z": -258.54452171072063,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": 3.0118277826573645,
+        "nx": -0.9915923470600009,
+        "nz": -0.1294009940148788,
+        "wallX": -283.498,
+        "wallZ": -258.452,
+        "domain": {
+          "a": [
+            -282.424,
+            -266.682
+          ],
+          "b": [
+            -284.572,
+            -250.222
+          ],
+          "width": 16.599563367751585,
+          "reverse": false,
+          "pier": 2.2997816838757927,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -283.597159234706,
+          "z": -258.4649400994015,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:a473be75:building:base",
+        "id": "parcel:a473be75:building:storefront",
+        "entranceId": "parcel:a473be75:building:entry",
+        "baseY": 8.16,
+        "x": -234.23815626903416,
+        "z": -203.08044791954907,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 0.020907704392355557,
+        "nx": 0.999781441910258,
+        "nz": -0.020906181187516512,
+        "wallX": -234.953,
+        "wallZ": -203.0655,
+        "domain": {
+          "a": [
+            -234.787,
+            -195.127
+          ],
+          "b": [
+            -235.119,
+            -211.004
+          ],
+          "width": 15.880470805363405,
+          "reverse": true,
+          "pier": 1.4402354026817026,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -234.85302185580898,
+          "z": -203.06709061811875,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:fcc68169:building:base",
+        "id": "parcel:fcc68169:building:storefront",
+        "entranceId": "parcel:fcc68169:building:entry",
+        "baseY": 8.16,
+        "x": -117.47522118029357,
+        "z": -362.1432068453506,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": -0.09495824407445756,
+        "nx": 0.995494852736267,
+        "nz": 0.09481560090827885,
+        "wallX": -118.187,
+        "wallZ": -362.211,
+        "domain": {
+          "a": [
+            -120.937,
+            -333.338
+          ],
+          "b": [
+            -115.437,
+            -391.084
+          ],
+          "width": 58.00733157110399,
+          "reverse": true,
+          "pier": 1.403665785551997,
+          "bayWidth": 2.4,
+          "bayFirst": 10,
+          "bayCount": 3,
+          "entryBay": 11
+        },
+        "sign": {
+          "x": -118.08745051472637,
+          "z": -362.2015184399092,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 4
+      },
+      {
+        "volumeId": "parcel:a04963fa:building:base",
+        "id": "parcel:a04963fa:building:storefront",
+        "entranceId": "parcel:a04963fa:building:entry",
+        "baseY": 8.16,
+        "x": -88.3913879648832,
+        "z": -166.05873877571617,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.800000000000001,
+        "ry": 0.1974180085545862,
+        "nx": 0.9805762728906358,
+        "nz": -0.1961381478547948,
+        "wallX": -89.0925,
+        "wallZ": -165.9185,
+        "domain": {
+          "a": [
+            -87.379,
+            -157.352
+          ],
+          "b": [
+            -90.806,
+            -174.485
+          ],
+          "width": 17.472378716133655,
+          "reverse": true,
+          "pier": 2.2361893580668273,
+          "bayWidth": 2.6,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -88.99394237271093,
+          "z": -165.9376138147855,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 2
+      },
+      {
+        "volumeId": "parcel:191555b9:building:base",
+        "id": "parcel:191555b9:building:storefront",
+        "entranceId": "parcel:191555b9:building:entry",
+        "baseY": 8.16,
+        "x": -588.296,
+        "z": 182.133,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999996,
+        "ry": 1.5707963267948966,
+        "nx": -0.0,
+        "nz": -1,
+        "wallX": -588.296,
+        "wallZ": 182.848,
+        "domain": {
+          "a": [
+            -542.089,
+            182.848
+          ],
+          "b": [
+            -634.503,
+            182.848
+          ],
+          "width": 92.41399999999999,
+          "reverse": true,
+          "pier": 1.806999999999995,
+          "bayWidth": 2.4,
+          "bayFirst": 17,
+          "bayCount": 3,
+          "entryBay": 18
+        },
+        "sign": {
+          "x": -588.296,
+          "z": 182.74800000000002,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 0
+      },
+      {
+        "volumeId": "parcel:6fc8afcc:building:base",
+        "id": "parcel:6fc8afcc:building:storefront",
+        "entranceId": "parcel:6fc8afcc:building:entry",
+        "baseY": 8.16,
+        "x": -543.3526173349441,
+        "z": 234.3878361357953,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.199999999999999,
+        "ry": -0.04168180674970038,
+        "nx": 0.9991314392551315,
+        "nz": 0.04166973832374624,
+        "wallX": -544.0669963140115,
+        "wallZ": 234.35804227289384,
+        "domain": {
+          "a": [
+            -544.515,
+            245.1
+          ],
+          "b": [
+            -543.719,
+            226.014
+          ],
+          "width": 19.102591761329123,
+          "reverse": true,
+          "pier": 2.351295880664562,
+          "bayWidth": 2.4,
+          "bayFirst": 1,
+          "bayCount": 3,
+          "entryBay": 2
+        },
+        "sign": {
+          "x": -543.9670868560745,
+          "z": 234.3621669738324,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.112
+        },
+        "colorIdx": 1
+      },
+      {
+        "volumeId": "parcel:527b7aaf:building:base",
+        "id": "parcel:527b7aaf:building:storefront",
+        "entranceId": "parcel:527b7aaf:building:entry",
+        "baseY": 8.16,
+        "x": -129.26007493287162,
+        "z": 19.687421793481466,
+        "y": 11.14,
+        "w": 1.35,
+        "d": 7.799999999999999,
+        "ry": -1.5855869819691961,
+        "nx": -0.014790115904330832,
+        "nz": 0.9998906202538038,
+        "wallX": -129.2495,
+        "wallZ": 18.972499999999997,
+        "domain": {
+          "a": [
+            -143.21,
+            18.766
+          ],
+          "b": [
+            -115.289,
+            19.179
+          ],
+          "width": 27.92405432597495,
+          "reverse": false,
+          "pier": 2.262027162987474,
+          "bayWidth": 2.6,
+          "bayFirst": 3,
+          "bayCount": 3,
+          "entryBay": 4
+        },
+        "sign": {
+          "x": -129.25147901159042,
+          "z": 19.07198906202538,
+          "y": 11.33,
+          "w": 0.12,
+          "h": 0.3,
+          "d": 2.2880000000000003
+        },
+        "colorIdx": 3
+      }
+    ],
+    "meshChecks": {
+      "renderedCanopies": 46,
+      "renderedSigns": 46,
+      "portalFrames": 265
+    }
+  },
+  "status": "passed"
+}

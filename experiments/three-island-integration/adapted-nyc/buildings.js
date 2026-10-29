@@ -3,6 +3,7 @@ import * as THREE from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createFireEscapes } from '../../slop-data-adapter/upstream/nyc/fire-escapes.js';
 import { addBuildingDetails } from './building-details.js';
+import {STOREFRONT_METRICS as SHOP} from '../facade-layout.js';
 import {
   Fn,
   vec2,
@@ -599,7 +600,14 @@ function buildCityBlocks(scene, landmarkColliders = []) {
     new THREE.Color(0xd9912b),
     new THREE.Color(0x2d2d32)
   ];
-  const awningInst = new THREE.InstancedMesh(unitBox, awningMat, MAX_AWNINGS);
+  // One thin folded sheet: a sloping roof, short front valance and sealed ends.
+  // Local X projects from the wall; Z spans complete facade bays. Y stays metric.
+  const profile=[[-.5,0],[.5,-SHOP.canopyFall],[.5,-SHOP.canopyValance],
+    [.47,-SHOP.canopyValance],[.47,-SHOP.canopyFall-SHOP.canopyThickness],[-.5,-SHOP.canopyThickness]];
+  const shape=new THREE.Shape(profile.map(([x,y])=>new THREE.Vector2(x,y)));
+  const canopyGeo=new THREE.ExtrudeGeometry(shape,{depth:1,bevelEnabled:false,steps:1});canopyGeo.translate(0,0,-.5);
+  const awningInst = new THREE.InstancedMesh(canopyGeo, awningMat, MAX_AWNINGS);
+  awningInst.name='storefront-canopies';
   awningInst.castShadow = awningInst.receiveShadow = true;
   awningInst.frustumCulled = false;
   // Pre-initialize instanceColor buffer so dynamic updates work cleanly
@@ -627,7 +635,7 @@ function buildCityBlocks(scene, landmarkColliders = []) {
     ctx.lineWidth = 6;
     ctx.strokeRect(6, 6, 500, 84);
     ctx.fillStyle = st.color;
-    ctx.font = '800 26px Inter, Arial, sans-serif';
+    ctx.font = '600 64px Arial, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(st.text, 256, 50);
@@ -636,6 +644,7 @@ function buildCityBlocks(scene, landmarkColliders = []) {
     tex.colorSpace = THREE.SRGBColorSpace;
     const sMat = new THREE.MeshBasicNodeMaterial({ map: tex });
     const sInst = new THREE.InstancedMesh(unitBox, sMat, MAX_SIGNS_PER_THEME);
+    sInst.name='storefront-sign-'+st.text;
     sInst.frustumCulled = false;
     group.add(sInst);
     return sInst;
@@ -772,15 +781,15 @@ function buildCityBlocks(scene, landmarkColliders = []) {
         const a = blk.awnings[i];
         dummy.rotation.set(0, a.ry || 0, 0);
         dummy.position.set(a.x, a.y, a.z);
-        dummy.scale.set(a.w, 0.75, a.d);
+        dummy.scale.set(a.w, 1, a.d);
         dummy.updateMatrix();
         awningInst.setMatrixAt(awningCount, dummy.matrix);
         awningInst.setColorAt(awningCount, awningPalette[a.colorIdx % awningPalette.length]);
 
         const themeIdx = a.colorIdx % signInsts.length;
         if (signCounts[themeIdx] < MAX_SIGNS_PER_THEME) {
-          dummy.position.set(a.x, a.y + 0.88, a.z);
-          dummy.scale.set(0.28, 0.86, a.d * 0.92);
+          dummy.position.set(a.sign.x, a.sign.y, a.sign.z);
+          dummy.scale.set(a.sign.w, a.sign.h, a.sign.d);
           dummy.updateMatrix();
           signInsts[themeIdx].setMatrixAt(signCounts[themeIdx]++, dummy.matrix);
         }
@@ -881,8 +890,8 @@ function buildCityBlocks(scene, landmarkColliders = []) {
         const fade = smoothFade(cand.effDist, storeCutoff * 0.62, storeCutoff);
         const outX = Math.cos(ry);
         const outZ = -Math.sin(ry);
-        spot.position.set(a.x + outX * 0.45, a.y + 0.55, a.z + outZ * 0.45);
-        spot.target.position.set(a.x + outX * 1.85, a.y - 3.58, a.z + outZ * 1.85);
+        spot.position.set(a.x + outX * a.w*.35, a.y - SHOP.canopyFall-.08, a.z + outZ * a.w*.35);
+        spot.target.position.set(a.x + outX * 1.85, a.baseY, a.z + outZ * 1.85);
         spot.target.updateMatrixWorld();
         spot.color.copy(storeThemeColors[themeIdx % storeThemeColors.length]);
         spot.intensity = STORE_SPOT_INTENSITY * fade;

@@ -5,7 +5,7 @@
     "sourcePath": "js/buildings.js",
     "baselineSha256": "a39bee52fa7320c17e3142c9dddae003428655b91de83b7ebf4d37d9a6a5049a",
     "derivedPath": "adapted-nyc/buildings.js",
-    "derivedSha256": "8baf0dce06314b601fcc375360a2aa1c9c701d0e7639788ebaa6eaf141993ae1"
+    "derivedSha256": "eba5a7de03b3ec99830dda10e4a9c924395a9d7c6d43e0121e8a691494a675a8"
   },
   {
     "source": "mrdoob/slop-newyork",
@@ -21,7 +21,7 @@
     "sourcePath": "js/building-details.js",
     "baselineSha256": "263df4d2f348813f15d234a726a2f446d19c0e86f885d3f4f35109c7bc07f557",
     "derivedPath": "adapted-nyc/building-details.js",
-    "derivedSha256": "d311d27f49e2a622b864d254b4bc93f911e8de8e9e9c003174af581885945412"
+    "derivedSha256": "0c5373418b49a77629d78d059ca7a8293af3f4dc77167faeb1ed16155b34f2c0"
   },
   {
     "source": "mrdoob/slop-newyork",
@@ -29,6 +29,6 @@
     "sourcePath": "js/tsl-materials.js",
     "baselineSha256": "4fced4ecd9b3addf2b7827140ec8cbfb0ea7719eb537366c6fd806711afba5a1",
     "derivedPath": "adapted-nyc/tsl-materials.js",
-    "derivedSha256": "d06c75af35c37e4234cbb82f1632de982809050adefabdcebe680acdc2285724"
+    "derivedSha256": "f94287fac6ba13b4fb299e3be9a61c88e881ce23653ca6747f409f8a1ac1d561"
   }
 ]

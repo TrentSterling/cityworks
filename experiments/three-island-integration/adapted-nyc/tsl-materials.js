@@ -1,5 +1,6 @@
 // Derived from pinned Slop NY (MIT); local vertical facade phase, shared upstream lighting uniforms.
 import * as THREE from 'three/webgpu';
+import {STOREFRONT_METRICS as SHOP} from '../facade-layout.js';
 import {
   Fn,
   float,
@@ -472,7 +473,7 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
     const floorBase = floor(gridV).mul(floorHeight);
     const whole = step(top.sub(wallH).sub(0.001), floorBase).mul(step(floorBase.add(float(floorHeight).mul(.90)), top.sub(0.32).add(0.001)));
     partial = float(1.0).sub(whole).mul(wall);
-    coping = float(1.0).sub(step(0.32, fromTop)).mul(wall);
+    coping = float(1.0).sub(step(footprintLocal?SHOP.coping:.32, fromTop)).mul(wall);
   }
   const solid = max(max(footprintLocal?inPier:inPier.mul(float(1.0).sub(isGroundFloor)), blank), partial);
   const brickU=footprintLocal?attribute('facadeBrick','float'):uCoord;
@@ -533,11 +534,12 @@ function createCurtainWallMaterial(opts = {}) {
   // shader carries a single copy of them (and evaluates the interior mapping once per pixel)
   const facade = facadeCell(uWindowWidth, uFloorHeight, boxLocal || footprintLocal, 0, footprintLocal);
   const { isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, partial, coping,solid,brickU } = facade;
+  const paneTop=mix(float(.90),float(footprintLocal?SHOP.displayTop/floorHeight:.90),isGroundFloor);
   // Pane UV inside the mullions & spandrel, the 3D apartment behind it and whether the ground-floor shop is lit
   const winUV = clamp(
     vec2(
       cellUV.x.sub(mullionThickness).div(max(0.01, 1.0 - 2.0 * mullionThickness)),
-      cellUV.y.sub(spandrelRatio).div(max(0.01, 0.90 - spandrelRatio - mullionThickness))
+      cellUV.y.sub(spandrelRatio).div(max(0.01, paneTop.sub(spandrelRatio+mullionThickness)))
     ),
     vec2(0.0),
     vec2(1.0)
@@ -550,7 +552,7 @@ function createCurtainWallMaterial(opts = {}) {
   mat.colorNode = Fn(() => {
     // No glass in a storey the box cuts short (solid spandrel instead) nor behind the coping
     const isGlassPane = filteredPulse(cellUV.x, mullionThickness * 0.5, 1.0 - mullionThickness * 0.5, fw.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.015, 0.90, fw.y))
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.015, paneTop, fw.y))
       .mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
     const louverStripes = sin(vCoord.mul(22.0)).mul(0.5).add(0.5);
@@ -624,7 +626,7 @@ function createCurtainWallMaterial(opts = {}) {
 
   mat.roughnessNode = Fn(() => {
     const isFrame = float(1.0).sub(
-      filteredPulse(cellUV.x, mullionThickness, 1.0 - mullionThickness, fw.x).mul(filteredPulse(cellUV.y, spandrelRatio, 0.90, fw.y))
+      filteredPulse(cellUV.x, mullionThickness, 1.0 - mullionThickness, fw.x).mul(filteredPulse(cellUV.y, spandrelRatio, paneTop, fw.y))
     );
     const sillDirt = float(1.0).sub(smoothstep(spandrelRatio, spandrelRatio + 0.18, cellUV.y)).mul(0.18);
     const glassOrFrame = mix(float(0.05).add(sillDirt), float(0.78), max(max(isFrame, isRoof), solid));
@@ -639,7 +641,7 @@ function createCurtainWallMaterial(opts = {}) {
 
     const ramp = fw.mul(2.0).max(0.02);
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.01, 0.99 - mullionThickness, ramp.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.01, 0.90, ramp.y))
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.01, paneTop, ramp.y))
       .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
     const mullionRelief = float(1.0).sub(inPane).mul(0.014).add(coping.mul(0.01));
 
@@ -648,7 +650,7 @@ function createCurtainWallMaterial(opts = {}) {
 
   mat.emissiveNode = Fn(() => {
     const inPane = filteredPulse(cellUV.x, mullionThickness + 0.015, 1.0 - mullionThickness - 0.015, fw.x)
-      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.02, 0.90, fw.y));
+      .mul(filteredPulse(cellUV.y, spandrelRatio + 0.02, paneTop, fw.y));
     const paneMask = inPane.mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(isMechFloor))
       .mul(float(1.0).sub(solid)).mul(float(1.0).sub(coping));
 
@@ -739,11 +741,13 @@ function createPreWarBuildingMaterial(opts = {}) {
   const front = float(1.0).sub(back);
   const effHalfX = mix(float(halfWinX), float(0.11), isGroundFloor);
   const effHalfY = mix(float(halfWinY), float(0.10), isGroundFloor);
+  const effMaxY=mix(float(1-halfWinY),float(footprintLocal?SHOP.displayTop/floorHeight:.90),isGroundFloor);
+  const fasciaStart=footprintLocal?SHOP.fasciaBottom/floorHeight:.86;
   // Glazing UV inside the window opening, the 3D apartment behind it and the storefront lighting
   const winUV = clamp(
     vec2(
       cellUV.x.sub(effHalfX).div(max(0.01, float(1.0).sub(effHalfX.mul(2.0)))),
-      cellUV.y.sub(effHalfY).div(max(0.01, float(1.0).sub(effHalfY.mul(2.0))))
+      cellUV.y.sub(effHalfY).div(max(0.01, effMaxY.sub(effHalfY)))
     ),
     vec2(0.0),
     vec2(1.0)
@@ -758,7 +762,7 @@ function createPreWarBuildingMaterial(opts = {}) {
 
   mat.colorNode = Fn(() => {
     const oneMinusEffX = float(1.0).sub(effHalfX);
-    const oneMinusEffY = float(1.0).sub(effHalfY);
+    const oneMinusEffY = effMaxY;
 
     const inX = filteredPulse(cellUV.x, effHalfX, oneMinusEffX, fw.x).mul(open);
     const inY = filteredPulse(cellUV.y, effHalfY, oneMinusEffY, fw.y);
@@ -767,7 +771,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const cornicePhase = fract(gridV.div(6.0));
     const isCornice = max(
       filteredPulse(cornicePhase, 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front),
-      isGroundFloor.mul(filteredPulse(cellUV.y, 0.86, 1.0, fw.y))
+      isGroundFloor.mul(filteredPulse(cellUV.y, fasciaStart, 1.0, fw.y))
     );
 
     // Double-hung meeting rail on upper floors + storefront transom & mullions on ground floor
@@ -934,11 +938,11 @@ function createPreWarBuildingMaterial(opts = {}) {
 
   mat.roughnessNode = Fn(() => {
     const belt = filteredPulse(gridV.div(6.0), 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front);
-    const inX = filteredPulse(cellUV.x, halfWinX, 1.0 - halfWinX, fw.x).mul(open).mul(float(1.0).sub(belt));
-    const inY = filteredPulse(cellUV.y, halfWinY, 1.0 - halfWinY, fw.y);
+    const inX = filteredPulse(cellUV.x, effHalfX, float(1).sub(effHalfX), fw.x).mul(open).mul(float(1.0).sub(belt));
+    const inY = filteredPulse(cellUV.y, effHalfY, effMaxY, fw.y);
     const isWindow = inX.mul(inY).mul(float(1.0).sub(isRoof));
 
-    const winY = clamp(cellUV.y.sub(halfWinY).div(max(0.01, 1.0 - 2.0 * halfWinY)), 0.0, 1.0);
+    const winY = clamp(cellUV.y.sub(effHalfY).div(max(0.01, effMaxY.sub(effHalfY))), 0.0, 1.0);
     const pooledRough = float(1.0).sub(smoothstep(0.0, 0.32, winY)).mul(0.38);
     const glassRough = float(0.14).add(pooledRough);
 
@@ -959,7 +963,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     // Stone band course every 6 floors on street fronts: no window recesses, sills or AC units in it
     const belt = filteredPulse(gridV.div(6.0), 1.0-.22/(floorHeight*6), 1.0, ramp.y.div(6.0)).mul(front);
     const inX = filteredPulse(cellUV.x, effHalfX, float(1.0).sub(effHalfX), ramp.x).mul(open).mul(float(1.0).sub(belt));
-    const inY = filteredPulse(cellUV.y, effHalfY, float(1.0).sub(effHalfY), ramp.y);
+    const inY = filteredPulse(cellUV.y, effHalfY, effMaxY, ramp.y);
     const isWindow = inX.mul(inY);
 
     const brickH = 0.24;
@@ -993,10 +997,10 @@ function createPreWarBuildingMaterial(opts = {}) {
     const glowHalfY = mix(float(halfWinY + 0.015), float(0.11), isGroundFloor);
 
     const inX = filteredPulse(cellUV.x, glowHalfX, float(1.0).sub(glowHalfX), fw.x).mul(open);
-    const inY = filteredPulse(cellUV.y, glowHalfY, float(1.0).sub(glowHalfY), fw.y);
+    const inY = filteredPulse(cellUV.y, glowHalfY, effMaxY.sub(.015), fw.y);
     const isCornice = max(
       filteredPulse(fract(gridV.div(6.0)), 1.0-.22/(floorHeight*6), 1.0, fw.y.div(6.0)).mul(front),
-      isGroundFloor.mul(filteredPulse(cellUV.y, 0.86, 1.0, fw.y))
+      isGroundFloor.mul(filteredPulse(cellUV.y, fasciaStart, 1.0, fw.y))
     );
 
     const sashBarY = lineAA(cellUV.y.sub(0.52), 0.014).mul(float(1.0).sub(isGroundFloor));
