@@ -1,0 +1,567 @@
+{
+  "baseline": "46e75c6b1954aceba2c23a6897082fdbffa61364",
+  "cameras": {
+    "brick-close": {
+      "p": [
+        -785,
+        13.8,
+        177
+      ],
+      "t": [
+        -785,
+        13.8,
+        182.848
+      ]
+    },
+    "brick-oblique": {
+      "p": [
+        -780,
+        13.8,
+        176
+      ],
+      "t": [
+        -787,
+        14.3,
+        182.848
+      ]
+    },
+    "residential": {
+      "p": [
+        579,
+        13,
+        30
+      ],
+      "t": [
+        608,
+        16,
+        29
+      ]
+    },
+    "residential-close": {
+      "p": [
+        600,
+        14,
+        29
+      ],
+      "t": [
+        608,
+        14,
+        29
+      ]
+    },
+    "industrial": {
+      "p": [
+        -780,
+        9.86,
+        162
+      ],
+      "t": [
+        -785.847,
+        10.9,
+        182.848
+      ]
+    },
+    "distant": {
+      "p": [
+        -635,
+        86,
+        -52
+      ],
+      "t": [
+        -670,
+        32,
+        210
+      ]
+    }
+  },
+  "timingNote": "Warm browser frame intervals on this desktop; not GPU timings or a device performance claim.",
+  "before": {
+    "views": {
+      "brick-close": {
+        "render": {
+          "calls": 312,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 229685,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "brick-oblique": {
+        "render": {
+          "calls": 616,
+          "frameCalls": 4,
+          "drawCalls": 48,
+          "triangles": 229531,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "residential": {
+        "render": {
+          "calls": 1080,
+          "frameCalls": 4,
+          "drawCalls": 56,
+          "triangles": 247753,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "residential-close": {
+        "render": {
+          "calls": 1404,
+          "frameCalls": 4,
+          "drawCalls": 56,
+          "triangles": 246781,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "industrial": {
+        "render": {
+          "calls": 1708,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 230009,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "distant": {
+        "render": {
+          "calls": 2024,
+          "frameCalls": 4,
+          "drawCalls": 59,
+          "triangles": 271100,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "street": {
+        "render": {
+          "calls": 2336,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 309052,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3695688,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      }
+    },
+    "errors": []
+  },
+  "after": {
+    "views": {
+      "brick-close": {
+        "render": {
+          "calls": 320,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 229685,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "brick-oblique": {
+        "render": {
+          "calls": 620,
+          "frameCalls": 4,
+          "drawCalls": 48,
+          "triangles": 229531,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "residential": {
+        "render": {
+          "calls": 1104,
+          "frameCalls": 4,
+          "drawCalls": 56,
+          "triangles": 247753,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "residential-close": {
+        "render": {
+          "calls": 1428,
+          "frameCalls": 4,
+          "drawCalls": 56,
+          "triangles": 246781,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "industrial": {
+        "render": {
+          "calls": 1724,
+          "frameCalls": 4,
+          "drawCalls": 49,
+          "triangles": 230009,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "distant": {
+        "render": {
+          "calls": 2044,
+          "frameCalls": 4,
+          "drawCalls": 59,
+          "triangles": 271100,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      },
+      "street": {
+        "render": {
+          "calls": 2352,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 309052,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3817608,
+        "details": {
+          "cornices": 1312,
+          "waterTowers": 39,
+          "hvacUnits": 92,
+          "fireEscapes": 0,
+          "awnings": 71,
+          "scaffoldSheds": 0
+        },
+        "frameIntervalMedianMs": 16.699999809265137
+      }
+    },
+    "errors": [],
+    "details": {
+      "total": 1069,
+      "programs": {
+        "none": 0,
+        "mixed": 547,
+        "residential": 489,
+        "front-office": 33
+      },
+      "domains": 1486,
+      "materials": [
+        {
+          "front": {
+            "length": 0.56,
+            "height": 0.24,
+            "joint": 0.008,
+            "relief": 0.003
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.56,
+            "height": 0.24,
+            "joint": 0.008,
+            "relief": 0.003
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.56,
+            "height": 0.24,
+            "joint": 0.008,
+            "relief": 0.003
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.56,
+            "height": 0.24,
+            "joint": 0.008,
+            "relief": 0.003
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        },
+        {
+          "front": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "rear": {
+            "length": 0.225,
+            "height": 0.075,
+            "joint": 0.01,
+            "relief": 0.0015
+          },
+          "acUnit": {
+            "width": 0.68,
+            "height": 0.44
+          }
+        }
+      ],
+      "modules": {
+        "brick": {
+          "length": 0.225,
+          "height": 0.075,
+          "joint": 0.01,
+          "relief": 0.0015
+        },
+        "stone": {
+          "length": 0.56,
+          "height": 0.24,
+          "joint": 0.008,
+          "relief": 0.003
+        }
+      }
+    }
+  },
+  "status": "passed"
+}
