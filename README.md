@@ -30,6 +30,8 @@ The release browser harness uses isolated muted headless Chrome and verifies the
 
 ## Scope and evidence
 
+The [0.5.4 release notes](docs/RELEASE_054.md) document contained massing cleanup, deliberate paving/planting, restored exposed tower windows and exact compatibility with older saved layouts. Matched geometry and tower screenshots record the visible changes.
+
 The [0.5.3 release notes](docs/RELEASE_053.md) document connected frontage routes, paired curb ramps, glazed door modules and continuous paving/planting in place of raised parcel pads. Existing massing, metric dimensions, locks and facade domains remain intact.
 
 The [0.5.2 release notes](docs/RELEASE_052.md) document coherent facade domains, full opening rows, clearer interior mapping and fly navigation. Matched fixtures and city views retain the same draw, triangle and material counts.

@@ -79,6 +79,23 @@ with sync_playwright() as p:
         page.locator('[data-view="overhead"]').click();page.screenshot(path=str(OUT/'mobile.png'))
         assert page.evaluate("MassingEditor.api().inspect().view==='overhead'")
         report['checks'].append('three reroll/undo cycles, bounded scene resources and mobile camera control')
+        # Prior releases stored a versioned autosave. Preserve its original
+        # compilation rules and authoring intent when the new editor starts.
+        legacy=json.loads((ROOT/'tests/fixtures/massing-053.json').read_text())['legacy'][0]
+        page.evaluate('(p)=>{localStorage.clear();localStorage.setItem("cityworks:scoped-project:1:"+p.generatorVersion,JSON.stringify(p));}',legacy['project'])
+        page.reload();ready()
+        assert page.evaluate('MassingEditor.session.project')==legacy['project']
+        assert page.evaluate('MassingEditor.api().city.dependencies')==page.evaluate('MassingEditor.session.city.dependencies')
+        assert page.evaluate('MassingEditor.api().city.generatorVersion')=='0.5.1-usable-fabric'
+        assert 'original geometry rules' in page.locator('#status').inner_text()
+        legacy_city=city();click('#reroll');click('#undo');assert city()==legacy_city
+        page.reload();ready();assert city()==legacy_city
+        with page.expect_download() as pending:page.locator('#export').click()
+        pending.value.save_as(OUT/'legacy-scene.json')
+        assert json.loads((OUT/'legacy-scene.json').read_text())['exportContract']['generatorVersion']=='0.5.1-usable-fabric'
+        click('#new');assert page.evaluate('MassingEditor.api().city.generatorVersion')=='0.5.4-resolved-massing'
+        click('#undo');assert city()==legacy_city
+        report['checks'].append('legacy autosave restores original geometry, locks and overrides; reroll/undo/reload/export retain version; new project is current and undo restores legacy')
         assert not report['errors'],report['errors']
         report.update(status='passed',blockId=block,lockedBuilding=locked,changedBuildings=len(changed))
         print(json.dumps({k:v for k,v in report.items() if k!='renders'},indent=2))

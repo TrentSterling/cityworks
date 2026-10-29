@@ -1,5 +1,9 @@
 const assert=require('node:assert/strict'),C=require('../src/building-plan.js'),R=require('../src/public-realm.js'),P=require('../src/editor-state.js');
 const area=(a,b,op)=>C.totalArea(C.boolean(a,b,op));
+function coverageWithinGrid(expected,actual){const gap=C.boolean(expected,actual,'difference'),spill=C.boolean(actual,expected,'difference');return area(gap,C.offset(expected,-.002),'intersection')<.001&&area(spill,C.offset(expected,.002),'difference')<.001;}
+const coverageFixture=[C.shape(C.rect(0,0,10,10))],missingPatch=[C.shape(C.rect(4,4,4.2,4.2))],exteriorPatch=[C.shape(C.rect(12,4,12.2,4.2))];
+assert.ok(!coverageWithinGrid(coverageFixture,C.boolean(coverageFixture,missingPatch,'difference')),'A small interior hole must fail even though its area is below the old .06 threshold');
+assert.ok(!coverageWithinGrid(coverageFixture,[...coverageFixture,...exteriorPatch]),'An exterior patch cannot be excused as rounding');
 const T=require('../vendor/three.r140.min.js'),F=require('../src/facade-rules.js');
 const inputs=[{},{seed:'REALM-1'},{seed:'FIT-NARROW',streetSpacing:94,coastVariation:.85},{seed:'REALM-WIDE',streetSpacing:128},{seed:'REALM-SMALL',mapAreaKm2:1.5},{seed:'REALM-LARGE',mapAreaKm2:3.2}];
 for(const input of inputs){
@@ -41,7 +45,10 @@ for(const input of inputs){
  for(const s of r.surfaces){
   assert.ok(area(s.paved,s.greens,'intersection')<.02,'Surface materials must partition, not overlap');
   const block=c.blocks.find(b=>b.id===s.blockId),expected=C.boolean([C.shape(block.polygon,block.holes)],feet,'difference'),actual=[...s.paved,...s.greens];
-  assert.ok(area(expected,actual,'difference')<.06&&area(actual,expected,'difference')<.06,'Block surface has a gap or spill');
+  // Area alone scales with boundary length: a sub-millimetre seam on a long
+  // block exceeded the old fixed .06 m2 threshold. Allow only the 2 mm boundary
+  // band of this 1 mm integer model, never an interior gap or an exterior spill.
+  assert.ok(coverageWithinGrid(expected,actual),'Block surface has a gap or spill beyond the clipping tolerance');
   const routes=[...r.entrances,...r.courtRoutes].flatMap(e=>e.polygons);assert.ok(area(s.greens,routes,'intersection')<.03,'Planting obstructs a route');
  }
  console.log('PASS public realm',c.input.seed,{entrances:r.entrances.length,crossings:r.crossings.length,ramps:r.ramps.length,omitted:r.diagnostics.length});

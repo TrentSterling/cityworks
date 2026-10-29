@@ -5,7 +5,7 @@
     "sourcePath": "js/buildings.js",
     "baselineSha256": "a39bee52fa7320c17e3142c9dddae003428655b91de83b7ebf4d37d9a6a5049a",
     "derivedPath": "adapted-nyc/buildings.js",
-    "derivedSha256": "5c16ad5bce384f859d2557c674c56ff6bc26e4f4cb9aeea6d742b4efd532b0ae"
+    "derivedSha256": "8baf0dce06314b601fcc375360a2aa1c9c701d0e7639788ebaa6eaf141993ae1"
   },
   {
     "source": "mrdoob/slop-newyork",
@@ -13,7 +13,7 @@
     "sourcePath": "js/building-footprints.js",
     "baselineSha256": "1356f55415f6195e1b725c576fccc659df21983f2fa806f9bb88d58092270253",
     "derivedPath": "adapted-nyc/building-footprints.js",
-    "derivedSha256": "94022e47fba83a4e37f590e70aef6af163a177bffb2fba7c421ae34e36734760"
+    "derivedSha256": "2f2a9ed85151d60d16f1bd6e42fce76dfe4b015452f625dee1529e5b8c2a3191"
   },
   {
     "source": "mrdoob/slop-newyork",

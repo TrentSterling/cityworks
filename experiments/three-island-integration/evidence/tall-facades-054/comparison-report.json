@@ -1,0 +1,1363 @@
+{
+  "comparison": "Same candidate geometry and camera; before/after the vertical shared-wall classification fix.",
+  "before": {
+    "status": "passed",
+    "errors": [],
+    "volumes": [
+      {
+        "id": "parcel:caf0c0d1:building:upper",
+        "buildingId": "parcel:caf0c0d1:building",
+        "island": "island:civic",
+        "center": [
+          2.502,
+          5.309
+        ],
+        "base": 28.56,
+        "top": 72.76,
+        "style": 3,
+        "frontage": [
+          [
+            14.984,
+            24.108
+          ],
+          [
+            -47.039,
+            23.191
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 10.468147591622886,
+            "bays": 3,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.968438609831329,
+            "bays": 1,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.83132181676249,
+            "bays": 7,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 11.039218269424698,
+            "bays": 4,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.080441152620633,
+            "bays": 1,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.748629623343486,
+            "bays": 7,
+            "storeys": 13,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:9336127e:building:upper",
+        "buildingId": "parcel:9336127e:building",
+        "island": "island:civic",
+        "center": [
+          -183.303,
+          195.322
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 2,
+        "frontage": [
+          [
+            -212.176,
+            178.845
+          ],
+          [
+            -154.781,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 15.904465567883767,
+            "bays": 5,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 43.631,
+            "bays": 15,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.78800000000001,
+            "bays": 6,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 43.962999999999994,
+            "bays": 15,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8870000000000005,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:9336127e:building:crown",
+        "buildingId": "parcel:9336127e:building",
+        "island": "island:civic",
+        "center": [
+          -183.303,
+          195.322
+        ],
+        "base": 52.36,
+        "top": 59.16,
+        "style": 2,
+        "frontage": [
+          [
+            -212.176,
+            178.845
+          ],
+          [
+            -154.781,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 11.689546826117752,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 39.46799999999999,
+            "bays": 14,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 15.581999999999994,
+            "bays": 5,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 39.71199999999999,
+            "bays": 14,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8950000000000102,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:13987d00:building:upper",
+        "buildingId": "parcel:13987d00:building",
+        "island": "island:civic",
+        "center": [
+          -22.545,
+          -109.513
+        ],
+        "base": 28.56,
+        "top": 55.76,
+        "style": 3,
+        "frontage": [
+          [
+            -53.678,
+            -135.654
+          ],
+          [
+            12.08,
+            -115.105
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 45.895692532088454,
+            "bays": 17,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 18.787924260013405,
+            "bays": 7,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 51.08400705700366,
+            "bays": 20,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.700933205226392,
+            "bays": 1,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 15.012795775604221,
+            "bays": 5,
+            "storeys": 8,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:13987d00:building:crown",
+        "buildingId": "parcel:13987d00:building",
+        "island": "island:civic",
+        "center": [
+          -22.545,
+          -109.513
+        ],
+        "base": 55.76,
+        "top": 62.56,
+        "style": 3,
+        "frontage": [
+          [
+            -53.678,
+            -135.654
+          ],
+          [
+            12.08,
+            -115.105
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 42.32611639401848,
+            "bays": 16,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 14.582604774182158,
+            "bays": 5,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 45.96620471607374,
+            "bays": 18,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.700933205226379,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 10.53219302899449,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:97378c47:building:upper",
+        "buildingId": "parcel:97378c47:building",
+        "island": "island:headland",
+        "center": [
+          446.95,
+          84.752
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 0,
+        "frontage": [
+          [
+            465.964,
+            48.272
+          ],
+          [
+            453.364,
+            123.875
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 3,
+            "width": 62.0510825771799,
+            "bays": 22,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 4.199243384230066,
+            "bays": 0,
+            "storeys": 7,
+            "eligible": false
+          },
+          {
+            "kind": 3,
+            "width": 7.0372666568775095,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 61.23303320920825,
+            "bays": 22,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 11.18915948585955,
+            "bays": 3,
+            "storeys": 7,
+            "eligible": true
+          }
+        ],
+        "camera": {
+          "p": [
+            534.9037808561928,
+            25,
+            134.89312516787808
+          ],
+          "t": [
+            446.95,
+            40.46,
+            84.752
+          ]
+        }
+      },
+      {
+        "id": "parcel:68aa9b6f:building:upper",
+        "buildingId": "parcel:68aa9b6f:building",
+        "island": "island:harbour",
+        "center": [
+          -691.979,
+          196.341
+        ],
+        "base": 28.56,
+        "top": 59.16,
+        "style": 1,
+        "frontage": [
+          [
+            -733.653,
+            178.845
+          ],
+          [
+            -650.306,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 3,
+            "width": 8.788000000000011,
+            "bays": 2,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 18,
+            "bays": 6,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 50.55899999999997,
+            "bays": 20,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 18,
+            "bays": 6,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 8.788000000000011,
+            "bays": 2,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 26.78800000000001,
+            "bays": 10,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 68.13499999999999,
+            "bays": 27,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 3,
+            "width": 26.78800000000001,
+            "bays": 10,
+            "storeys": 9,
+            "eligible": true
+          }
+        ],
+        "camera": {
+          "p": [
+            -656.979,
+            25,
+            101.34100000000001
+          ],
+          "t": [
+            -691.979,
+            43.86,
+            196.341
+          ]
+        }
+      },
+      {
+        "id": "parcel:15d89c90:building:upper",
+        "buildingId": "parcel:15d89c90:building",
+        "island": "island:civic",
+        "center": [
+          -259.108,
+          131.371
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 2,
+        "frontage": [
+          [
+            -224.584,
+            149.845
+          ],
+          [
+            -293.241,
+            149.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 55.224999999999994,
+            "bays": 20,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8930000000000007,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.8993278780968,
+            "bays": 7,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 54.81,
+            "bays": 19,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 23.78800000000001,
+            "bays": 8,
+            "storeys": 7,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:527b7aaf:building:upper",
+        "buildingId": "parcel:527b7aaf:building",
+        "island": "island:civic",
+        "center": [
+          -129.606,
+          3.877
+        ],
+        "base": 28.56,
+        "top": 76.16,
+        "style": 3,
+        "frontage": [
+          [
+            -76.727,
+            22.753
+          ],
+          [
+            -146.257,
+            21.725
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 4.0724420192312145,
+            "bays": 1,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 13.743131811927002,
+            "bays": 5,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 2.6543014146852237,
+            "bays": 0,
+            "storeys": 14,
+            "eligible": false
+          },
+          {
+            "kind": 2,
+            "width": 6.002301725171771,
+            "bays": 2,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 16.717839573342,
+            "bays": 6,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 23.786619452961364,
+            "bays": 9,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 20.476241964774694,
+            "bays": 7,
+            "storeys": 14,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:527b7aaf:building:crown",
+        "buildingId": "parcel:527b7aaf:building",
+        "island": "island:civic",
+        "center": [
+          -129.606,
+          3.877
+        ],
+        "base": 76.16,
+        "top": 82.96,
+        "style": 3,
+        "frontage": [
+          [
+            -76.727,
+            22.753
+          ],
+          [
+            -146.257,
+            21.725
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 4.067442562593845,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 9.533890076983267,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 2.7123099011728025,
+            "bays": 0,
+            "storeys": 2,
+            "eligible": false
+          },
+          {
+            "kind": 2,
+            "width": 6.001322854171404,
+            "bays": 2,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 12.584389456783335,
+            "bays": 4,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.58016253762976,
+            "bays": 7,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 16.12977076712498,
+            "bays": 6,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      }
+    ],
+    "overlapFixtures": null
+  },
+  "after": {
+    "status": "passed",
+    "errors": [],
+    "volumes": [
+      {
+        "id": "parcel:caf0c0d1:building:upper",
+        "buildingId": "parcel:caf0c0d1:building",
+        "island": "island:civic",
+        "center": [
+          2.502,
+          5.309
+        ],
+        "base": 28.56,
+        "top": 72.76,
+        "style": 3,
+        "frontage": [
+          [
+            14.984,
+            24.108
+          ],
+          [
+            -47.039,
+            23.191
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 10.468147591622886,
+            "bays": 3,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.968438609831329,
+            "bays": 1,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.83132181676249,
+            "bays": 7,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 11.039218269424698,
+            "bays": 4,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.080441152620633,
+            "bays": 1,
+            "storeys": 13,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.748629623343486,
+            "bays": 7,
+            "storeys": 13,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:9336127e:building:upper",
+        "buildingId": "parcel:9336127e:building",
+        "island": "island:civic",
+        "center": [
+          -183.303,
+          195.322
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 2,
+        "frontage": [
+          [
+            -212.176,
+            178.845
+          ],
+          [
+            -154.781,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 15.904465567883767,
+            "bays": 5,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 43.631,
+            "bays": 15,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.78800000000001,
+            "bays": 6,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 43.962999999999994,
+            "bays": 15,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8870000000000005,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:9336127e:building:crown",
+        "buildingId": "parcel:9336127e:building",
+        "island": "island:civic",
+        "center": [
+          -183.303,
+          195.322
+        ],
+        "base": 52.36,
+        "top": 59.16,
+        "style": 2,
+        "frontage": [
+          [
+            -212.176,
+            178.845
+          ],
+          [
+            -154.781,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 11.689546826117752,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 39.46799999999999,
+            "bays": 14,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 15.581999999999994,
+            "bays": 5,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 39.71199999999999,
+            "bays": 14,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8950000000000102,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:13987d00:building:upper",
+        "buildingId": "parcel:13987d00:building",
+        "island": "island:civic",
+        "center": [
+          -22.545,
+          -109.513
+        ],
+        "base": 28.56,
+        "top": 55.76,
+        "style": 3,
+        "frontage": [
+          [
+            -53.678,
+            -135.654
+          ],
+          [
+            12.08,
+            -115.105
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 45.895692532088454,
+            "bays": 17,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 18.787924260013405,
+            "bays": 7,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 51.08400705700366,
+            "bays": 20,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.700933205226392,
+            "bays": 1,
+            "storeys": 8,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 15.012795775604221,
+            "bays": 5,
+            "storeys": 8,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:13987d00:building:crown",
+        "buildingId": "parcel:13987d00:building",
+        "island": "island:civic",
+        "center": [
+          -22.545,
+          -109.513
+        ],
+        "base": 55.76,
+        "top": 62.56,
+        "style": 3,
+        "frontage": [
+          [
+            -53.678,
+            -135.654
+          ],
+          [
+            12.08,
+            -115.105
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 42.32611639401848,
+            "bays": 16,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 14.582604774182158,
+            "bays": 5,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 45.96620471607374,
+            "bays": 18,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.700933205226379,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 10.53219302899449,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:97378c47:building:upper",
+        "buildingId": "parcel:97378c47:building",
+        "island": "island:headland",
+        "center": [
+          446.95,
+          84.752
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 0,
+        "frontage": [
+          [
+            465.964,
+            48.272
+          ],
+          [
+            453.364,
+            123.875
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 62.0510825771799,
+            "bays": 22,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 4.199243384230066,
+            "bays": 0,
+            "storeys": 7,
+            "eligible": false
+          },
+          {
+            "kind": 2,
+            "width": 7.0372666568775095,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 61.23303320920825,
+            "bays": 22,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 11.18915948585955,
+            "bays": 3,
+            "storeys": 7,
+            "eligible": true
+          }
+        ],
+        "camera": {
+          "p": [
+            534.9037808561928,
+            25,
+            134.89312516787808
+          ],
+          "t": [
+            446.95,
+            40.46,
+            84.752
+          ]
+        }
+      },
+      {
+        "id": "parcel:68aa9b6f:building:upper",
+        "buildingId": "parcel:68aa9b6f:building",
+        "island": "island:harbour",
+        "center": [
+          -691.979,
+          196.341
+        ],
+        "base": 28.56,
+        "top": 59.16,
+        "style": 1,
+        "frontage": [
+          [
+            -733.653,
+            178.845
+          ],
+          [
+            -650.306,
+            178.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 8.788000000000011,
+            "bays": 2,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 18,
+            "bays": 6,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 50.55899999999997,
+            "bays": 20,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 18,
+            "bays": 6,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 8.788000000000011,
+            "bays": 2,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 26.78800000000001,
+            "bays": 10,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 68.13499999999999,
+            "bays": 27,
+            "storeys": 9,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 26.78800000000001,
+            "bays": 10,
+            "storeys": 9,
+            "eligible": true
+          }
+        ],
+        "camera": {
+          "p": [
+            -656.979,
+            25,
+            101.34100000000001
+          ],
+          "t": [
+            -691.979,
+            43.86,
+            196.341
+          ]
+        }
+      },
+      {
+        "id": "parcel:15d89c90:building:upper",
+        "buildingId": "parcel:15d89c90:building",
+        "island": "island:civic",
+        "center": [
+          -259.108,
+          131.371
+        ],
+        "base": 28.56,
+        "top": 52.36,
+        "style": 2,
+        "frontage": [
+          [
+            -224.584,
+            149.845
+          ],
+          [
+            -293.241,
+            149.845
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 55.224999999999994,
+            "bays": 20,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 3.8930000000000007,
+            "bays": 1,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.8993278780968,
+            "bays": 7,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 54.81,
+            "bays": 19,
+            "storeys": 7,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 23.78800000000001,
+            "bays": 8,
+            "storeys": 7,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:527b7aaf:building:upper",
+        "buildingId": "parcel:527b7aaf:building",
+        "island": "island:civic",
+        "center": [
+          -129.606,
+          3.877
+        ],
+        "base": 28.56,
+        "top": 76.16,
+        "style": 3,
+        "frontage": [
+          [
+            -76.727,
+            22.753
+          ],
+          [
+            -146.257,
+            21.725
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 4.0724420192312145,
+            "bays": 1,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 13.743131811927002,
+            "bays": 5,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 2.6543014146852237,
+            "bays": 0,
+            "storeys": 14,
+            "eligible": false
+          },
+          {
+            "kind": 2,
+            "width": 6.002301725171771,
+            "bays": 2,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 16.717839573342,
+            "bays": 6,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 23.786619452961364,
+            "bays": 9,
+            "storeys": 14,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 20.476241964774694,
+            "bays": 7,
+            "storeys": 14,
+            "eligible": true
+          }
+        ]
+      },
+      {
+        "id": "parcel:527b7aaf:building:crown",
+        "buildingId": "parcel:527b7aaf:building",
+        "island": "island:civic",
+        "center": [
+          -129.606,
+          3.877
+        ],
+        "base": 76.16,
+        "top": 82.96,
+        "style": 3,
+        "frontage": [
+          [
+            -76.727,
+            22.753
+          ],
+          [
+            -146.257,
+            21.725
+          ]
+        ],
+        "panels": [
+          {
+            "kind": 2,
+            "width": 4.067442562593845,
+            "bays": 1,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 9.533890076983267,
+            "bays": 3,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 2.7123099011728025,
+            "bays": 0,
+            "storeys": 2,
+            "eligible": false
+          },
+          {
+            "kind": 2,
+            "width": 6.001322854171404,
+            "bays": 2,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 12.584389456783335,
+            "bays": 4,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 19.58016253762976,
+            "bays": 7,
+            "storeys": 2,
+            "eligible": true
+          },
+          {
+            "kind": 2,
+            "width": 16.12977076712498,
+            "bays": 6,
+            "storeys": 2,
+            "eligible": true
+          }
+        ]
+      }
+    ],
+    "overlapFixtures": {
+      "podiumBelow": true,
+      "tierAbove": true,
+      "fullNeighbour": true,
+      "partialNeighbour": true,
+      "elevatedNeighbour": true
+    }
+  }
+}

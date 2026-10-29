@@ -6,18 +6,22 @@ import {facadeLayout,facadeDomains} from '../facade-layout.js';
 
 function partyWallHeight(record, a, b, neighbours) {
   const dx = b.x - a.x, dz = b.y - a.y, length = Math.hypot(dx, dz);
-  let height = 0;
+  let height = Infinity;
   // Sample along the wall so a single touching corner does not blank the entire facade.
   for (const t of [0.15, 0.5, 0.85]) {
     const x = a.x + dx * t - dz / length, z = a.y + dz * t + dx / length;
     let roof = 0;
     for (const n of neighbours) {
-      if (n.polygons === record.polygons || n.height <= 0 ||
+      // Plan overlap with a podium below or a courtyard tier above is not a
+      // party wall. Only a neighbour overlapping this volume vertically counts.
+      // Elevated neighbours also leave a visible lower strip. This mesh does
+      // not split such partial occlusion; its visible wall must retain windows.
+      if (n.polygons === record.polygons || n.height <= record.baseY+.002 || (n.baseY??0)>record.baseY+.002 ||
         x < n.x0 || x > n.x1 || z < n.z0 || z > n.z1) continue;
       if (n.polygons.some(p => polygonContains(p, x, z))) roof = Math.max(roof, n.height);
     }
     if (!roof) return 0;
-    height = Math.max(height, roof);
+    height = Math.min(height, roof);
   }
   return height;
 }
@@ -56,7 +60,8 @@ function createBuildingFootprints(material, records, getNeighbours) {
           const domainSeed=Math.floor(Math.fround(seed)+domain.normal.x*17+domain.normal.z*37);
           const front = record.streetLevel && Math.abs(dx*fx+dz*fz)/(width*fl)>.999 && Math.abs(fx*((da.y+db.y)/2-f[0].z)-fz*((da.x+db.x)/2-f[0].x))/fl < record.frontSetback+.1;
           const fit=facadeLayout(domain.width,height,record.facadeIndex??0);
-          const kind = i ? WALL_KINDS.rear : adjacentHeight ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
+          // A lower adjoining roof must not blank the exposed storeys above it.
+          const kind = i ? WALL_KINDS.rear : adjacentHeight>=top-.002 ? WALL_KINDS.lotLine : front ? WALL_KINDS.shop : WALL_KINDS.rear;
           cell.panels.push({volumeId:record.id,ring:i,edge:j,edgeWidth:width,domainId:domain.id,domainOffset:domain.offset,domainSeed,domainReverse:domain.reverse,domainTangent:domain.tangent,brickOffset:domain.brickOffset,kind,...fit});
           const exposedHeight = adjacentHeight ? Math.max(0, top - adjacentHeight) : height;
           // Match the positive-world-axis tangent used by the shared interior-map view ray.
@@ -115,4 +120,4 @@ function createBuildingFootprints(material, records, getNeighbours) {
   return group;
 }
 
-export { createBuildingFootprints };
+export { createBuildingFootprints, partyWallHeight };

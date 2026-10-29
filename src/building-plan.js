@@ -4,6 +4,7 @@
   const A=typeof module!=='undefined'?require('./archipelago.js'):root.ArchipelagoModel;
   const P=typeof module!=='undefined'?require('./parcel-patterns.js'):root.CityParcelPatterns;
   const Realm=typeof module!=='undefined'?require('./public-realm.js'):root.CityPublicRealm;
+  const VERSION='0.5.4-resolved-massing',LEGACY_VERSION='0.5.1-usable-fabric';
   const len=(a,b)=>Math.hypot(b[0]-a[0],b[1]-a[1]);
   const ringRegion=p=>A.shape(p.polygon,p.holes||[]);
   const footprintRules=Object.freeze({minimumArea:120,minimumCoreRadius:4,minimumCoreArea:4,maximumAspect:6,minimumGap:6});
@@ -32,6 +33,55 @@
     // the unbounded acute mitres or thin wings removed by the erosion.
     const opened=A.boolean(sweep(sweep(core,u),n),A.offset(regions,-.003),'intersection');
     return opened.filter(p=>A.totalArea([p])>=footprintRules.minimumArea&&footprintAspect(p)<=footprintRules.maximumAspect&&A.totalArea(A.offset([p],-r))>=footprintRules.minimumCoreArea);
+  }
+  function resolvedFootprints(regions){
+    // Remove clipping-scale returns by cutting back into the existing mass.
+    // Never fill a notch across a parcel boundary, hole or reserved access.
+    // Broad L/U forms survive: only a short incident edge (<2 m) is eligible,
+    // with at most 2 m local displacement and 12% total area loss per part.
+    return regions.map(original=>{
+      let current=original;const originalArea=A.totalArea([original]);
+      for(let pass=0;pass<100;pass++){
+        const candidates=[],rings=[current.outer,...current.holes];
+        for(let ri=0;ri<rings.length;ri++){
+          const ring=rings[ri];if(ring.length<=3)continue;
+          const consider=(next,i)=>{
+            const raw=ri?A.shape(current.outer,current.holes.map((r,j)=>j===ri-1?next:r)):A.shape(next,current.holes);
+            const normalized=A.boolean([raw]);if(normalized.length!==1||normalized[0].holes.length!==original.holes.length)return;
+            const candidate=normalized[0],area=A.totalArea([candidate]);
+            if(candidate.outer.length+candidate.holes.reduce((s,r)=>s+r.length,0)>=rings.reduce((s,r)=>s+r.length,0))return;
+            if(area<Math.max(footprintRules.minimumArea,originalArea*.88)||area>A.totalArea([current])+.0001)return;
+            if(A.totalArea(A.boolean([candidate],[current],'difference'))>.0001)return;
+            if(footprintAspect(candidate)>footprintRules.maximumAspect||A.totalArea(A.offset([candidate],-footprintRules.minimumCoreRadius))<footprintRules.minimumCoreArea)return;
+            candidates.push({candidate,loss:A.totalArea([current])-area,ri,i});
+          };
+          for(let i=0;i<ring.length;i++){
+            const a=ring[(i+ring.length-1)%ring.length],b=ring[i],c=ring[(i+1)%ring.length];
+            if(Math.min(len(a,b),len(b,c))>=2||A.projection(b,a,c).distance>2)continue;
+            consider(ring.filter((_,j)=>j!==i),i);
+            // A tiny bevel inside a recess has two reflex endpoints. Removing
+            // either one would add mass. Intersect its adjoining wall lines
+            // instead, accepting the miter only when it also cuts inward.
+            if(len(b,c)<2&&ring.length>4){
+              const d=ring[(i+2)%ring.length],u=b.map((v,j)=>v-a[j]),v=d.map((w,j)=>w-c[j]),det=u[0]*v[1]-u[1]*v[0];
+              if(Math.abs(det)>1e-8){
+                const t=((c[0]-a[0])*v[1]-(c[1]-a[1])*v[0])/det,corner=a.map((w,j)=>A.snap(w+u[j]*t));
+                // Millimetre integer clipping can round a mathematical miter
+                // onto the wrong side. Search only its 2 mm neighbourhood;
+                // the same full containment test decides every candidate.
+                if(Math.max(len(corner,b),len(corner,c))<=1.997)for(const dx of [0,-.002,.002])for(const dz of [0,-.002,.002]){
+                  const point=[A.snap(corner[0]+dx),A.snap(corner[1]+dz)];
+                  consider(ring.flatMap((p,j)=>j===i?[point]:j===(i+1)%ring.length?[]:[p]),i);
+                }
+              }
+            }
+          }
+        }
+        if(!candidates.length)break;
+        candidates.sort((a,b)=>a.loss-b.loss||a.ri-b.ri||a.i-b.i);current=candidates[0].candidate;
+      }
+      return current;
+    });
   }
   function roadFront(a,b,block,streets){
     const dx=b[0]-a[0],dz=b[1]-a[1],length=len(a,b),mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];let best;
@@ -71,7 +121,9 @@
     const halfplane=A.shape(A.canonical([point(-500,parcel.frontSetback),point(l+500,parcel.frontSetback),point(l+500,parcel.depth?parcel.depth-parcel.rearSetback:1500),point(-500,parcel.depth?parcel.depth-parcel.rearSetback:1500)]));
     return A.boolean(base,[halfplane],'intersection').filter(p=>A.totalArea([p])>70);
   }
-  function generate(input={},buildingEdits={},massingRevisions={}){
+  function generate(input={},buildingEdits={},massingRevisions={},version=VERSION){
+    if(![VERSION,LEGACY_VERSION].includes(version))throw Error('Unsupported fabric generator '+version);
+    const fit=(regions,frontage)=>{const usable=usableFootprints(regions,frontage);return version===LEGACY_VERSION?usable:resolvedFootprints(usable);};
     for(const [id,revision] of Object.entries(massingRevisions))if(!Number.isSafeInteger(revision)||revision<0||revision>1000000)throw Error('Invalid massing revision '+id);
     const ground=A.generate(input),parcels=[],buildings=[],blockInteriors=[],reserved=new Set();
     for(const islandId of ['island:civic','island:headland']){
@@ -90,7 +142,8 @@
         const notch=A.shape(A.canonical([at(l*.38,parcel.depth-13),at(l*.62,parcel.depth-13),at(l*.62,parcel.depth+1),at(l*.38,parcel.depth+1)]));
         const next=A.boolean(footprints,[notch],'difference');if(next.length===footprints.length){footprints=next;profile='service-court';}
       }
-      footprints=usableFootprints(footprints,parcel.frontage);if(!footprints.length)continue;const center=A.center(footprints[0].outer);
+      if(version===VERSION&&parcel.courtyard)footprints=A.boolean(footprints,allowedFootprints(parcel),'intersection');
+      footprints=fit(footprints,parcel.frontage);if(!footprints.length)continue;const center=A.center(footprints[0].outer);
       const district=parcel.planDistrict,style=harbour?1:garden?0:district==='north-quarter'?(r('style')<.65?1:0):(r('style')<.25?1:0);
       const towerIntent=towerSites.get(parcel.id),tower=!!towerIntent;
       let height=(parcel.floorBand||5)*3.4*(.8+.35*ground.input.density);
@@ -99,20 +152,20 @@
       if(revision)height=tower?height*(.95+r('height')*.1):Math.max(6.8,height+(Math.floor(r('floors')*3)-1)*3.4);
       if(buildingEdits[id]){const h=buildingEdits[id].height;if(!Number.isFinite(h)||h<6||h>180)throw Error('Edited height must be 6..180 m: '+id);height=h;}
       height=A.snap(buildingEdits[id]?height:Math.round(height/3.4)*3.4);const baseElevation=8.16,volumes=[];
-      const towerFoot=tower&&height>=13.6?usableFootprints(A.offset(footprints,-3.6),parcel.frontage):[];
+      const towerFoot=tower&&height>=13.6?fit(A.offset(footprints,-3.6),parcel.frontage):[];
       const podiumHeight=towerFoot.length?Math.min(20.4,Math.max(6.8,height-10.2)):height;
       let passage=null,baseFootprints=footprints;
       if(parcel.courtyard){
         const hole=footprints.flatMap(p=>p.holes)[0],target=A.center(hole),from=parcel.access[0],width=5.5;
         const zone=A.boolean([A.corridor(from,target,width)],[ringRegion(parcel)],'intersection');
-        baseFootprints=usableFootprints(A.boolean(footprints,zone,'difference'),parcel.frontage);if(!baseFootprints.length)continue;passage={id:id+':passage',from,to:target.map(A.snap),width,clearance:Math.min(6.8,height),polygons:zone};
+        baseFootprints=fit(A.boolean(footprints,zone,'difference'),parcel.frontage);if(!baseFootprints.length)continue;passage={id:id+':passage',from,to:target.map(A.snap),width,clearance:Math.min(6.8,height),polygons:zone};
         const courtyard=A.shape(A.canonical(hole)),open=A.boolean([courtyard],zone,'union'),paths=A.boolean(zone,open,'intersection'),greens=A.boolean(A.offset([courtyard],-2),A.offset(paths,1.1),'difference');
         blockInteriors.push({id:parcel.blockId+':interior',blockId:parcel.blockId,program:'enclosed-court',polygons:open,paths,greens,accesses:[{...passage,streetId:parcel.streetId}],elevation:baseElevation});
       }
       volumes.push({id:id+':base',seed,polygons:baseFootprints,baseElevation,topElevation:A.snap(baseElevation+(passage?Math.min(6.8,height):podiumHeight)),facadeIndex:style,role:passage?'courtyard-ground':towerFoot.length?'podium':profile,streetLevel:true});
       if(passage&&height>6.8)volumes.push({id:id+':court-upper',seed:partSeed('court-upper'),polygons:footprints,baseElevation:A.snap(baseElevation+6.8),topElevation:A.snap(baseElevation+height),facadeIndex:style,role:'courtyard-upper',streetLevel:false});
       if(towerFoot.length){
-        profile='podium-tower';const topFoot=usableFootprints(A.offset(towerFoot,-2.1),parcel.frontage),hasCrown=height>47&&topFoot.length;
+        profile='podium-tower';const topFoot=fit(A.offset(towerFoot,-2.1),parcel.frontage),hasCrown=height>47&&topFoot.length;
         const towerStyle=harbour?1:garden?0:towerIntent.hub==='exchange'?3:2;
         volumes.push({id:id+':upper',seed:partSeed('upper'),polygons:towerFoot,baseElevation:A.snap(baseElevation+podiumHeight),topElevation:A.snap(baseElevation+(hasCrown?height-6.8:height)),facadeIndex:towerStyle,role:'tower',streetLevel:false});
         if(hasCrown)volumes.push({id:id+':crown',seed:partSeed('crown'),polygons:topFoot,baseElevation:A.snap(baseElevation+height-6.8),topElevation:A.snap(baseElevation+height),facadeIndex:towerStyle,role:'tower-crown',streetLevel:false});
@@ -123,7 +176,7 @@
     for(const id of Object.keys(massingRevisions))if(!known.has(id))throw Error('Unknown massing building '+id);
     const occupied=new Set(buildings.map(b=>b.parcelId));
     const siteReservations=parcels.filter(p=>!occupied.has(p.id)).map(p=>({id:p.id+':reserve',parcelId:p.id,use:'service-or-landscape',reason:'No usable footprint meeting width, area and aspect rules',polygons:[ringRegion(p)]}));
-    const city={...ground,schemaVersion:4,generatorVersion:'0.5.1-usable-fabric',parcels,buildings,blockInteriors,siteReservations,buildingEdits,dependencies:{...ground.dependencies,parcels:A.hash(JSON.stringify(parcels)),buildings:A.hash(JSON.stringify(buildings)),blockInteriors:A.hash(JSON.stringify(blockInteriors))}};
+    const city={...ground,schemaVersion:4,generatorVersion:version,parcels,buildings,blockInteriors,siteReservations,buildingEdits,dependencies:{...ground.dependencies,parcels:A.hash(JSON.stringify(parcels)),buildings:A.hash(JSON.stringify(buildings)),blockInteriors:A.hash(JSON.stringify(blockInteriors))}};
     city.stats={...ground.stats,parcels:parcels.length,buildings:buildings.length,volumes:buildings.reduce((s,b)=>s+b.volumes.length,0),maxHeight:Math.max(...buildings.map(b=>b.height)),sharedInteriors:blockInteriors.length,cornerLots:parcels.filter(p=>p.corner).length,courtyards:buildings.filter(b=>b.volumes.some(v=>v.polygons.some(p=>p.holes.length))).length,towers:buildings.filter(b=>b.profile==='podium-tower').length};
     city.publicRealm=Realm.generate(city);city.dependencies.publicRealm=A.hash(JSON.stringify(city.publicRealm));
     const errors=validate(city);if(errors.length)throw Error(errors.slice(0,8).join('; '));return city;
@@ -151,5 +204,5 @@
     }
     return errors;
   }
-    const api={...A,generate,validate,allowedFootprints,usableFootprints,footprintAspect,footprintRules};if(typeof module!=='undefined')module.exports=api;root.CityFabric=api;
+    const api={...A,VERSION,LEGACY_VERSION,generate,validate,allowedFootprints,usableFootprints,resolvedFootprints,footprintAspect,footprintRules};if(typeof module!=='undefined')module.exports=api;root.CityFabric=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
