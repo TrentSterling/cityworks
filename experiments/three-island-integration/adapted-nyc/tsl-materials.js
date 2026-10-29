@@ -1,5 +1,6 @@
 // Derived from pinned Slop NY (MIT); local vertical facade phase, shared upstream lighting uniforms.
 import * as THREE from 'three/webgpu';
+import {MASONRY,AC_UNIT} from '../masonry-rules.js';
 import {STOREFRONT_METRICS as SHOP} from '../facade-layout.js';
 import {
   Fn,
@@ -685,6 +686,7 @@ function createCurtainWallMaterial(opts = {}) {
 function createPreWarBuildingMaterial(opts = {}) {
   const {
     stoneColor = 0xd8ceb8,
+    masonryKind = 'stone',
     trimColor = 0x9e937f,
     windowGlassColor = 0x162432,
     windowWidth = 2.7,
@@ -701,7 +703,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     cornerPier = 1.2 // solid masonry at both ends of every wall above the shopfronts (box-local mode)
   } = opts;
 
-  const cacheKey = `${stoneColor}_${trimColor}_${windowWidth}_${floorHeight}_${litProbability}_${warmth}_${crownGlowHeight}_${seed}_${boxLocal}_${footprintLocal}_${cornerPier}`;
+  const cacheKey = `${masonryKind}_${stoneColor}_${trimColor}_${windowWidth}_${floorHeight}_${litProbability}_${warmth}_${crownGlowHeight}_${seed}_${boxLocal}_${footprintLocal}_${cornerPier}`;
   if (_preWarCache.has(cacheKey)) {
     return _preWarCache.get(cacheKey);
   }
@@ -712,6 +714,10 @@ function createPreWarBuildingMaterial(opts = {}) {
   });
 
   // The style's parameters are uniforms (not baked-in constants), so every masonry style compiles to one shader
+  const masonry=MASONRY[masonryKind];
+  if(!masonry)throw Error('Unknown masonry style');
+  const uMasonry=uniform(new THREE.Vector4(masonry.length,masonry.height,masonry.joint,masonry.relief));
+  mat.userData.masonry={front:masonry,rear:MASONRY.brick,acUnit:AC_UNIT};
   const cStone = uniform(new THREE.Color(stoneColor));
   const cTrim = uniform(new THREE.Color(trimColor));
   const cGlass = uniform(new THREE.Color(windowGlassColor));
@@ -755,10 +761,26 @@ function createPreWarBuildingMaterial(opts = {}) {
   const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.62), fw, facade.roomTangent);
   const shopLit = step(0.24, hash2D(cellId.add(vec2(uSeed, 19.4))));
   const bulbCol = mix(cCoolWindow, cWarmWindow, step(float(1.0).sub(uWarmth), hash2D(cellId.add(vec2(uSeed.mul(1.9), 83.1)))));
-  // Window AC units (~12% of upper-floor windows); the narrow belt no longer replaces an entire floor
+  // Shared metre dimensions for both shading outputs; rear common brick does
+  // not inherit the larger dressed-stone module of a street frontage.
+  const masonryScale=mix(uMasonry,vec4(MASONRY.brick.length,MASONRY.brick.height,MASONRY.brick.joint,MASONRY.brick.relief),back);
+  const brickL=masonryScale.x,brickH=masonryScale.y,joint=masonryScale.z;
   const beltFloor = float(0.0);
-  const acRand = hash2D(cellId.add(vec2(uSeed.mul(1.3).add(7.1), 91.7)));
-  const hasAC = step(0.88, acRand).mul(float(1.0).sub(isGroundFloor)).mul(float(1.0).sub(isRoof)).mul(open).mul(float(1.0).sub(beltFloor));
+  const acRand=hash2D(vec2(boxSeed,uSeed.add(7.1)));
+  // Varying interpolation can drift around integer floor limits. Restore the
+  // exact discrete policy before comparisons so first/last rows cannot speckle.
+  const detail=footprintLocal?floor(attribute('facadeDetail','vec4').add(.5)):vec4(1,0,1,0);
+  const wallSeed=footprintLocal?attribute('facadeFrame','vec3').z:float(0);
+  const acColumn=floor(cellId.x.sub(wallSeed).add(.001));
+  const selectedColumn=float(1).sub(step(.5,abs(mod(acColumn,max(1,detail.x)).sub(detail.y))));
+  const hasAC=selectedColumn.mul(step(detail.z,cellId.y)).mul(step(cellId.y,detail.w))
+    .mul(step(1,cellId.y)).mul(float(1).sub(isRoof)).mul(open)
+    .mul(float(1).sub(smoothstep(.10,.25,max(fw.x,fw.y))));
+  const acHalfWidth=float(AC_UNIT.width/2).div(bayWidth);
+  const acMinX=float(.5).sub(acHalfWidth),acMaxX=float(.5).add(acHalfWidth);
+  const acMinY=effHalfY,acHeight=float(AC_UNIT.height).div(uFloorHeight),acMaxY=effHalfY.add(acHeight);
+  const acMask=(ramp)=>filteredPulse(cellUV.x,acMinX,acMaxX,ramp.x)
+    .mul(filteredPulse(cellUV.y,acMinY,acMaxY,ramp.y)).mul(hasAC);
 
   mat.colorNode = Fn(() => {
     const oneMinusEffX = float(1.0).sub(effHalfX);
@@ -782,15 +804,9 @@ function createPreWarBuildingMaterial(opts = {}) {
     const sashMask = clamp(max(max(sashBarY, sashBarX), max(storeTransom, storeMullion)), 0.0, 1.0);
 
     // Protruding Window Air-Conditioner Unit, sitting on the sill (see hasAC)
-    const acMinX = float(0.31);
-    const acMaxX = float(0.69);
-    const acMinY = effHalfY;
-    const acMaxY = effHalfY.add(0.22);
-    const inACBox = filteredPulse(cellUV.x, acMinX, acMaxX, fw.x)
-      .mul(filteredPulse(cellUV.y, acMinY, acMaxY, fw.y))
-      .mul(hasAC);
+    const inACBox = acMask(fw);
     const acUV = clamp(
-      vec2(cellUV.x.sub(acMinX).div(0.38), cellUV.y.sub(acMinY).div(0.22)),
+      vec2(cellUV.x.sub(acMinX).div(acHalfWidth.mul(2)), cellUV.y.sub(acMinY).div(acHeight)),
       vec2(0.0),
       vec2(1.0)
     );
@@ -807,8 +823,6 @@ function createPreWarBuildingMaterial(opts = {}) {
     const isWindowGlass = isWindowOpening.mul(float(1.0).sub(sashMask)).mul(float(1.0).sub(inACBox));
 
     // Anti-Aliased Running-Bond Brickwork & Ashlar Stone Coursing
-    const brickH = 0.24;
-    const brickL = 0.56;
     const rowCoord = vCoord.div(brickH);
     const courseRow = floor(rowCoord);
     const colCoord = brickU.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
@@ -825,8 +839,8 @@ function createPreWarBuildingMaterial(opts = {}) {
     });
     const backTint = mix(backBrick, color(0x8f8b84), parged);
     const mortarJoint = max(
-      gridLine(colCoord.mul(brickL), brickL, 0.016),
-      gridLine(vCoord, brickH, 0.016)
+      gridLine(colCoord.mul(brickL), brickL, joint.mul(.5)),
+      gridLine(vCoord, brickH, joint.mul(.5))
     ).mul(float(1.0).sub(isRoof)).mul(float(1.0).sub(parged)).mul(float(1.0).sub(coping));
 
     // Per-brick tint fades out once bricks shrink to a pixel (and soot streaks once they do), so neither can shimmer
@@ -901,7 +915,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const masonryTint = mix(wallTint, cTrim, trimMix)
       .mul(brickRnd.mul(0.14).add(1.0))
       .mul(brickShiftVec);
-    const masonryWithMortar = mix(masonryTint, masonryTint.mul(0.62), mortarJoint);
+    const masonryWithMortar = mix(masonryTint, masonryTint.mul(0.76), mortarJoint);
     const masonryWeathered = mix(masonryWithMortar, cSoot, sootDirt)
       .mul(float(1.0).sub(corniceShadow))
       .mul(float(1.0).sub(isSillUnderShadow.mul(0.42)))
@@ -947,7 +961,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const glassRough = float(0.14).add(pooledRough);
 
     const stoneGrain = noise2D(vec2(uCoord.mul(8.0), vCoord.mul(8.0))).mul(0.12);
-    return mix(float(0.78).add(stoneGrain), glassRough, isWindow);
+    return mix(mix(float(0.78).add(stoneGrain), glassRough, isWindow),float(.66),acMask(fw));
   })();
 
   // Hardware derivative bumpNormal for domed brickwork, stone courses, recessed windows & AC louvers. Edges ramp over
@@ -966,23 +980,19 @@ function createPreWarBuildingMaterial(opts = {}) {
     const inY = filteredPulse(cellUV.y, effHalfY, effMaxY, ramp.y);
     const isWindow = inX.mul(inY);
 
-    const brickH = 0.24;
-    const brickL = 0.56;
     const rowCoord = vCoord.div(brickH);
     const courseRow = floor(rowCoord);
     const colCoord = brickU.div(brickL).add(mod(courseRow, 2.0).mul(0.5));
     const distU = float(0.5).sub(abs(fract(colCoord).sub(0.5))).mul(brickL);
     const distV = float(0.5).sub(abs(fract(rowCoord).sub(0.5))).mul(brickH);
-    const brickDome = smoothstep(0.0, 0.018, distU).mul(smoothstep(0.0, 0.018, distV)).mul(0.0045)
+    const brickDome = smoothstep(0.0, joint, distU).mul(smoothstep(0.0, joint, distV)).mul(masonryScale.w)
       .mul(float(1.0).sub(smoothstep(0.006, 0.012, footprint)));
 
     const sillLedge = filteredPulse(cellUV.y, effHalfY.sub(0.032), effHalfY, ramp.y).mul(inX).mul(0.016);
     const corniceLedge = belt.mul(0.022);
 
-    const inACBox = filteredPulse(cellUV.x, 0.31, 0.69, ramp.x)
-      .mul(filteredPulse(cellUV.y, effHalfY, effHalfY.add(0.22), ramp.y))
-      .mul(hasAC);
-    const acLouverHeight = fract(cellUV.y.sub(effHalfY).div(0.22).mul(6.0)).mul(0.012)
+    const inACBox = acMask(ramp);
+    const acLouverHeight = fract(cellUV.y.sub(effHalfY).div(acHeight).mul(6.0)).mul(0.012)
       .mul(float(1.0).sub(smoothstep(0.012, 0.025, footprint)));
 
     const wallHeight = brickDome.mul(float(1.0).sub(coping)).add(sillLedge).add(corniceLedge).add(coping.mul(0.024));
@@ -1009,9 +1019,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     const storeMullion = lineAA(fract(cellUV.x.mul(2.0)).sub(0.5), 0.020).mul(isGroundFloor);
     const sashMask = clamp(max(max(sashBarY, sashBarX), max(storeTransom, storeMullion)), 0.0, 1.0);
 
-    const inACBox = filteredPulse(cellUV.x, 0.31, 0.69, fw.x)
-      .mul(filteredPulse(cellUV.y, glowHalfY, glowHalfY.add(0.22), fw.y))
-      .mul(hasAC);
+    const inACBox = acMask(fw);
 
     const isWindow = inX.mul(inY)
       .mul(float(1.0).sub(isRoof))

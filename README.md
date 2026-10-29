@@ -2,7 +2,7 @@
 
 A deterministic city planning prototype with a Three.js preview and engine-neutral city data.
 
-[0.5.5 release notes](docs/RELEASE_055.md) cover floor-aware storefront signs, thin canopies and preserved project compatibility.
+[0.5.6 release notes](docs/RELEASE_056.md) cover metre-scale masonry and building-specific window AC placement, with preserved project compatibility.
 
 [Open Cityworks](https://tront.xyz/cityworks/) to explore the integrated three-island city. The default plan has a 2 km² bounding envelope, connected streets and bridges, 267 buildings, 279 volumes, seven planned taller outliers across all three islands and 25 shared block interiors. The building renderer uses documented MIT adaptations of the pinned Slop New York facade system.
 

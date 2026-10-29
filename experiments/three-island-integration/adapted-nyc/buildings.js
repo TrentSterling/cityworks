@@ -176,6 +176,7 @@ function buildCityBlocks(scene, landmarkColliders = []) {
     // 1: Historic Warm Red/Terracotta Brick (Garment District / Chelsea / SoHo / Upper West Side)
     [createPreWarBuildingMaterial, {
       stoneColor: 0xa45a45,
+      masonryKind: 'brick',
       trimColor: 0xcab9a0,
       windowGlassColor: 0x16222e,
       windowWidth: 2.4,
