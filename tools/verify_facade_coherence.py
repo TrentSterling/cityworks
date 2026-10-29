@@ -27,7 +27,7 @@ with sync_playwright() as p:
             page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None)
             page.goto(f'http://127.0.0.1:{server.server_port}/{prefix}experiments/three-island-integration/facade-coherence.html')
             page.wait_for_function('window.Coherence?.ready',timeout=60000)
-            for view in ['front','oblique','rooms','roomsLeft','roomsRight']:
+            for view in ['front','oblique','rooms','roomsLeft','roomsRight','diagonal']:
                 page.evaluate('(v)=>Coherence.view(v)',view);page.wait_for_timeout(700)
                 page.screenshot(path=str(OUT/f'{label}-{view}.png'));info=page.evaluate('Coherence.inspect()');report[label]['views'][view]=info
                 assert not info['nonfinite']
@@ -37,6 +37,7 @@ with sync_playwright() as p:
                 assert len(fronts)==3 and len({x['domainId'] for x in fronts})==1,fronts
                 assert all(x['width']==32 and x['storeys']==6 for x in fronts)
                 assert sum(x['edgeWidth'] for x in fronts)==32
+                seam=report[label]['views']['diagonal']['diagonalSeam'];assert len(seam)==2 and abs(seam[0]-seam[1])<.00001,seam
                 page.evaluate('Coherence.view("rooms")');page.wait_for_timeout(500);first=page.screenshot();page.wait_for_timeout(500);assert first==page.screenshot(),'Static room view must be deterministic'
             page.goto(f'http://127.0.0.1:{server.server_port}/{prefix}experiments/three-island-integration/facade-fixture.html')
             page.wait_for_function('window.FacadeFixture?.ready',timeout=60000)

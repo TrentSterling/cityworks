@@ -220,7 +220,7 @@ const facadeAlongZ = varying(
  *   clusters, drapes settle to their mean coverage & lamps fade out, so distant towers don't twinkle in motion.
  * - Returns `vec4(roomColor, litEmit)`.
  */
-const evaluateApartmentInterior = Fn(([uCoord, vCoord, winUV, cellId, winWNode, floorHNode, seedNode, warmthNode, litProbNode, fwNode]) => {
+const evaluateApartmentInterior = Fn(([uCoord, vCoord, winUV, cellId, winWNode, floorHNode, seedNode, warmthNode, litProbNode, fwNode, tangentNode]) => {
   const u = float(uCoord).toVar();
   const v = float(vCoord).toVar();
   const wUV = vec2(winUV).toVar();
@@ -255,10 +255,10 @@ const evaluateApartmentInterior = Fn(([uCoord, vCoord, winUV, cellId, winWNode, 
   // View ray `dir` in world meters in the room's (across, up, depth) frame. `across` runs along the wall's tangent
   // (+x on walls facing ±z, +z on walls facing ±x, turning with walls that follow a non-grid street)
   const rayWorld = normalize(positionWorld.sub(cameraPosition)).toVar();
-  const tSign = mix(sign(facadeWorldNormal.z).negate(), sign(facadeWorldNormal.x), facadeAlongZ);
-  const dirX = dot(rayWorld, vec3(facadeWorldNormal.z.negate(), 0.0, facadeWorldNormal.x).mul(tSign)).toVar();
+  const tangent = vec3(tangentNode);
+  const dirX = dot(rayWorld, tangent).toVar();
   const dirY = rayWorld.y.toVar();
-  const dirZ = max(abs(dot(rayWorld, facadeWorldNormal)), 0.05).toVar();
+  const dirZ = max(abs(dot(rayWorld, vec3(tangent.z.negate(), 0.0, tangent.x))), 0.05).toVar();
 
   // Slab intersection with the far planes of the room box:
   // [-halfW .. +halfW] x [-halfH .. +halfH] x [setback .. setback + depth]
@@ -404,6 +404,8 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   let exposedHeight = float(1.0);
   let fromTop = float(0.0);
   let boxSeed = float(0.0);
+  const tangentSign = mix(sign(facadeWorldNormal.z).negate(), sign(facadeWorldNormal.x), facadeAlongZ);
+  let roomTangent = vec3(facadeWorldNormal.z.negate(), 0.0, facadeWorldNormal.x).mul(tangentSign);
 
   if (boxLocal) {
     const box = attribute('box', 'vec4'); // width, height, depth (exposed height for footprints), seed + tone
@@ -415,11 +417,13 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
     tone = fract(box.w).sub(0.1).div(0.8);
     boxSeed = floor(box.w);
     // Whole-bay offset per wall so walls don't repeat each other's windows
-    const wallSeed = floor(box.w.add(dot(nWall, vec3(17.0, 0.0, 37.0))));
+    const frame = footprintLocal ? attribute('facadeFrame', 'vec3') : null;
+    if (footprintLocal) roomTangent = vec3(frame.x, 0.0, frame.y);
+    const wallSeed = footprintLocal ? frame.z : floor(box.w.add(dot(nWall, vec3(17.0, 0.0, 37.0))));
     const along = footprintLocal ? wall.x : mix(positionGeometry.x, positionGeometry.z, alongZ).add(0.5); // 0..1 along the wall
     wallW = wallWidth;
     // Read painted signs left to right when facing the wall.
-    const flip = mix(step(nWall.z, 0.0), step(0.0, nWall.x), alongZ);
+    const flip = footprintLocal ? step(dot(roomTangent, vec3(nWall.z, 0.0, nWall.x.negate())), 0.0) : mix(step(nWall.z, 0.0), step(0.0, nWall.x), alongZ);
     wallS = mix(along, float(1.0).sub(along), flip).mul(wallWidth);
     wallH = box.y;
     exposedHeight = footprintLocal ? box.z : box.y;
@@ -474,7 +478,7 @@ function facadeCell(windowWidth, floorHeight, boxLocal, cornerPier = 0, footprin
   const brickU=footprintLocal?attribute('facadeBrick','float'):uCoord;
   return {
     isRoof, uCoord, vCoord, gridV, cellId, cellUV, fw, bayWidth, isGroundFloor, solid, back, blank, tone,
-    wallS, wallW, wallH, exposedHeight, fromTop, boxSeed, partial, coping,brickU,ineligible
+    wallS, wallW, wallH, exposedHeight, fromTop, boxSeed, partial, coping,brickU,ineligible,roomTangent
   };
 }
 
@@ -538,7 +542,7 @@ function createCurtainWallMaterial(opts = {}) {
     vec2(0.0),
     vec2(1.0)
   );
-  const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.65), fw);
+  const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.65), fw, facade.roomTangent);
   const shopLit = step(0.24, hash2D(cellId.add(vec2(uSeed, 19.4))));
   const floorIdx = floor(gridV);
   const isMechFloor = float(1.0).sub(step(1.0, mod(floorIdx.add(uSeed), 16.0))).mul(step(4.0, floorIdx));
@@ -744,7 +748,7 @@ function createPreWarBuildingMaterial(opts = {}) {
     vec2(0.0),
     vec2(1.0)
   );
-  const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.62), fw);
+  const aptRoom = evaluateApartmentInterior(uCoord, vCoord, winUV, cellId, bayWidth, uFloorHeight, uSeed, uWarmth, uLitProbability.mul(0.62), fw, facade.roomTangent);
   const shopLit = step(0.24, hash2D(cellId.add(vec2(uSeed, 19.4))));
   const bulbCol = mix(cCoolWindow, cWarmWindow, step(float(1.0).sub(uWarmth), hash2D(cellId.add(vec2(uSeed.mul(1.9), 83.1)))));
   // Window AC units (~12% of upper-floor windows); the narrow belt no longer replaces an entire floor

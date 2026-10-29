@@ -20,6 +20,13 @@ export function facadeDomains(points){
   const coplanar=first&&Math.abs((e.b.x-first.a.x)*first.u[1]-(e.b.y-first.a.y)*first.u[0])<.005;
   if(last&&coplanar&&aligned(last.edges.at(-1).edge,e))last.edges.push({i,edge:e});else runs.push({id:i,edges:[{i,edge:e}]});}
  const result=[];
- for(const run of runs){const width=run.edges.reduce((s,x)=>s+x.edge.width,0),a=run.edges[0].edge.a,b=run.edges.at(-1).edge.b;let offset=0;for(const x of run.edges){result[x.i]={id:run.id,width,offset,a,b};offset+=x.edge.width;}}
+ for(const run of runs){
+  const width=run.edges.reduce((s,x)=>s+x.edge.width,0),a=run.edges[0].edge.a,b=run.edges.at(-1).edge.b,dx=b.x-a.x,dz=b.y-a.y,length=Math.hypot(dx,dz);
+  const normal=length?{x:-dz/length,z:dx/length}:{x:0,z:0},reverse=(Math.abs(dz)>=Math.abs(dx)?dz:dx)<0,tangent={x:normal.z*(reverse?-1:1),z:-normal.x*(reverse?-1:1)};
+  let offset=0;for(const x of run.edges){result[x.i]={id:run.id,width,offset,a,b,normal,reverse,tangent};offset+=x.edge.width;}
+ }
+ // Place the unavoidable closed-ring brick seam at a physical corner, never inside a joined wall.
+ const total=edges.reduce((s,e)=>s+e.width,0),pivot=result.findIndex(d=>d.offset===0),origin=edges.slice(0,pivot).reduce((s,e)=>s+e.width,0);let perimeter=0;
+ for(let i=0;i<edges.length;i++){result[i].brickOffset=total?(perimeter-origin+total)%total:0;perimeter+=edges[i].width;}
  return result;
 }

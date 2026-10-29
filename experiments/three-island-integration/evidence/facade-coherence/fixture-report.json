@@ -4,7 +4,7 @@
     "views": {
       "front": {
         "render": {
-          "calls": 180,
+          "calls": 184,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -12,9 +12,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
         "nonfinite": 0,
         "panels": [
           {
@@ -156,7 +156,67 @@
             "storeys": 6,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
         ],
         "camera": {
           "position": [
@@ -174,7 +234,7 @@
       },
       "oblique": {
         "render": {
-          "calls": 280,
+          "calls": 288,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -182,9 +242,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
         "nonfinite": 0,
         "panels": [
           {
@@ -326,7 +386,67 @@
             "storeys": 6,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
         ],
         "camera": {
           "position": [
@@ -344,7 +464,7 @@
       },
       "rooms": {
         "render": {
-          "calls": 378,
+          "calls": 386,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -352,9 +472,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
         "nonfinite": 0,
         "panels": [
           {
@@ -496,7 +616,67 @@
             "storeys": 6,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
         ],
         "camera": {
           "position": [
@@ -514,7 +694,7 @@
       },
       "roomsLeft": {
         "render": {
-          "calls": 480,
+          "calls": 486,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -522,9 +702,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
         "nonfinite": 0,
         "panels": [
           {
@@ -666,7 +846,67 @@
             "storeys": 6,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
         ],
         "camera": {
           "position": [
@@ -684,7 +924,7 @@
       },
       "roomsRight": {
         "render": {
-          "calls": 582,
+          "calls": 588,
           "frameCalls": 2,
           "drawCalls": 4,
           "triangles": 41,
@@ -692,9 +932,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
         "nonfinite": 0,
         "panels": [
           {
@@ -836,7 +1076,67 @@
             "storeys": 6,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
         ],
         "camera": {
           "position": [
@@ -851,11 +1151,241 @@
             0.9870874576374967
           ]
         }
+      },
+      "diagonal": {
+        "render": {
+          "calls": 690,
+          "frameCalls": 2,
+          "drawCalls": 4,
+          "triangles": 35,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 6576,
+        "nonfinite": 0,
+        "panels": [
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 0,
+            "kind": 3,
+            "width": 1,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 0,
+            "storeys": 5,
+            "pier": 0.5,
+            "windowEligible": false
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 6,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 1,
+            "storeys": 5,
+            "pier": 1.7,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 25,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 8,
+            "storeys": 5,
+            "pier": 2.0999999999999996,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 12,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 2.0999999999999996,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 4,
+            "kind": 2,
+            "width": 32,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 11,
+            "storeys": 5,
+            "pier": 1.6999999999999993,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 5,
+            "kind": 2,
+            "width": 12,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 2.0999999999999996,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 0,
+            "kind": 0,
+            "width": 32,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.5,
+            "bays": 12,
+            "storeys": 6,
+            "pier": 1.6000000000000014,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 1,
+            "kind": 2,
+            "width": 12,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.5,
+            "bays": 4,
+            "storeys": 6,
+            "pier": 1.2000000000000002,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 2,
+            "kind": 2,
+            "width": 32,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.5,
+            "bays": 12,
+            "storeys": 6,
+            "pier": 1.6000000000000014,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 12,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.5,
+            "bays": 4,
+            "storeys": 6,
+            "pier": 1.2000000000000002,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 7,
+            "storeys": 5,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "kind": 0,
+            "width": 16.96985565642796,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 5,
+            "storeys": 5,
+            "pier": 1.98492782821398,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "kind": 0,
+            "width": 11.313001414302041,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 3,
+            "storeys": 5,
+            "pier": 1.7565007071510204,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.7,
+            "bays": 10,
+            "storeys": 5,
+            "pier": 2,
+            "windowEligible": true
+          }
+        ],
+        "diagonalSeam": [
+          16.96985626220703,
+          11.31300163269043
+        ],
+        "camera": {
+          "position": [
+            -9,
+            9,
+            -25
+          ],
+          "quaternion": [
+            0,
+            0.9238795325112867,
+            0,
+            -0.3826834323650898
+          ]
+        }
       }
     },
     "fit-brick": {
       "render": {
-        "calls": 168,
+        "calls": 170,
         "frameCalls": 2,
         "drawCalls": 4,
         "triangles": 95,
@@ -1654,7 +2184,7 @@
     },
     "fit-glass": {
       "render": {
-        "calls": 238,
+        "calls": 242,
         "frameCalls": 2,
         "drawCalls": 4,
         "triangles": 95,
@@ -2465,9 +2995,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
         "nonfinite": 0,
         "panels": [
           {
@@ -2477,6 +3007,13 @@
             "edgeWidth": 1,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2494,6 +3031,13 @@
             "edgeWidth": 6,
             "domainId": 0,
             "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2511,6 +3055,13 @@
             "edgeWidth": 25,
             "domainId": 0,
             "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2528,6 +3079,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2545,6 +3103,13 @@
             "edgeWidth": 32,
             "domainId": 4,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 20.4,
@@ -2562,6 +3127,13 @@
             "edgeWidth": 12,
             "domainId": 5,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2579,6 +3151,13 @@
             "edgeWidth": 32,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 23.8,
@@ -2596,6 +3175,13 @@
             "edgeWidth": 12,
             "domainId": 1,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -2613,6 +3199,13 @@
             "edgeWidth": 32,
             "domainId": 2,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 23.8,
@@ -2630,6 +3223,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -2639,7 +3239,107 @@
             "storeys": 7,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
         ],
         "camera": {
           "position": [
@@ -2657,7 +3357,7 @@
       },
       "oblique": {
         "render": {
-          "calls": 290,
+          "calls": 288,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -2665,9 +3365,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
         "nonfinite": 0,
         "panels": [
           {
@@ -2677,6 +3377,13 @@
             "edgeWidth": 1,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2694,6 +3401,13 @@
             "edgeWidth": 6,
             "domainId": 0,
             "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2711,6 +3425,13 @@
             "edgeWidth": 25,
             "domainId": 0,
             "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2728,6 +3449,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2745,6 +3473,13 @@
             "edgeWidth": 32,
             "domainId": 4,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 20.4,
@@ -2762,6 +3497,13 @@
             "edgeWidth": 12,
             "domainId": 5,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2779,6 +3521,13 @@
             "edgeWidth": 32,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 23.8,
@@ -2796,6 +3545,13 @@
             "edgeWidth": 12,
             "domainId": 1,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -2813,6 +3569,13 @@
             "edgeWidth": 32,
             "domainId": 2,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 23.8,
@@ -2830,6 +3593,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -2839,7 +3609,107 @@
             "storeys": 7,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
         ],
         "camera": {
           "position": [
@@ -2857,7 +3727,7 @@
       },
       "rooms": {
         "render": {
-          "calls": 388,
+          "calls": 386,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -2865,9 +3735,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
         "nonfinite": 0,
         "panels": [
           {
@@ -2877,6 +3747,13 @@
             "edgeWidth": 1,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2894,6 +3771,13 @@
             "edgeWidth": 6,
             "domainId": 0,
             "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2911,6 +3795,13 @@
             "edgeWidth": 25,
             "domainId": 0,
             "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -2928,6 +3819,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2945,6 +3843,13 @@
             "edgeWidth": 32,
             "domainId": 4,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 20.4,
@@ -2962,6 +3867,13 @@
             "edgeWidth": 12,
             "domainId": 5,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -2979,6 +3891,13 @@
             "edgeWidth": 32,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 23.8,
@@ -2996,6 +3915,13 @@
             "edgeWidth": 12,
             "domainId": 1,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3013,6 +3939,13 @@
             "edgeWidth": 32,
             "domainId": 2,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 23.8,
@@ -3030,6 +3963,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3039,7 +3979,107 @@
             "storeys": 7,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
         ],
         "camera": {
           "position": [
@@ -3057,7 +4097,7 @@
       },
       "roomsLeft": {
         "render": {
-          "calls": 490,
+          "calls": 488,
           "frameCalls": 2,
           "drawCalls": 5,
           "triangles": 51,
@@ -3065,9 +4105,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
         "nonfinite": 0,
         "panels": [
           {
@@ -3077,6 +4117,13 @@
             "edgeWidth": 1,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3094,6 +4141,13 @@
             "edgeWidth": 6,
             "domainId": 0,
             "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3111,6 +4165,13 @@
             "edgeWidth": 25,
             "domainId": 0,
             "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3128,6 +4189,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -3145,6 +4213,13 @@
             "edgeWidth": 32,
             "domainId": 4,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 20.4,
@@ -3162,6 +4237,13 @@
             "edgeWidth": 12,
             "domainId": 5,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -3179,6 +4261,13 @@
             "edgeWidth": 32,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 23.8,
@@ -3196,6 +4285,13 @@
             "edgeWidth": 12,
             "domainId": 1,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3213,6 +4309,13 @@
             "edgeWidth": 32,
             "domainId": 2,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 23.8,
@@ -3230,6 +4333,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3239,7 +4349,107 @@
             "storeys": 7,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
         ],
         "camera": {
           "position": [
@@ -3265,9 +4475,9 @@
           "lines": 0,
           "timestamp": 0
         },
-        "geometries": 2,
-        "materials": 2,
-        "bytes": 3600,
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
         "nonfinite": 0,
         "panels": [
           {
@@ -3277,6 +4487,13 @@
             "edgeWidth": 1,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3294,6 +4511,13 @@
             "edgeWidth": 6,
             "domainId": 0,
             "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3311,6 +4535,13 @@
             "edgeWidth": 25,
             "domainId": 0,
             "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
             "kind": 0,
             "width": 32,
             "height": 20.4,
@@ -3328,6 +4559,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -3345,6 +4583,13 @@
             "edgeWidth": 32,
             "domainId": 4,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 20.4,
@@ -3362,6 +4607,13 @@
             "edgeWidth": 12,
             "domainId": 5,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 20.4,
@@ -3379,6 +4631,13 @@
             "edgeWidth": 32,
             "domainId": 0,
             "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
             "kind": 0,
             "width": 32,
             "height": 23.8,
@@ -3396,6 +4655,13 @@
             "edgeWidth": 12,
             "domainId": 1,
             "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3413,6 +4679,13 @@
             "edgeWidth": 32,
             "domainId": 2,
             "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
             "kind": 2,
             "width": 32,
             "height": 23.8,
@@ -3430,6 +4703,13 @@
             "edgeWidth": 12,
             "domainId": 3,
             "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
             "kind": 2,
             "width": 12,
             "height": 23.8,
@@ -3439,7 +4719,107 @@
             "storeys": 7,
             "pier": 1.2000000000000002,
             "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
           }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
         ],
         "camera": {
           "position": [
@@ -3454,11 +4834,381 @@
             0.9870874576374967
           ]
         }
+      },
+      "diagonal": {
+        "render": {
+          "calls": 694,
+          "frameCalls": 2,
+          "drawCalls": 4,
+          "triangles": 35,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "geometries": 5,
+        "materials": 4,
+        "bytes": 7416,
+        "nonfinite": 0,
+        "panels": [
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 1,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
+            "kind": 0,
+            "width": 32,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 11,
+            "storeys": 6,
+            "pier": 1.6999999999999993,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 6,
+            "domainId": 0,
+            "domainOffset": 1,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 1,
+            "kind": 0,
+            "width": 32,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 11,
+            "storeys": 6,
+            "pier": 1.6999999999999993,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 25,
+            "domainId": 0,
+            "domainOffset": 7,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 7,
+            "kind": 0,
+            "width": 32,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 11,
+            "storeys": 6,
+            "pier": 1.6999999999999993,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 12,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
+            "kind": 2,
+            "width": 12,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 3,
+            "storeys": 6,
+            "pier": 2.0999999999999996,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 4,
+            "edgeWidth": 32,
+            "domainId": 4,
+            "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
+            "kind": 2,
+            "width": 32,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 11,
+            "storeys": 6,
+            "pier": 1.6999999999999993,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "cream-split",
+            "ring": 0,
+            "edge": 5,
+            "edgeWidth": 12,
+            "domainId": 5,
+            "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
+            "kind": 2,
+            "width": 12,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 3,
+            "storeys": 6,
+            "pier": 2.0999999999999996,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 32,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 0,
+            "kind": 0,
+            "width": 32,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.4,
+            "bays": 12,
+            "storeys": 7,
+            "pier": 1.6000000000000014,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 12,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": 35,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": -0.0,
+              "z": 1
+            },
+            "brickOffset": 32,
+            "kind": 2,
+            "width": 12,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.4,
+            "bays": 4,
+            "storeys": 7,
+            "pier": 1.2000000000000002,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 32,
+            "domainId": 2,
+            "domainOffset": 0,
+            "domainSeed": -19,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 1,
+              "z": -0.0
+            },
+            "brickOffset": 44,
+            "kind": 2,
+            "width": 32,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.4,
+            "bays": 12,
+            "storeys": 7,
+            "pier": 1.6000000000000014,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "red-band",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 12,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 1,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 0,
+              "z": 1
+            },
+            "brickOffset": 76,
+            "kind": 2,
+            "width": 12,
+            "height": 23.8,
+            "bayWidth": 2.4,
+            "floorHeight": 3.4,
+            "bays": 4,
+            "storeys": 7,
+            "pier": 1.2000000000000002,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 0,
+            "edgeWidth": 22.360232601652424,
+            "domainId": 0,
+            "domainOffset": 0,
+            "domainSeed": 17,
+            "domainReverse": true,
+            "domainTangent": {
+              "x": 0.44726726139963885,
+              "z": 0.8944003560375338
+            },
+            "brickOffset": 0,
+            "kind": 2,
+            "width": 22.360232601652424,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 7,
+            "storeys": 6,
+            "pier": 2.0801163008262122,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 1,
+            "edgeWidth": 16.96985565642796,
+            "domainId": 1,
+            "domainOffset": 0,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 22.360232601652427,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 2,
+            "edgeWidth": 11.313001414302041,
+            "domainId": 1,
+            "domainOffset": 16.96985565642796,
+            "domainSeed": -20,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": -0.7071067811865475,
+              "z": 0.7071067811865475
+            },
+            "brickOffset": 39.33008825808038,
+            "kind": 0,
+            "width": 28.282857070730003,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 9,
+            "storeys": 6,
+            "pier": 2.4414285353650005,
+            "windowEligible": true
+          },
+          {
+            "volumeId": "diagonal-domain",
+            "ring": 0,
+            "edge": 3,
+            "edgeWidth": 30,
+            "domainId": 3,
+            "domainOffset": 0,
+            "domainSeed": 55,
+            "domainReverse": false,
+            "domainTangent": {
+              "x": 1,
+              "z": 0
+            },
+            "brickOffset": 50.643089672382416,
+            "kind": 2,
+            "width": 30,
+            "height": 20.4,
+            "bayWidth": 2.6,
+            "floorHeight": 3.4,
+            "bays": 10,
+            "storeys": 6,
+            "pier": 2,
+            "windowEligible": true
+          }
+        ],
+        "diagonalSeam": [
+          16.969855331799295,
+          16.969855331799295
+        ],
+        "camera": {
+          "position": [
+            -9,
+            9,
+            -25
+          ],
+          "quaternion": [
+            0,
+            0.9238795325112867,
+            0,
+            -0.3826834323650898
+          ]
+        }
       }
     },
     "fit-brick": {
       "render": {
-        "calls": 166,
+        "calls": 170,
         "frameCalls": 2,
         "drawCalls": 4,
         "triangles": 95,
@@ -3476,6 +5226,13 @@
           "edgeWidth": 0.35,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 37,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 0.35,
           "height": 12.6,
@@ -3493,6 +5250,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 17,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 0.34999999999999964,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3510,6 +5274,13 @@
           "edgeWidth": 0.35,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -37,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 1.8500000000000005,
           "kind": 2,
           "width": 0.35,
           "height": 12.6,
@@ -3527,6 +5298,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -17,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 2.2,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3544,6 +5322,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 38,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -3561,6 +5346,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 18,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 1.2000000000000002,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3578,6 +5370,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -36,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 2.7,
           "kind": 2,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -3595,6 +5394,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -16,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 3.8999999999999995,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3612,6 +5418,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 39,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -3629,6 +5442,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 19,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 2.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3646,6 +5466,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -35,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 3.9000000000000004,
           "kind": 2,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -3663,6 +5490,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -15,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 6.300000000000001,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3680,6 +5514,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 40,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -3697,6 +5538,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 20,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 3.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3714,6 +5562,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -34,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 4.9,
           "kind": 2,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -3731,6 +5586,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -14,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 8.3,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3748,6 +5610,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 41,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 12.6,
@@ -3765,6 +5634,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 21,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3782,6 +5658,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -33,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 12.6,
@@ -3799,6 +5682,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -13,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3816,6 +5706,13 @@
           "edgeWidth": 8,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 42,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 8,
           "height": 12.6,
@@ -3833,6 +5730,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 22,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 8,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3850,6 +5754,13 @@
           "edgeWidth": 8,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -32,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 9.5,
           "kind": 2,
           "width": 8,
           "height": 12.6,
@@ -3867,6 +5778,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -12,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 17.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3884,6 +5802,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 43,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 2.8,
@@ -3901,6 +5826,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 23,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -3918,6 +5850,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -31,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 2.8,
@@ -3935,6 +5874,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -11,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -3952,6 +5898,13 @@
           "edgeWidth": 0.35,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 37,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 0.35,
           "height": 12.6,
@@ -3969,6 +5922,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 17,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 0.34999999999999964,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -3986,6 +5946,13 @@
           "edgeWidth": 0.35,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -37,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 1.8500000000000005,
           "kind": 2,
           "width": 0.35,
           "height": 12.6,
@@ -4003,6 +5970,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -17,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 2.2,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4020,6 +5994,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 38,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -4037,6 +6018,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 18,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 1.2000000000000002,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4054,6 +6042,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -36,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 2.7,
           "kind": 2,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -4071,6 +6066,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -16,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 3.8999999999999995,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4088,6 +6090,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 39,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -4105,6 +6114,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 19,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 2.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4122,6 +6138,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -35,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 3.9000000000000004,
           "kind": 2,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -4139,6 +6162,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -15,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 6.300000000000001,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4156,6 +6186,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 40,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -4173,6 +6210,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 20,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 3.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4190,6 +6234,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -34,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 4.9,
           "kind": 2,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -4207,6 +6258,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -14,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 8.3,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4224,6 +6282,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 41,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 12.6,
@@ -4241,6 +6306,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 21,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4258,6 +6330,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -33,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 12.6,
@@ -4275,6 +6354,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -13,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4292,6 +6378,13 @@
           "edgeWidth": 8,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 42,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 8,
           "height": 12.6,
@@ -4309,6 +6402,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 22,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 8,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4326,6 +6426,13 @@
           "edgeWidth": 8,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -32,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 9.5,
           "kind": 2,
           "width": 8,
           "height": 12.6,
@@ -4343,6 +6450,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -12,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 17.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4360,6 +6474,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 43,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 2.8,
@@ -4377,6 +6498,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 23,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -4394,6 +6522,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -31,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 2.8,
@@ -4411,6 +6546,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -11,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -4425,7 +6567,7 @@
     },
     "fit-glass": {
       "render": {
-        "calls": 224,
+        "calls": 240,
         "frameCalls": 2,
         "drawCalls": 4,
         "triangles": 95,
@@ -4443,6 +6585,13 @@
           "edgeWidth": 0.35,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 37,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 0.35,
           "height": 12.6,
@@ -4460,6 +6609,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 17,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 0.34999999999999964,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4477,6 +6633,13 @@
           "edgeWidth": 0.35,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -37,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 1.8500000000000005,
           "kind": 2,
           "width": 0.35,
           "height": 12.6,
@@ -4494,6 +6657,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -17,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 2.2,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4511,6 +6681,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 38,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -4528,6 +6705,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 18,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 1.2000000000000002,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4545,6 +6729,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -36,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 2.7,
           "kind": 2,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -4562,6 +6753,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -16,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 3.8999999999999995,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4579,6 +6777,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 39,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -4596,6 +6801,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 19,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 2.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4613,6 +6825,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -35,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 3.9000000000000004,
           "kind": 2,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -4630,6 +6849,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -15,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 6.300000000000001,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4647,6 +6873,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 40,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -4664,6 +6897,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 20,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 3.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4681,6 +6921,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -34,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 4.9,
           "kind": 2,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -4698,6 +6945,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -14,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 8.3,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4715,6 +6969,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 41,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 12.6,
@@ -4732,6 +6993,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 21,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4749,6 +7017,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -33,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 12.6,
@@ -4766,6 +7041,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -13,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4783,6 +7065,13 @@
           "edgeWidth": 8,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 42,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 8,
           "height": 12.6,
@@ -4800,6 +7089,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 22,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 8,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4817,6 +7113,13 @@
           "edgeWidth": 8,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -32,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 9.5,
           "kind": 2,
           "width": 8,
           "height": 12.6,
@@ -4834,6 +7137,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -12,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 17.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4851,6 +7161,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 43,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 2.8,
@@ -4868,6 +7185,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 23,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -4885,6 +7209,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -31,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 2.8,
@@ -4902,6 +7233,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -11,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -4919,6 +7257,13 @@
           "edgeWidth": 0.35,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 37,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 0.35,
           "height": 12.6,
@@ -4936,6 +7281,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 17,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 0.34999999999999964,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4953,6 +7305,13 @@
           "edgeWidth": 0.35,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -37,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 1.8500000000000005,
           "kind": 2,
           "width": 0.35,
           "height": 12.6,
@@ -4970,6 +7329,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -17,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 2.2,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -4987,6 +7353,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 38,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -5004,6 +7377,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 18,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 1.2000000000000002,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5021,6 +7401,13 @@
           "edgeWidth": 1.1999999999999997,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -36,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 2.7,
           "kind": 2,
           "width": 1.1999999999999997,
           "height": 12.6,
@@ -5038,6 +7425,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -16,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 3.8999999999999995,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5055,6 +7449,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 39,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -5072,6 +7473,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 19,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 2.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5089,6 +7497,13 @@
           "edgeWidth": 2.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -35,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 3.9000000000000004,
           "kind": 2,
           "width": 2.4000000000000004,
           "height": 12.6,
@@ -5106,6 +7521,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -15,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 6.300000000000001,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5123,6 +7545,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 40,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -5140,6 +7569,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 20,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 3.4000000000000004,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5157,6 +7593,13 @@
           "edgeWidth": 3.4000000000000004,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -34,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 4.9,
           "kind": 2,
           "width": 3.4000000000000004,
           "height": 12.6,
@@ -5174,6 +7617,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -14,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 8.3,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5191,6 +7641,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 41,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 12.6,
@@ -5208,6 +7665,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 21,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5225,6 +7689,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -33,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 12.6,
@@ -5242,6 +7713,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -13,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5259,6 +7737,13 @@
           "edgeWidth": 8,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 42,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 8,
           "height": 12.6,
@@ -5276,6 +7761,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 22,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 8,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5293,6 +7785,13 @@
           "edgeWidth": 8,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -32,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 9.5,
           "kind": 2,
           "width": 8,
           "height": 12.6,
@@ -5310,6 +7809,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -12,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 17.5,
           "kind": 2,
           "width": 1.5,
           "height": 12.6,
@@ -5327,6 +7833,13 @@
           "edgeWidth": 5,
           "domainId": 0,
           "domainOffset": 0,
+          "domainSeed": 43,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 1,
+            "z": 0
+          },
+          "brickOffset": 0,
           "kind": 0,
           "width": 5,
           "height": 2.8,
@@ -5344,6 +7857,13 @@
           "edgeWidth": 1.5,
           "domainId": 1,
           "domainOffset": 0,
+          "domainSeed": 23,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": -0.0,
+            "z": 1
+          },
+          "brickOffset": 5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,
@@ -5361,6 +7881,13 @@
           "edgeWidth": 5,
           "domainId": 2,
           "domainOffset": 0,
+          "domainSeed": -31,
+          "domainReverse": true,
+          "domainTangent": {
+            "x": 1,
+            "z": -0.0
+          },
+          "brickOffset": 6.5,
           "kind": 2,
           "width": 5,
           "height": 2.8,
@@ -5378,6 +7905,13 @@
           "edgeWidth": 1.5,
           "domainId": 3,
           "domainOffset": 0,
+          "domainSeed": -11,
+          "domainReverse": false,
+          "domainTangent": {
+            "x": 0,
+            "z": 1
+          },
+          "brickOffset": 11.5,
           "kind": 2,
           "width": 1.5,
           "height": 2.8,

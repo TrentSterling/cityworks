@@ -6,10 +6,10 @@ export class ViewportNavigation {
     this.camera=camera;this.canvas=canvas;this.orbit=orbit;this.mode='fly';this.keys=new Set();this.looking=false;this.speed=16;this.velocity=new Vector3();this.euler=new Euler(0,0,0,'YXZ');this.listeners=[];
     canvas.tabIndex=0;canvas.setAttribute('aria-label','City viewport. WASD move, hold right mouse button to look, Q and E down and up, Shift faster.');orbit.enabled=false;
     const on=(target,type,fn,options)=>{target.addEventListener(type,fn,options);this.listeners.push(()=>target.removeEventListener(type,fn,options));};
-    const typing=target=>target?.closest?.('input,textarea,select,[contenteditable="true"]');
+    const typing=target=>target?.isContentEditable||target?.closest?.('input,textarea,select');
     on(window,'keydown',e=>{
       if(e.code==='Escape'){this.reset();return;}
-      if(this.mode!=='fly'||typing(e.target)||e.ctrlKey||e.metaKey||e.altKey)return;
+      if(this.mode!=='fly'||typing(e.target)||e.ctrlKey||e.metaKey||e.altKey||(e.repeat&&!this.keys.has(e.code)))return;
       if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyE','ShiftLeft','ShiftRight'].includes(e.code)){this.keys.add(e.code);e.preventDefault();}
     });
     on(window,'keyup',e=>this.keys.delete(e.code));
