@@ -12,6 +12,7 @@ const navigation=new ViewportNavigation(camera,renderer.domElement,controls);
 const lighting=new LightingSystem(scene,renderer);lighting.applyPreset('midday');
 const start=performance.now(),ground=buildGround(scene,city),cityBuildings=buildCityBlocks(scene),buildMs=performance.now()-start;
 if(ground.soffits)cityBuildings.group.add(ground.soffits);
+if(ground.portals)cityBuildings.group.add(ground.portals);
 const samples=[];let last=performance.now(),view,selected;
 function setCamera(p,t){navigation.reset();camera.position.fromArray(p);controls.target.fromArray(t);controls.update();lighting.update(camera.position);cityBuildings.update(p[0],p[2],true);}
 function setView(name){view=name;

@@ -69,7 +69,11 @@ with sync_playwright() as p:
         page.locator('#block').select_option(block);page.locator('#building').select_option(locked)
         for i in range(3):
             click('#reroll');click('#undo');assert page.locator('iframe').count()==1
-        capture('final');assert max(x['materials'] for x in report['renders'])<=41
+        capture('final');assert max(x['materials'] for x in report['renders'])<=42
+        # 40 scene materials plus two selection overlays in 0.5.3. Repeated
+        # replacement must not accumulate materials or retained geometries.
+        assert report['renders'][-1]['materials']==report['renders'][0]['materials']
+        assert report['renders'][-1]['geometries']<=report['renders'][0]['geometries']
         page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(300)
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
         page.locator('[data-view="overhead"]').click();page.screenshot(path=str(OUT/'mobile.png'))

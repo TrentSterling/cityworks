@@ -3,6 +3,7 @@
   'use strict';
   const A=typeof module!=='undefined'?require('./archipelago.js'):root.ArchipelagoModel;
   const P=typeof module!=='undefined'?require('./parcel-patterns.js'):root.CityParcelPatterns;
+  const Realm=typeof module!=='undefined'?require('./public-realm.js'):root.CityPublicRealm;
   const len=(a,b)=>Math.hypot(b[0]-a[0],b[1]-a[1]);
   const ringRegion=p=>A.shape(p.polygon,p.holes||[]);
   const footprintRules=Object.freeze({minimumArea:120,minimumCoreRadius:4,minimumCoreArea:4,maximumAspect:6,minimumGap:6});
@@ -124,9 +125,10 @@
     const siteReservations=parcels.filter(p=>!occupied.has(p.id)).map(p=>({id:p.id+':reserve',parcelId:p.id,use:'service-or-landscape',reason:'No usable footprint meeting width, area and aspect rules',polygons:[ringRegion(p)]}));
     const city={...ground,schemaVersion:4,generatorVersion:'0.5.1-usable-fabric',parcels,buildings,blockInteriors,siteReservations,buildingEdits,dependencies:{...ground.dependencies,parcels:A.hash(JSON.stringify(parcels)),buildings:A.hash(JSON.stringify(buildings)),blockInteriors:A.hash(JSON.stringify(blockInteriors))}};
     city.stats={...ground.stats,parcels:parcels.length,buildings:buildings.length,volumes:buildings.reduce((s,b)=>s+b.volumes.length,0),maxHeight:Math.max(...buildings.map(b=>b.height)),sharedInteriors:blockInteriors.length,cornerLots:parcels.filter(p=>p.corner).length,courtyards:buildings.filter(b=>b.volumes.some(v=>v.polygons.some(p=>p.holes.length))).length,towers:buildings.filter(b=>b.profile==='podium-tower').length};
+    city.publicRealm=Realm.generate(city);city.dependencies.publicRealm=A.hash(JSON.stringify(city.publicRealm));
     const errors=validate(city);if(errors.length)throw Error(errors.slice(0,8).join('; '));return city;
   }
-  function validate(city){const errors=A.validate(city),check=(ok,m)=>{if(!ok)errors.push(m);},byBlock=new Map(city.blocks.map(b=>[b.id,b])),byParcel=new Map(city.parcels.map(p=>[p.id,p]));
+  function validate(city){const errors=[...A.validate(city),...Realm.validate(city)],check=(ok,m)=>{if(!ok)errors.push(m);},byBlock=new Map(city.blocks.map(b=>[b.id,b])),byParcel=new Map(city.parcels.map(p=>[p.id,p]));
     const ids=[...city.parcels,...city.buildings,...city.buildings.flatMap(b=>b.volumes)].map(e=>e.id);check(new Set(ids).size===ids.length,'Duplicate fabric IDs');
     for(const p of city.parcels){check(A.containsRegion(ringRegion(byBlock.get(p.blockId)),ringRegion(p),.04),'Parcel leaves block '+p.id);check(len(...p.frontage)>8,'Missing frontage '+p.id);}
     for(const b of city.buildings){const p=byParcel.get(b.parcelId),allowed=allowedFootprints(p);for(const v of b.volumes){check(v.topElevation>v.baseElevation&&Number.isFinite(v.topElevation),'Invalid volume heights '+v.id);check(A.totalArea(A.boolean(v.polygons,allowed,'difference'))<.05,'Volume leaves setback '+v.id);check(A.totalArea(A.boolean(v.polygons,city.rightOfWay,'intersection'))<.02,'Volume overlaps sidewalk/road '+v.id);check(A.totalArea(A.boolean(v.polygons,city.landRegions,'difference'))<.02,'Volume crosses water '+v.id);for(const part of v.polygons){check(A.totalArea([part])>=footprintRules.minimumArea,'Small footprint '+v.id);check(footprintAspect(part)<=footprintRules.maximumAspect,'Sliver aspect '+v.id);check(A.totalArea(A.offset([part],-footprintRules.minimumCoreRadius))>=footprintRules.minimumCoreArea,'Unusable footprint core '+v.id);}}
