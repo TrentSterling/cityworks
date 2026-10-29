@@ -1,0 +1,525 @@
+{
+  "baseline": "791c0f92a40208f6cee2a9ae3f57624e8e6e8a5f",
+  "cameras": {
+    "notched-roof": {
+      "p": [
+        -105,
+        50,
+        -439
+      ],
+      "t": [
+        -140.428,
+        18,
+        -468.321
+      ]
+    },
+    "small-returns": {
+      "p": [
+        537,
+        37,
+        49
+      ],
+      "t": [
+        508.715,
+        13,
+        27.76
+      ]
+    },
+    "podium": {
+      "p": [
+        -85,
+        64,
+        -29
+      ],
+      "t": [
+        -129.602,
+        20,
+        3.874
+      ]
+    },
+    "perimeter": {
+      "p": [
+        642.764,
+        52,
+        -255.913
+      ],
+      "t": [
+        607.764,
+        8.16,
+        -297.913
+      ]
+    }
+  },
+  "before": {
+    "errors": [],
+    "views": {
+      "notched-roof": {
+        "render": {
+          "calls": 200,
+          "frameCalls": 4,
+          "drawCalls": 63,
+          "triangles": 289541,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "small-returns": {
+        "render": {
+          "calls": 412,
+          "frameCalls": 4,
+          "drawCalls": 75,
+          "triangles": 267844,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "podium": {
+        "render": {
+          "calls": 636,
+          "frameCalls": 4,
+          "drawCalls": 87,
+          "triangles": 312994,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "perimeter": {
+        "render": {
+          "calls": 880,
+          "frameCalls": 4,
+          "drawCalls": 59,
+          "triangles": 250144,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "street": {
+        "render": {
+          "calls": 1088,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 311604,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "courtyard": {
+        "render": {
+          "calls": 1312,
+          "frameCalls": 4,
+          "drawCalls": 85,
+          "triangles": 289130,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3904530,
+        "buildMs": 1038.7000000476837,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      }
+    }
+  },
+  "after": {
+    "errors": [],
+    "views": {
+      "notched-roof": {
+        "render": {
+          "calls": 192,
+          "frameCalls": 4,
+          "drawCalls": 63,
+          "triangles": 286767,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "small-returns": {
+        "render": {
+          "calls": 400,
+          "frameCalls": 4,
+          "drawCalls": 75,
+          "triangles": 265019,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "podium": {
+        "render": {
+          "calls": 616,
+          "frameCalls": 4,
+          "drawCalls": 87,
+          "triangles": 310007,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "perimeter": {
+        "render": {
+          "calls": 852,
+          "frameCalls": 4,
+          "drawCalls": 59,
+          "triangles": 247484,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "street": {
+        "render": {
+          "calls": 1056,
+          "frameCalls": 4,
+          "drawCalls": 86,
+          "triangles": 308572,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      },
+      "courtyard": {
+        "render": {
+          "calls": 1272,
+          "frameCalls": 4,
+          "drawCalls": 85,
+          "triangles": 286128,
+          "points": 0,
+          "lines": 0,
+          "timestamp": 0
+        },
+        "materials": 40,
+        "geometryBytes": 3693768,
+        "buildMs": 1046,
+        "stats": {
+          "islands": 3,
+          "bridges": 3,
+          "landArea": 1073924.052,
+          "streetLength": 15166.531,
+          "roadArea": 175833.675,
+          "blocks": 72,
+          "parcels": 305,
+          "buildings": 267,
+          "parks": 12,
+          "junctions": 90,
+          "deadEnds": 0,
+          "maxHeight": 74.8,
+          "classLengths": {
+            "arterial": 2993.828,
+            "collector": 5738.343,
+            "local": 6434.361
+          },
+          "volumes": 279,
+          "sharedInteriors": 25,
+          "cornerLots": 161,
+          "courtyards": 2,
+          "towers": 7
+        }
+      }
+    },
+    "meshChecks": {
+      "renderedEntranceApproaches": 265,
+      "facadePanels": 1524,
+      "joinedDomains": 36
+    }
+  },
+  "status": "passed"
+}

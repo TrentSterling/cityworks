@@ -2,9 +2,9 @@
 (function(){
   'use strict';
   const P=CityProject,$=id=>document.getElementById(id),frame=$('preview');
-  const savedKey='cityworks:scoped-project:1:'+P.VERSION,previewKey='cityworks:editor-preview:'+crypto.randomUUID();
-  let session=new P.Session(),blockId,buildingId,busy=false,previewNumber=0,startupError='';
-  try{const saved=localStorage.getItem(savedKey);if(saved)session=new P.Session(JSON.parse(saved));}catch(e){startupError='Saved project could not be loaded: '+e.message;}
+  const savedKey='cityworks:scoped-project:1',previewKey='cityworks:editor-preview:'+crypto.randomUUID();
+  let session=new P.Session(),blockId,buildingId,busy=false,previewNumber=0,startupError='',startupNotice='';
+  try{const saved=localStorage.getItem(savedKey)||localStorage.getItem(savedKey+':'+P.VERSION)||localStorage.getItem(savedKey+':'+CityFabric.LEGACY_VERSION);if(saved){session=new P.Session(JSON.parse(saved));if(session.project.generatorVersion!==P.VERSION)startupNotice='Loaded saved project with its original geometry rules. New project uses the current rules.';}}catch(e){startupError='Saved project could not be loaded: '+e.message;}
   function api(){return frame.contentWindow?.Integration;}
   function message(text,error=false){$('status').textContent=text;$('status').className=error?'error':'';}
   function setBusy(value){busy=value;$('busy').hidden=!value;document.querySelectorAll('button,select,input').forEach(e=>e.disabled=value);if(!value)sync();}
@@ -90,5 +90,5 @@
   addEventListener('pagehide',()=>{api()?.dispose();sessionStorage.removeItem(previewKey);});
   window.MassingEditor={get session(){return session;},get blockId(){return blockId;},get buildingId(){return buildingId;},get busy(){return busy;},api,change};
   chooseDefaults();setBusy(true);
-  preview(session.project).then(()=>{setBusy(false);focus();message(startupError||'Select a building in the preview or choose a block.',!!startupError);}).catch(e=>{setBusy(false);message(e.message,true);});
+  preview(session.project).then(()=>{setBusy(false);focus();message(startupError||startupNotice||'Select a building in the preview or choose a block.',!!startupError);}).catch(e=>{setBusy(false);message(e.message,true);});
 })();

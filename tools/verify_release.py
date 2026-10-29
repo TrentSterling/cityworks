@@ -27,7 +27,7 @@ with sync_playwright() as p:
         page.on('response', lambda r: report['failedRequests'].append({'url':r.url,'status':r.status}) if r.status>=400 else None)
         page.goto(url, wait_until='domcontentloaded')
         page.wait_for_function('window.Integration?.ready', timeout=90000)
-        assert page.evaluate('Integration.city.generatorVersion') == '0.5.1-usable-fabric'
+        assert page.evaluate('Integration.city.generatorVersion') == '0.5.4-resolved-massing'
         assert page.evaluate('Integration.city.stats.buildings') == 267
         for view in ['district','street','bridge','passage']:
             page.locator(f'[data-view="{view}"]').click()

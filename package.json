@@ -1,10 +1,10 @@
 {
   "name": "cityworks",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "private": true,
   "description": "Deterministic engine-neutral district prototype",
   "scripts": {
-    "test": "node tests/model.test.cjs && node tests/archipelago.test.cjs && node tests/road-markings.test.cjs && node tests/building-plan.test.cjs && node tests/editor-state.test.cjs && node tests/building-fit.test.cjs && node tests/facade-layout.test.mjs && node tests/public-realm.test.cjs",
+    "test": "node tests/model.test.cjs && node tests/archipelago.test.cjs && node tests/road-markings.test.cjs && node tests/building-plan.test.cjs && node tests/editor-state.test.cjs && node tests/building-fit.test.cjs && node tests/massing.test.cjs && node tests/facade-layout.test.mjs && node tests/public-realm.test.cjs",
     "build": "python tools/build_release.py && python experiments/three-island-integration/build_preview.py",
     "build:ground": "python tools/build.py",
     "verify:browser": "python tools/verify_release.py",

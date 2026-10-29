@@ -90,15 +90,24 @@
     }
     const surfaces=[];
     for(const block of city.blocks.filter(b=>b.use==='mixed')){
+      const legacy=city.generatorVersion==='0.5.1-usable-fabric';
       const buildings=blockBuildings.get(block.id),feet=buildings.flatMap(b=>b.volumes[0].polygons),free=C.boolean([region(block)],feet,'difference');
       const routes=[...entrances.filter(e=>buildings.some(b=>b.id===e.buildingId)),...courtRoutes.filter(r=>r.courtId===block.id+':interior')].flatMap(e=>e.polygons);
-      const frontage=city.parcels.filter(p=>p.blockId===block.id).flatMap(p=>C.boolean([C.corridor(...p.frontage,p.frontSetback*2+.1)],[region(p)],'intersection'));
+      const frontage=city.parcels.filter(p=>p.blockId===block.id&&(legacy||buildings.some(b=>b.parcelId===p.id))).flatMap(p=>C.boolean([C.corridor(...p.frontage,p.frontSetback*2+.1)],[region(p)],'intersection'));
       const court=city.blockInteriors.find(c=>c.blockId===block.id),walks=C.boolean([...routes,...(court?.paths||[]),...frontage]);
-      const greens=block.islandId==='island:harbour'?[]:C.boolean(C.offset(free,-1),C.offset(walks,1),'difference').filter(p=>C.totalArea([p])>8);
-      const paved=C.boolean(free,greens,'difference');
+      // Paving follows authored access. Unused rear/side setbacks are planting,
+      // not a one-metre pseudo-path wrapped around every wall and tiny notch.
+      const service=block.islandId==='island:harbour';
+      // Both materials derive from the SAME mask. A 5 mm outward join margin
+      // removes exact coincident-edge needles at the 1 mm clipping grid.
+      // Subtracting an already clipped pavement can instead misclassify whole
+      // boundary-touching components, and opening it can break triangulation.
+      const mask=legacy||service?walks:C.offset(walks,.005);
+      const greens=service?[]:legacy?C.boolean(C.offset(free,-1),C.offset(walks,1),'difference').filter(p=>C.totalArea([p])>8):C.boolean(free,mask,'difference');
+      const paved=legacy||service?C.boolean(free,greens,'difference'):C.boolean(free,mask,'intersection');
       surfaces.push({id:block.id+':surface',blockId:block.id,elevation:8.16,paved,greens,material:block.islandId==='island:harbour'?'service-paving':'pedestrian-paving'});
     }
-    return {version:1,generatedBy:'0.5.3',units:'metres',entrances,courtRoutes,crossings,ramps,surfaces,diagnostics};
+    return {version:1,generatedBy:city.generatorVersion==='0.5.1-usable-fabric'?'0.5.3':'0.5.4',units:'metres',entrances,courtRoutes,crossings,ramps,surfaces,diagnostics};
   }
   function validate(city){
     const r=city.publicRealm,errors=[],check=(ok,message)=>{if(!ok)errors.push(message);};

@@ -2,7 +2,7 @@
 (function(root){
   'use strict';
   const C=typeof module!=='undefined'?require('./building-plan.js'):root.CityFabric;
-  const VERSION='0.5.1-usable-fabric',clone=x=>JSON.parse(JSON.stringify(x));
+  const VERSION=C.VERSION,clone=x=>JSON.parse(JSON.stringify(x));
   const freeze=x=>{if(x&&typeof x==='object'&&!Object.isFrozen(x)){Object.values(x).forEach(freeze);Object.freeze(x);}return x;};
   const axes={units:'metres',x:'east',y:'up',z:'south',polygonCoordinates:['x','z']};
   const candidates=new WeakSet();
@@ -14,11 +14,11 @@
   function normalize(source){
     object(source,'project');
     if(source.schema!=='cityworks.project'||source.version!==1)throw Error('Unsupported project schema/version');
-    if(source.generatorVersion!==VERSION)throw Error('Project needs an explicit generator migration');
+    if(![VERSION,C.LEGACY_VERSION].includes(source.generatorVersion))throw Error('Project needs an explicit generator migration');
     if(!source.coordinates||Object.keys(axes).some(k=>JSON.stringify(source.coordinates[k])!==JSON.stringify(axes[k])))throw Error('Unsupported coordinate convention');
     const allowed=['seed','coastVariation','streetSpacing','bridgeWidth','density','skylineHeight','mapAreaKm2'];
     object(source.input,'input');for(const [key,value] of Object.entries(source.input)){if(!allowed.includes(key))throw Error('Unsupported input '+key);if(key==='seed'?typeof value!=='string':!Number.isFinite(value))throw Error('Invalid input '+key);}
-    const p={schema:'cityworks.project',version:1,generatorVersion:VERSION,coordinates:clone(axes),input:clone(source.input),massingRevisions:{},heightOverrides:{},locks:{}};
+    const p={schema:'cityworks.project',version:1,generatorVersion:source.generatorVersion,coordinates:clone(axes),input:clone(source.input),massingRevisions:{},heightOverrides:{},locks:{}};
     for(const key of ['massingRevisions','heightOverrides','locks']){
       const values=object(source[key],key);if(Object.keys(values).length>2000)throw Error('Too many '+key);
       for(const [id,v] of Object.entries(values)){
@@ -34,13 +34,13 @@
   function create(input={}){return normalize({schema:'cityworks.project',version:1,generatorVersion:VERSION,coordinates:axes,input,massingRevisions:{},heightOverrides:{},locks:{}});}
   function compile(source){
     const p=normalize(source),edits=Object.fromEntries(Object.entries(p.heightOverrides).map(([id,height])=>[id,{height}]));
-    const city=C.generate(p.input,edits,p.massingRevisions),known=new Set(city.buildings.map(b=>b.id));
+    const city=C.generate(p.input,edits,p.massingRevisions,p.generatorVersion),known=new Set(city.buildings.map(b=>b.id));
     for(const id of Object.keys(p.locks))if(!known.has(id))throw Error('Locked building no longer exists: '+id);
     return city;
   }
   function exportCity(source){
     const project=normalize(source),city=compile(project);
-    return {...city,coordinates:clone(axes),authoring:project,exportContract:{schema:'cityworks.scene',version:1,generatorVersion:VERSION,geometry:'metre-space polygon rings and explicit volume elevations',materialPolicy:'symbolic IDs require an engine-specific material binding',colliderPolicy:'extruded polygon proxies; not cooked Unity colliders'},
+    return {...city,coordinates:clone(axes),authoring:project,exportContract:{schema:'cityworks.scene',version:1,generatorVersion:project.generatorVersion,geometry:'metre-space polygon rings and explicit volume elevations',materialPolicy:'symbolic IDs require an engine-specific material binding',colliderPolicy:'extruded polygon proxies; not cooked Unity colliders'},
       materials:[0,1,2,3].map(index=>({id:'facade:nyc:'+index,previewFacadeIndex:index,source:'slop-newyork MIT adapter'})),
       colliders:city.buildings.flatMap(b=>b.volumes.map(v=>({id:v.id+':collider',buildingId:b.id,volumeId:v.id,kind:'extrudedPolygonSet',polygons:clone(v.polygons),bottom:v.baseElevation,top:v.topElevation}))),
       volumeMaterials:city.buildings.flatMap(b=>b.volumes.map(v=>({volumeId:v.id,materialId:'facade:nyc:'+v.facadeIndex})))};

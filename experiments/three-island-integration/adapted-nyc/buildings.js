@@ -273,7 +273,7 @@ function buildCityBlocks(scene, landmarkColliders = []) {
     }
   }
   for (const b of surveyedBuildings) addReserve({
-    x0: b.minX, x1: b.maxX, z0: b.minZ, z1: b.maxZ, height: b.height + b.baseY, polygons: b.polygons
+    x0: b.minX, x1: b.maxX, z0: b.minZ, z1: b.maxZ, baseY:b.baseY, height: b.height + b.baseY, polygons: b.polygons
   });
   function nearbyReserves(b, padding = 0) {
     const minX = b.minX - padding, maxX = b.maxX + padding;
