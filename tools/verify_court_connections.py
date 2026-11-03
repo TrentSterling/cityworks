@@ -11,7 +11,7 @@ threading.Thread(target=server.serve_forever,daemon=True).start()
 base=f'http://127.0.0.1:{server.server_port}/'
 report={'errors':[],'teardownMessages':[],'scenes':[]}
 with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,args=['--mute-audio','--enable-unsafe-webgpu','--enable-features=Vulkan','--use-angle=vulkan','--use-vulkan=swiftshader','--use-webgpu-adapter=swiftshader','--disable-vulkan-surface'])
+    browser=p.chromium.launch(channel='chromium',headless=False,args=['--mute-audio','--enable-unsafe-webgpu','--use-webgpu-adapter=swiftshader','--enable-dawn-features=allow_unsafe_apis','--disable-dawn-features=use_dxc','--enable-webgpu-developer-features','--use-gpu-in-tests','--enable-accelerated-2d-canvas'])
     context=browser.new_context(viewport={'width':1280,'height':900},device_scale_factor=1)
     page=None;phase=None
     def open_page(path):
