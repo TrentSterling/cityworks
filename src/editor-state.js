@@ -14,7 +14,7 @@
   function normalize(source){
     object(source,'project');
     if(source.schema!=='cityworks.project'||source.version!==1)throw Error('Unsupported project schema/version');
-    if(![VERSION,C.LEGACY_VERSION].includes(source.generatorVersion))throw Error('Project needs an explicit generator migration');
+    if(![VERSION,C.PREVIOUS_VERSION,C.LEGACY_VERSION].includes(source.generatorVersion))throw Error('Project needs an explicit generator migration');
     if(!source.coordinates||Object.keys(axes).some(k=>JSON.stringify(source.coordinates[k])!==JSON.stringify(axes[k])))throw Error('Unsupported coordinate convention');
     const allowed=['seed','coastVariation','streetSpacing','bridgeWidth','density','skylineHeight','mapAreaKm2'];
     object(source.input,'input');for(const [key,value] of Object.entries(source.input)){if(!allowed.includes(key))throw Error('Unsupported input '+key);if(key==='seed'?typeof value!=='string':!Number.isFinite(value))throw Error('Invalid input '+key);}
@@ -91,3 +91,4 @@
   const api={VERSION,create,normalize,compile,exportCity,Session};
   if(typeof module!=='undefined')module.exports=api;root.CityProject=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+

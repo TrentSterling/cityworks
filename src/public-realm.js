@@ -3,6 +3,7 @@
   const C=typeof module!=='undefined'?require('./archipelago.js'):root.ArchipelagoModel;
   const F=typeof module!=='undefined'?require('./facade-rules.js'):root.CityFacadeRules;
   const R=typeof module!=='undefined'?require('./road-markings.js'):root.CityRoadMarkings;
+  const Connections=typeof module!=='undefined'?require('./court-connections.js'):root.CityCourtConnections;
   const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
   const at=(p,u,d)=>p.map((v,i)=>C.snap(v+u[i]*d));
   const region=p=>C.shape(p.polygon,p.holes||[]);
@@ -88,6 +89,7 @@
       courtRoutes.push(route);
       if(service){const r=ramp(route.id+':apron',from,[-n[1],n[0]],n,access.width/2,2.1,'service');if(fitsRamp(r))ramps.push(r);else diagnostics.push({id:route.id,reason:'Service apron conflicts with existing crossing or sidewalk boundary'});}
     }
+    if(city.generatorVersion==='0.5.7-connected-courts')courtRoutes.push(...Connections.generate(city,C));
     const surfaces=[];
     for(const block of city.blocks.filter(b=>b.use==='mixed')){
       const legacy=city.generatorVersion==='0.5.1-usable-fabric';
@@ -107,7 +109,7 @@
       const paved=legacy||service?C.boolean(free,greens,'difference'):C.boolean(free,mask,'intersection');
       surfaces.push({id:block.id+':surface',blockId:block.id,elevation:8.16,paved,greens,material:block.islandId==='island:harbour'?'service-paving':'pedestrian-paving'});
     }
-    return {version:1,generatedBy:city.generatorVersion==='0.5.1-usable-fabric'?'0.5.3':'0.5.4',units:'metres',entrances,courtRoutes,crossings,ramps,surfaces,diagnostics};
+    return {version:1,generatedBy:city.generatorVersion==='0.5.1-usable-fabric'?'0.5.3':city.generatorVersion==='0.5.7-connected-courts'?'0.5.7':'0.5.4',units:'metres',entrances,courtRoutes,crossings,ramps,surfaces,diagnostics};
   }
   function validate(city){
     const r=city.publicRealm,errors=[],check=(ok,message)=>{if(!ok)errors.push(message);};
@@ -121,7 +123,20 @@
       if(component===undefined)component=found;else check(found===component,'Disconnected entrance '+e.id);
     }
     for(const route of r.courtRoutes)if(route.kind==='service')check(r.ramps.some(p=>p.id===route.id+':apron'),'Service access lacks curb transition '+route.id);
+    for(const route of r.courtRoutes.filter(p=>p.kind==='pedestrian-through')){
+      const court=city.blockInteriors.find(c=>c.id===route.courtId),block=court&&city.blocks.find(b=>b.id===court.blockId);
+      check(!!court&&!!block,'Unknown through-route court '+route.id);if(!court||!block)continue;
+      const obstacles=C.offset(city.buildings.filter(b=>b.blockId===block.id).flatMap(b=>b.volumes.filter(v=>v.baseElevation<route.elevation+Connections.clearance).flatMap(v=>v.polygons)),Connections.margin);
+      check(route.width>=Connections.width,'Narrow through-route '+route.id);
+      const required=C.offset([C.corridor(route.from,route.to,Connections.width)],-.002);
+      check(C.totalArea(C.boolean(required,route.polygons,'difference'))<.001,'Incomplete through-route corridor '+route.id);
+      check(C.inRegions(city.sidewalkCoverage,route.from)&&C.inRegions(court.polygons,route.to),'Disconnected through-route '+route.id);
+      check(C.totalArea(C.boolean(route.polygons,[C.shape(block.polygon,block.holes||[]),...city.sidewalkCoverage],'difference'))<.01,'Through-route leaves block '+route.id);
+      check(C.totalArea(C.boolean(route.polygons,obstacles,'intersection'))<.001,'Through-route lacks clearance '+route.id);
+      check(C.totalArea(C.boolean(route.polygons,city.roadCoverage,'intersection'))<.01&&C.totalArea(C.boolean(route.polygons,city.landRegions,'difference'))<.01,'Through-route crosses traffic or water '+route.id);
+    }
     return errors;
   }
   const api={generate,validate,rampHeight};if(typeof module!=='undefined')module.exports=api;root.CityPublicRealm=api;
 })(globalThis);
+

@@ -110,8 +110,10 @@ export function buildGround(scene,city){
       const center=C.center(inset[0].outer);if(C.inRegions(inset,center))sites.push({p:center,h:8.18,scale:.8});
     }
     const accessExclusion=(city.blockInteriors||[]).flatMap(c=>c.accesses.map(a=>{const street=city.streets.find(s=>s.id===a.streetId);return C.corridor(C.projection(a.from,street.a,street.b).point,a.to,a.width+6);}));
-    accessExclusion.push(...C.offset([...realm.entrances.flatMap(e=>e.polygons),...rampZones],1));
-    for(let i=sites.length-1;i>=0;i--)if(C.inRegions(accessExclusion,sites[i].p))sites.splice(i,1);
+    accessExclusion.push(...C.offset([...realm.entrances.flatMap(e=>e.polygons),...realm.courtRoutes.flatMap(e=>e.polygons),...rampZones],1));
+    // Low crown vertices must clear the full route, not merely the trunk.
+    const throughRoutes=realm.courtRoutes.filter(r=>r.kind==='pedestrian-through').flatMap(r=>r.polygons),canopyExclusions=new Map();
+    for(let i=sites.length-1;i>=0;i--){const s=sites[i];if(!canopyExclusions.has(s.scale))canopyExclusions.set(s.scale,C.offset(throughRoutes,2.7*s.scale+.01));if(C.inRegions(accessExclusion,s.p)||C.inRegions(canopyExclusions.get(s.scale),s.p))sites.splice(i,1);}
     const trunks=new T.InstancedMesh(new T.CylinderGeometry(.23,.3,3.6,5),material('#786c53'),sites.length),crowns=new T.InstancedMesh(new T.IcosahedronGeometry(2.7,1),material('#5e7856'),sites.length),m=new T.Matrix4(),q=new T.Quaternion();
     sites.forEach((s,i)=>{m.compose(new T.Vector3(s.p[0],s.h+1.8,s.p[1]),q,new T.Vector3(1,1,1));trunks.setMatrixAt(i,m);m.compose(new T.Vector3(s.p[0],s.h+4.8*s.scale,s.p[1]),q,new T.Vector3(s.scale,s.scale*1.25,s.scale));crowns.setMatrixAt(i,m);crowns.setColorAt(i,color(['#5e7856','#6c8558','#7e9163'][i%3]));});
     trunks.name='tree-trunks';crowns.name='tree-crowns';trunks.castShadow=crowns.castShadow=true;trunks.receiveShadow=crowns.receiveShadow=true;world.add(trunks,crowns);markingInfo.trees=sites.length;markingInfo.treeSites=sites.map(s=>({p:s.p,scale:s.scale}));
@@ -199,3 +201,4 @@ export function buildGround(scene,city){
   }
  makeScene();return {group:world,markingInfo,soffits,portals};
 }
+

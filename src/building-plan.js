@@ -4,7 +4,7 @@
   const A=typeof module!=='undefined'?require('./archipelago.js'):root.ArchipelagoModel;
   const P=typeof module!=='undefined'?require('./parcel-patterns.js'):root.CityParcelPatterns;
   const Realm=typeof module!=='undefined'?require('./public-realm.js'):root.CityPublicRealm;
-  const VERSION='0.5.4-resolved-massing',LEGACY_VERSION='0.5.1-usable-fabric';
+  const VERSION='0.5.7-connected-courts',PREVIOUS_VERSION='0.5.4-resolved-massing',LEGACY_VERSION='0.5.1-usable-fabric';
   const len=(a,b)=>Math.hypot(b[0]-a[0],b[1]-a[1]);
   const ringRegion=p=>A.shape(p.polygon,p.holes||[]);
   const footprintRules=Object.freeze({minimumArea:120,minimumCoreRadius:4,minimumCoreArea:4,maximumAspect:6,minimumGap:6});
@@ -122,7 +122,7 @@
     return A.boolean(base,[halfplane],'intersection').filter(p=>A.totalArea([p])>70);
   }
   function generate(input={},buildingEdits={},massingRevisions={},version=VERSION){
-    if(![VERSION,LEGACY_VERSION].includes(version))throw Error('Unsupported fabric generator '+version);
+    if(![VERSION,PREVIOUS_VERSION,LEGACY_VERSION].includes(version))throw Error('Unsupported fabric generator '+version);
     const fit=(regions,frontage)=>{const usable=usableFootprints(regions,frontage);return version===LEGACY_VERSION?usable:resolvedFootprints(usable);};
     for(const [id,revision] of Object.entries(massingRevisions))if(!Number.isSafeInteger(revision)||revision<0||revision>1000000)throw Error('Invalid massing revision '+id);
     const ground=A.generate(input),parcels=[],buildings=[],blockInteriors=[],reserved=new Set();
@@ -142,7 +142,7 @@
         const notch=A.shape(A.canonical([at(l*.38,parcel.depth-13),at(l*.62,parcel.depth-13),at(l*.62,parcel.depth+1),at(l*.38,parcel.depth+1)]));
         const next=A.boolean(footprints,[notch],'difference');if(next.length===footprints.length){footprints=next;profile='service-court';}
       }
-      if(version===VERSION&&parcel.courtyard)footprints=A.boolean(footprints,allowedFootprints(parcel),'intersection');
+      if(version!==LEGACY_VERSION&&parcel.courtyard)footprints=A.boolean(footprints,allowedFootprints(parcel),'intersection');
       footprints=fit(footprints,parcel.frontage);if(!footprints.length)continue;const center=A.center(footprints[0].outer);
       const district=parcel.planDistrict,style=harbour?1:garden?0:district==='north-quarter'?(r('style')<.65?1:0):(r('style')<.25?1:0);
       const towerIntent=towerSites.get(parcel.id),tower=!!towerIntent;
@@ -204,5 +204,6 @@
     }
     return errors;
   }
-    const api={...A,VERSION,LEGACY_VERSION,generate,validate,allowedFootprints,usableFootprints,resolvedFootprints,footprintAspect,footprintRules};if(typeof module!=='undefined')module.exports=api;root.CityFabric=api;
+    const api={...A,VERSION,PREVIOUS_VERSION,LEGACY_VERSION,generate,validate,allowedFootprints,usableFootprints,resolvedFootprints,footprintAspect,footprintRules};if(typeof module!=='undefined')module.exports=api;root.CityFabric=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
+

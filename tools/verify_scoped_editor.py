@@ -93,7 +93,7 @@ with sync_playwright() as p:
         with page.expect_download() as pending:page.locator('#export').click()
         pending.value.save_as(OUT/'legacy-scene.json')
         assert json.loads((OUT/'legacy-scene.json').read_text())['exportContract']['generatorVersion']=='0.5.1-usable-fabric'
-        click('#new');assert page.evaluate('MassingEditor.api().city.generatorVersion')=='0.5.4-resolved-massing'
+        click('#new');assert page.evaluate('MassingEditor.api().city.generatorVersion')=='0.5.7-connected-courts'
         click('#undo');assert city()==legacy_city
         report['checks'].append('legacy autosave restores original geometry, locks and overrides; reroll/undo/reload/export retain version; new project is current and undo restores legacy')
         assert not report['errors'],report['errors']
@@ -103,3 +103,4 @@ with sync_playwright() as p:
         report.update(status='failed',exception=str(e));page.screenshot(path=str(OUT/'failure.png'));raise
     finally:
         (OUT/'report.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');browser.close();server.shutdown();server.server_close()
+
