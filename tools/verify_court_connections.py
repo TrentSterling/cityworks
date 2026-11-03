@@ -9,15 +9,29 @@ class Quiet(http.server.SimpleHTTPRequestHandler):
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)))
 threading.Thread(target=server.serve_forever,daemon=True).start()
 base=f'http://127.0.0.1:{server.server_port}/'
-report={'errors':[],'scenes':[]}
+report={'errors':[],'teardownMessages':[],'scenes':[]}
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True,args=['--mute-audio','--use-angle=swiftshader','--enable-unsafe-webgpu','--enable-unsafe-swiftshader'])
-    page=browser.new_page(viewport={'width':1280,'height':900},device_scale_factor=1)
-    page.on('pageerror',lambda e:report['errors'].append(str(e)))
-    page.on('console',lambda m:report['errors'].append(m.text) if m.type=='error' else None)
+    context=browser.new_context(viewport={'width':1280,'height':900},device_scale_factor=1)
+    page=None;phase=None
+    def open_page(path):
+        global page,phase
+        if page:
+            # Stop submissions and drain the GPU before intentionally closing a scene.
+            page.evaluate("async()=>{const I=window.Integration||window.MassingEditor?.api();if(I){I.renderer.setAnimationLoop(null);await I.renderer.backend.device?.queue.onSubmittedWorkDone();}}")
+            page.wait_for_timeout(200)
+            phase['closing']=True
+            page.close()
+        page=context.new_page();phase={'closing':False};state=phase
+        def error(message):
+            if state['closing'] and message=='Instance dropped in popErrorScope':report['teardownMessages'].append(message)
+            else:report['errors'].append(message)
+        page.on('pageerror',lambda e:error(str(e)))
+        page.on('console',lambda m:error(m.text) if m.type=='error' else None)
+        page.goto(base+path,wait_until='domcontentloaded')
     try:
         def load(path):
-            page.goto(base+path,wait_until='domcontentloaded');page.wait_for_function('window.Integration?.ready',timeout=180000)
+            open_page(path);page.wait_for_function('window.Integration?.ready',timeout=180000)
             info=page.evaluate('Integration.inspect()');assert not info['nonfinite'] and not info['badNormals'],info
             return info
         for seed in ['CITYWORKS-03','COURT-OLD-1','COURT-OLD-2']:
@@ -49,7 +63,7 @@ with sync_playwright() as p:
         # Recover a real 0.5.4 versioned autosave without migrating geometry.
         load('')
         page.evaluate("()=>{const p=CityProject.create();p.generatorVersion=CityFabric.PREVIOUS_VERSION;localStorage.clear();localStorage.setItem('cityworks:scoped-project:1:'+p.generatorVersion,JSON.stringify(p));}")
-        page.goto(base+'experiments/scoped-editor/',wait_until='domcontentloaded')
+        open_page('experiments/scoped-editor/')
         page.wait_for_function('window.MassingEditor?.api()?.ready',timeout=180000)
         assert page.evaluate('MassingEditor.session.project.generatorVersion')=='0.5.4-resolved-massing'
         assert page.evaluate("MassingEditor.api().city.publicRealm.courtRoutes.filter(r=>r.kind==='pedestrian-through').length")==0
