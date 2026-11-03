@@ -74,8 +74,11 @@ with sync_playwright() as p:
         load('artifacts/three-island-integration/Cityworks-Three-Island-Integration.html')
         assert page.evaluate("Integration.city.publicRealm.courtRoutes.filter(r=>r.kind==='pedestrian-through').length")==4
         report['standalone']='passed'
-        page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(500)
-        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+        page.set_viewport_size({'width':390,'height':844})
+        try:
+            page.wait_for_function('document.querySelector("canvas").clientWidth===innerWidth && document.documentElement.scrollWidth<=innerWidth',timeout=30000)
+        finally:
+            report['mobileLayout']=page.evaluate('({viewport:innerWidth,document:document.documentElement.scrollWidth,canvas:document.querySelector("canvas").clientWidth,overflow:[...document.querySelectorAll("body *")].map(e=>({tag:e.tagName,id:e.id,right:e.getBoundingClientRect().right,width:e.getBoundingClientRect().width})).filter(e=>e.right>innerWidth)})')
         page.screenshot(path=str(OUT/'standalone-mobile.png'))
         assert not report['errors'],report['errors']
         report['status']='passed'
