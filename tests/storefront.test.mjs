@@ -23,8 +23,9 @@ const r=structuredClone(split);r.polygons[0].outer=r.polygons[0].outer.map(({x,z
 const q=storefrontPlan(r),expected=rot([p.x,p.z]);assert.ok(q);assert.ok(Math.hypot(q.x-expected[0],q.z-expected[1])<1e-7);assert.ok(Math.abs(q.d-p.d)<1e-8);
 let checked=0;
 for(const input of [{},{seed:'STORE-1'},{seed:'FIT-NARROW',streetSpacing:94,coastVariation:.85},{seed:'STORE-WIDE',streetSpacing:128},{seed:'STORE-SMALL',mapAreaKm2:1.5}]){
- const city=C.generate(input),records=recordsFromCity(city),plans=records.map(storefrontPlan).filter(Boolean);
- if(!input.seed)assert.equal(crypto.createHash('sha256').update(JSON.stringify(city)).digest('hex'),saved.defaultCitySha256,'Preview detail changes must preserve the released authoritative city');
+ const city=C.generate(input),before=JSON.stringify(city),records=recordsFromCity(city),plans=records.map(storefrontPlan).filter(Boolean);
+ if(!input.seed)assert.equal(crypto.createHash('sha256').update(JSON.stringify(C.generate(input,{}, {},C.PREVIOUS_VERSION))).digest('hex'),saved.defaultCitySha256,'Preview detail changes must preserve the released authoritative city');
+ assert.equal(JSON.stringify(city),before,'Renderer adaptation cannot mutate the current authoritative city');
  for(const p of plans){
   const b=records.find(r=>r.id===p.volumeId),e=b.entrance,d=p.domain;
   assert.equal(p.entranceId,e.id);assert.ok(d.bayFirst>=0&&d.entryBay>=d.bayFirst&&d.entryBay<d.bayFirst+d.bayCount);
@@ -41,3 +42,4 @@ for(const input of [{},{seed:'STORE-1'},{seed:'FIT-NARROW',streetSpacing:94,coas
  for(const b of records.filter(r=>r.entrance?.kind==='passage'))assert.equal(storefrontPlan(b),null);
 }
 console.log('PASS storefront floor zones, door clearances, whole bays, split/cyclic/rotated domains and '+checked+' generated entry plans');
+

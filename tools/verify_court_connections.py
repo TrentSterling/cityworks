@@ -46,6 +46,14 @@ with sync_playwright() as p:
                     x=(r['from'][0]+r['to'][0])/2;z=(r['from'][1]+r['to'][1])/2
                     page.evaluate('(p)=>Integration.setCamera([p[0]+35,105,p[1]+40],[p[0],8.16,p[1]])',[x,z]);page.wait_for_timeout(1000)
                     page.screenshot(path=str(OUT/f'{seed}-{label}-{i}.png'))
+        # Recover a real 0.5.4 versioned autosave without migrating geometry.
+        load('')
+        page.evaluate("()=>{const p=CityProject.create();p.generatorVersion=CityFabric.PREVIOUS_VERSION;localStorage.clear();localStorage.setItem('cityworks:scoped-project:1:'+p.generatorVersion,JSON.stringify(p));}")
+        page.goto(base+'experiments/scoped-editor/',wait_until='domcontentloaded')
+        page.wait_for_function('window.MassingEditor?.api()?.ready',timeout=180000)
+        assert page.evaluate('MassingEditor.session.project.generatorVersion')=='0.5.4-resolved-massing'
+        assert page.evaluate("MassingEditor.api().city.publicRealm.courtRoutes.filter(r=>r.kind==='pedestrian-through').length")==0
+        report['previousAutosave']='passed'
         load('artifacts/three-island-integration/Cityworks-Three-Island-Integration.html')
         assert page.evaluate("Integration.city.publicRealm.courtRoutes.filter(r=>r.kind==='pedestrian-through').length")==4
         report['standalone']='passed'
