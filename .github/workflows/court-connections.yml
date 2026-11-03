@@ -1,13 +1,14 @@
 name: Court connection qualification
 on:
   push:
-    branches: ['feature/connected-courts-057']
+    branches: ['feature/connected-courts-057', 'main']
   pull_request:
     paths: ['src/**', 'tests/**', 'experiments/**', 'tools/**', '.github/workflows/court-connections.yml']
 permissions:
   contents: read
 jobs:
   model:
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -17,6 +18,7 @@ jobs:
           node-version: '22'
       - run: npm test
   render:
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -39,3 +41,19 @@ jobs:
         with:
           name: cityworks-court-evidence
           path: artifacts/court-connections/
+  live:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright==1.64.1 && python -m playwright install --with-deps chromium
+      - run: xvfb-run -a python tools/verify_cityworks_live.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cityworks-live-evidence
+          path: artifacts/cityworks-live/
