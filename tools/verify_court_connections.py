@@ -11,7 +11,7 @@ threading.Thread(target=server.serve_forever,daemon=True).start()
 base=f'http://127.0.0.1:{server.server_port}/'
 report={'errors':[],'teardownMessages':[],'scenes':[]}
 with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,args=['--mute-audio','--use-angle=swiftshader','--enable-unsafe-webgpu','--enable-unsafe-swiftshader'])
+    browser=p.chromium.launch(headless=True,args=['--mute-audio','--enable-unsafe-webgpu','--enable-features=Vulkan','--use-angle=vulkan','--use-vulkan=swiftshader','--use-webgpu-adapter=swiftshader','--disable-vulkan-surface'])
     context=browser.new_context(viewport={'width':1280,'height':900},device_scale_factor=1)
     page=None;phase=None
     def open_page(path):
@@ -32,6 +32,8 @@ with sync_playwright() as p:
     try:
         def load(path):
             open_page(path);page.wait_for_function('window.Integration?.ready',timeout=180000)
+            page.wait_for_timeout(1000)
+            assert not page.locator('#error').inner_text(),page.locator('#error').inner_text()
             info=page.evaluate('Integration.inspect()');assert not info['nonfinite'] and not info['badNormals'],info
             return info
         for seed in ['CITYWORKS-03','COURT-OLD-1','COURT-OLD-2']:
@@ -59,6 +61,7 @@ with sync_playwright() as p:
                 for i,r in enumerate(routes if seed=='CITYWORKS-03' else routes[:1]):
                     x=(r['from'][0]+r['to'][0])/2;z=(r['from'][1]+r['to'][1])/2
                     page.evaluate('(p)=>Integration.setCamera([p[0]+35,105,p[1]+40],[p[0],8.16,p[1]])',[x,z]);page.wait_for_timeout(1000)
+                    assert not page.locator('#error').inner_text(),page.locator('#error').inner_text()
                     page.screenshot(path=str(OUT/f'{seed}-{label}-{i}.png'))
         # Recover a real 0.5.4 versioned autosave without migrating geometry.
         load('')
