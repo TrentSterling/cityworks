@@ -19,20 +19,20 @@
     for (let i = 1; i < p.length; i++) if (p[i][0] < p[start][0] || (p[i][0] === p[start][0] && p[i][1] < p[start][1])) start = i;
     return p.slice(start).concat(p.slice(0, start));
   }
-  function fromTree(tree) {
+  function fromTree(tree, minimumArea = .001) {
     return L.JS.PolyTreeToExPolygons(tree).map(p => ({
       outer: canonical(p.outer.map(v => [v.X / SCALE, v.Y / SCALE])),
       holes: p.holes.map(h => canonical(h.map(v => [v.X / SCALE, v.Y / SCALE]), false)).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
-    })).filter(p => area(p.outer) > 0.001).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    })).filter(p => area(p.outer) > minimumArea).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
   }
-  function boolean(a, b = [], operation = 'union') {
+  function boolean(a, b = [], operation = 'union', minimumArea = .001) {
     if (!a.length) return [];
     const c = new L.Clipper(2), tree = new L.PolyTree();
     c.AddPaths(paths(a), L.PolyType.ptSubject, true);
     if (b.length) c.AddPaths(paths(b), L.PolyType.ptClip, true);
     const op = { union: L.ClipType.ctUnion, intersection: L.ClipType.ctIntersection, difference: L.ClipType.ctDifference }[operation];
     if (!c.Execute(op, tree, L.PolyFillType.pftNonZero, L.PolyFillType.pftNonZero)) throw Error('Polygon operation failed');
-    return fromTree(tree);
+    return fromTree(tree, minimumArea);
   }
   function offset(regions, distance) {
     if (!regions.length) return [];
@@ -132,3 +132,4 @@
   if (typeof module !== 'undefined') module.exports = api;
   root.CityGeometry = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
+

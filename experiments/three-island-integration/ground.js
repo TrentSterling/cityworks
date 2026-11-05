@@ -167,6 +167,32 @@ export function buildGround(scene,city){
     // needle with a triangle across the lowered ramp. Never expand the curb.
     const cleanCurbs=C.boolean(C.offset(C.offset(trimmedCurbs,-.005),.005),trimmedCurbs,'intersection');
     for(const part of cleanCurbs)curbs.surface(part,8.16);
+    // Recover cleanup remnants against the emitted curb triangles, not merely
+    // their input rings: Earcut can bridge a sub-millimetre notch. Clipping to
+    // the actual mesh avoids filling that notch twice at the same elevation.
+    // Work per original component so nearly coincident city-wide rings do not
+    // create a costly Boolean. Keep tiny render fragments without changing the
+    // default minimum area used by the saved-city generation contract.
+    const bounds=p=>{const xs=p.outer.map(v=>v[0]),zs=p.outer.map(v=>v[1]);return [Math.min(...xs),Math.min(...zs),Math.max(...xs),Math.max(...zs)];};
+    const curbFaces=[];
+    for(let i=0;i<curbs.positions.length;i+=9){
+      const ring=[0,3,6].map(j=>[curbs.positions[i+j],curbs.positions[i+j+2]]),p=C.shape(C.canonical(ring));
+      curbFaces.push({p,b:bounds(p)});
+    }
+    for(const original of trimmedCurbs){
+      const b=bounds(original),near=curbFaces.filter(v=>v.b[2]>=b[0]&&v.b[0]<=b[2]&&v.b[3]>=b[1]&&v.b[1]<=b[3]).map(v=>v.p);
+      const infill=new Batch(sidewalks.mat,'curb-infill');
+      for(const part of C.boolean([original],near,'difference',0))infill.surface(part,8.16);
+      // A skinny infill ring can itself triangulate across a clipped notch.
+      // Reclip emitted triangles with overlap above the geometry engine's
+      // normal area cutoff; repeated clipping can erase grid-sized remnants.
+      for(let i=0;i<infill.positions.length;i+=9){
+        const triangle=C.shape(C.canonical([0,3,6].map(j=>[infill.positions[i+j],infill.positions[i+j+2]])));
+        const overlap=C.totalArea(C.boolean([triangle],near,'intersection',0));
+        if(overlap>.001)for(const part of C.boolean([triangle],near,'difference',0))sidewalks.surface(part,8.16);
+        else sidewalks.positions.push(...infill.positions.slice(i,i+9));
+      }
+    }
     for(const region of city.rightOfWay)for(const ring of [region.outer,...region.holes])sidewalks.wall(ring,8,8.16);
     for(const region of city.roadCoverage)for(const ring of [region.outer,...region.holes])curbWall(curbs,[...ring].reverse());
     sidewalks.finish(false);curbs.finish(false);
@@ -201,4 +227,5 @@ export function buildGround(scene,city){
   }
  makeScene();return {group:world,markingInfo,soffits,portals};
 }
+
 

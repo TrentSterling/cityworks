@@ -2,7 +2,7 @@
 
 A deterministic city planning prototype with a Three.js preview and engine-neutral city data.
 
-[0.5.7 connected courts](docs/CONNECTED_COURTS_057.md) adds clear pedestrian shortcuts through existing shared gardens while preserving old saved projects. The [0.5.6 masonry detail](docs/RELEASE_056.md) remains intact.
+[0.5.8 curb fit](docs/RELEASE_058.md) repairs thin pavement gaps left by curb cleanup, while preserving the streets, buildings and saved projects. [0.5.7 connected courts](docs/CONNECTED_COURTS_057.md) and the [0.5.6 masonry detail](docs/RELEASE_056.md) remain intact.
 
 [Open Cityworks](https://tront.xyz/cityworks/) to explore the integrated three-island city. The default plan has a 2 km² bounding envelope, connected streets and bridges, 267 buildings, 279 volumes, seven planned taller outliers across all three islands and 25 shared block interiors. The building renderer uses documented MIT adaptations of the pinned Slop New York facade system.
 
@@ -49,4 +49,5 @@ Facade and roof repetition, plain ground floors, coarse terrain transitions and 
 ## Licensing
 
 No project-wide license has been selected for original Cityworks code. Third-party dependencies and adaptations retain their licenses. See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) and [provenance](docs/PROVENANCE.md). Surveyed NYC geometry used for comparison is not included in the runnable city or repository.
+
 

@@ -4,7 +4,7 @@ import hashlib,json,time,urllib.request
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'artifacts/cityworks-live';OUT.mkdir(parents=True,exist_ok=True)
 BASE='https://tront.xyz/cityworks/'
-files=['index.html','src/building-plan.js','src/public-realm.js','src/court-connections.js','src/editor-state.js','experiments/three-island-integration/ground.js','experiments/scoped-editor/editor.js']
+files=['index.html','src/geometry.js','package.json','src/building-plan.js','src/public-realm.js','src/court-connections.js','src/editor-state.js','experiments/three-island-integration/ground.js','experiments/scoped-editor/editor.js']
 expected={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in files}
 report={'url':BASE,'expected':expected,'errors':[]};deadline=time.monotonic()+1200
 while True:
@@ -40,3 +40,4 @@ with sync_playwright() as p:
         report['status']='failed';report['exception']=str(e);page.screenshot(path=str(OUT/'failure.png'));raise
     finally:
         (OUT/'report.json').write_text(json.dumps(report,indent=2)+'\n');browser.close()
+
