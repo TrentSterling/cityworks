@@ -37,7 +37,12 @@ with sync_playwright() as p:
         assert not report['errors'],report['errors']
         report['status']='passed'
     except Exception as e:
-        report['status']='failed';report['exception']=str(e);page.screenshot(path=str(OUT/'failure.png'));raise
+        report['status']='failed';report['exception']=str(e)
+        try:
+            page.screenshot(path=str(OUT/'failure.png'),timeout=5000)
+        except Exception as screenshot_error:
+            report['failureScreenshotException']=str(screenshot_error)
+        raise
     finally:
         (OUT/'report.json').write_text(json.dumps(report,indent=2)+'\n');browser.close()
 
